@@ -12,6 +12,12 @@
     "lib": ["ESNext", "DOM"],
     "skipLibCheck": true,
     "noEmit": true
+    // "baseUrl": ".",
+    // "paths": {
+    //   "@assets/*": ["src/assets/*"],
+    //   "@components/*": ["src/components/*"],
+    //   "@utilities/*": ["src/utilities/*"]
+    // }
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
   "references": [{ "path": "./tsconfig.node.json" }]

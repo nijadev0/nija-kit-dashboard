@@ -48,7 +48,10 @@ const {
         />
       </svg>
     </div>
-    <slot />
+
+    <span>
+      <slot />
+    </span>
   </button>
 
   <button
@@ -91,7 +94,7 @@ const {
 
 <style lang="postcss">
 .btn {
-  @apply font-semibold flex items-center justify-center gap-4 rounded-[10px] outline-none transition-all duration-300 ease-in-out border-2 border-transparent;
+  @apply font-semibold flex items-center justify-center gap-4 rounded-[10px] outline-none border-2 border-transparent;
 
   &.base {
     @apply bg-netral-10 text-primary-main stroke-primary-main hover:text-primary-hover hover:stroke-primary-hover active:text-primary-pressed active:stroke-primary-pressed active:border-2 active:border-primary-surface;

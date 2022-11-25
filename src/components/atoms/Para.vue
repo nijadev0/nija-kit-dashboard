@@ -29,6 +29,8 @@ const { variant, size } = defineProps<Para>();
 
 <style lang="postcss">
 .para {
+  @apply break-words;
+
   &.xxl {
     @apply text-xl leading-[1.4];
   }

@@ -5,5 +5,5 @@
 @tailwind utilities;
 
 body {
-  @apply font-sans;
+    @apply min-h-screen w-screen text-netral-100 bg-netral-10 font-sans;
 }

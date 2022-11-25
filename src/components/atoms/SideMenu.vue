@@ -1,22 +1,28 @@
 <script setup lang="ts">
+import { RouterLink } from 'vue-router'
+import type {_RouterLinkI} from 'vue-router'
+
 interface Sidebar {
   variant?: string | 'main' | 'sub';
   expand?: boolean;
   label?: string;
+  // href?: ComponentProps<_RouterLinkI>;
+  href?: string;
 }
 
-const { variant, expand } = defineProps<Sidebar>();
+const { variant, expand, href } = defineProps<Sidebar>();
 </script>
 
 <template>
-  <a
+  <RouterLink active-class="active" :to="'/' + href"
     class="cursor-pointer p-3 text-netral-50 bg-netral-10 hover:bg-netral-20 rounded-[10px] flex itemscenter justify-between stroke-netral-50 fill-netral-50 active:fill-primary-main active:stroke-primary-main active:text-primary-main"
     :class="{
       'min-w-[192px]': variant === 'main',
       'min-w-[155px]': variant === 'sub',
     }"
+
   >
-    <div class="flex font-semibold items-center gap-3 stroke-inherit">
+    <div class="flex font-semibold items-center gap-3 stroke-inherit text-sm">
       <slot />
       <!-- Icon -->
       {{ label }}
@@ -38,5 +44,5 @@ const { variant, expand } = defineProps<Sidebar>();
         stroke-linejoin="round"
       />
     </svg>
-  </a>
+  </RouterLink>
 </template>

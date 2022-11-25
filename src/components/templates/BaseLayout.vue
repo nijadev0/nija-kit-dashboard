@@ -9,6 +9,8 @@ const { title } = defineProps<{title: string}>()
 
 <template>
   <div class="nijakit">
+    <slot name="teleport" />
+    
     <section class="nijakit-sidebar">
       <Sidebar />
     </section>
@@ -20,12 +22,16 @@ const { title } = defineProps<{title: string}>()
 
       <section class="nijakit-wrapper">
         <main class="nijakit-container">
-          <Heading size="sm" variant="semibold" class="mb-6">
+          <Heading size="sm" variant="semibold">
             {{ title }}
           </Heading>
 
           <div class="nijakit-content">
-            <slot></slot>
+            <slot />
+          </div>
+
+          <div class="nijakit-extend">
+            <slot name="extend"/>
           </div>
         </main>
       </section>
@@ -54,11 +60,15 @@ const { title } = defineProps<{title: string}>()
   }
 
   &-container {
-    @apply container mx-auto;
+    @apply container mx-auto flex flex-col items-start gap-6 relative;
+  }
+
+  &-extend {
+    @apply container mx-auto sticky z-10 bottom-6 left-0;
   }
 
   &-content {
-    @apply w-full bg-netral-10 h-full min-h-screen rounded-3xl p-6;
+    @apply w-full bg-netral-10 h-full rounded-3xl p-6;
   }
 }
 </style>

@@ -42,13 +42,13 @@ import BellSimple from '../../assets/icons/BellSimple.vue';
 
 <style lang="postcss">
 .navbar {
-    @apply py-4 flex items-center justify-between container mx-auto;
+    @apply py-3.5 flex items-center justify-between container mx-auto;
     
     &_search {
         @apply max-w-sm relative;
     
         &-input {
-            @apply py-3 pl-12 pr-4 w-full bg-netral-20 rounded-lg h-full focus:outline-0 focus-within:outline-none focus:outline-primary-border border-2 border-transparent focus-within:border-2 focus-within:border-primary-border;
+            @apply py-2.5 pl-12 pr-4 w-full bg-netral-20 rounded-lg h-full focus:outline-0 focus-within:outline-none focus:outline-primary-border border-2 border-transparent focus-within:border-2 focus-within:border-primary-border;
         }
     }
 

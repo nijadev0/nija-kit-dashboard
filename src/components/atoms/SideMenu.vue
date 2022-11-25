@@ -15,7 +15,7 @@ const { variant, expand, href } = defineProps<Sidebar>();
 
 <template>
   <RouterLink active-class="active" :to="'/' + href"
-    class="cursor-pointer p-3 text-netral-50 bg-netral-10 hover:bg-netral-20 rounded-[10px] flex itemscenter justify-between stroke-netral-50 fill-netral-50 active:fill-primary-main active:stroke-primary-main active:text-primary-main"
+    class="cursor-pointer p-3 text-netral-50 bg-netral-10 hover:bg-netral-20 rounded-[10px] flex itemscenter justify-between stroke-netral-50 fill-netral-50 active:fill-primary-main active:stroke-primary-main active:text-primary-main transition-all duration-300 ease-in-out"
     :class="{
       'min-w-[192px]': variant === 'main',
       'min-w-[155px]': variant === 'sub',

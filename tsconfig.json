@@ -11,13 +11,13 @@
     "esModuleInterop": true,
     "lib": ["ESNext", "DOM"],
     "skipLibCheck": true,
-    "noEmit": true
-    // "baseUrl": ".",
-    // "paths": {
-    //   "@assets/*": ["src/assets/*"],
-    //   "@components/*": ["src/components/*"],
-    //   "@utilities/*": ["src/utilities/*"]
-    // }
+    "noEmit": true,
+    "baseUrl": ".",
+    "paths": {
+      "@assets/*": ["src/assets/*"],
+      "@components/*": ["src/components/*"],
+      "@utilities/*": ["src/utilities/*"]
+    }
   },
   "include": [
     "src/assets/icons/index.js",

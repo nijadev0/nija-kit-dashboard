@@ -14,9 +14,9 @@
     "noEmit": true,
     "baseUrl": ".",
     "paths": {
-      "@assets/*": ["src/assets/*"],
-      "@components/*": ["src/components/*"],
-      "@utilities/*": ["src/utilities/*"]
+      "$assets/*": ["./src/assets/*"],
+      "$components/*": ["./src/components/*"],
+      "$utilities/*": ["./src/utilities/*"]
     }
   },
   "include": [

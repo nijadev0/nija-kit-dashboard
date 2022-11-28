@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import Para from '../atoms/Para.vue';
-import Button from '../atoms/Button.vue';
+import Para from '$components/atoms/Para.vue';
+import Button from '$components/atoms/Button.vue';
 
-import CloseXIcon from '../../assets/icons/CloseXIcon.vue'
+import CloseXIcon from '$assets/icons/CloseXIcon.vue'
 
 interface Alert {
     variant?: string | 'error' | 'warning';
@@ -18,7 +18,7 @@ const { variant = 'error', title, description } = defineProps<Alert>()
         <div class="alert_card">
             <div class="alert_heading">
                 <div class="alert_title">
-                    <div class="alert_title-bg" :class="{ 'error': variant === 'error', 'warning': variant === 'warning'}"/>
+                    <div class="alert_title-bg" :class="{ 'error': variant === 'error', 'warning': variant === 'warning'}" />
                     <Para size="xl" variant="semibold">{{ title }}</Para>
                 </div>
                 <CloseXIcon />

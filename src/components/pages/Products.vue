@@ -1,27 +1,31 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
-import BaseLayout from '../templates/BaseLayout.vue';
+import BaseLayout from '$components/templates/BaseLayout.vue';
 
-import Title from '../atoms/Title.vue';
-import Button from '../atoms/Button.vue';
-import Para from '../atoms/Para.vue';
-import Checkbox from '../atoms/Checkbox.vue';
+import Title from '$components/atoms/Title.vue';
+import Button from '$components/atoms/Button.vue';
+import Para from '$components/atoms/Para.vue';
+import Checkbox from '$components/atoms/Checkbox.vue';
+import Pagination from '$components/atoms/Pagination.vue';
 
-import ProductsTableItem from '../moleculs/ProductsTableItem.vue'
-import Alert from '../organisms/Alert.vue';
-import Message from '../organisms/Message.vue';
+import ProductsTableItem from '$components/moleculs/TableData.vue'
 
-import SortAscendingIcon from '../../assets/icons/SortAscending.vue';
-import FunnelIcon from '../../assets/icons/Funnel.vue';
-import PlusIcon from '../../assets/icons/Plus.vue';
+// import Alert from '$components/organisms/Alert.vue';
+// import Message from '$components/organisms/Message.vue';
 
-import Product1 from '../../assets/images/product-1.png'; 
-import Product2 from '../../assets/images/product-2.png'; 
-import Product3 from '../../assets/images/product-3.png'; 
-import Product4 from '../../assets/images/product-4.png'; 
-import Product5 from '../../assets/images/product-5.png'; 
-import Pagination from '../atoms/Pagination.vue';
+import SortAscendingIcon from '$assets/icons/SortAscending.vue';
+import FunnelIcon from '$assets/icons/Funnel.vue';
+import PlusIcon from '$assets/icons/Plus.vue';
+import ChecksIcon from '$assets/icons/Check.vue';
+import CaretLeftIcon from '$assets/icons/CaretLeft.vue';
+import CaretRightIcon from '$assets/icons/CaretRight.vue';
+
+import Product1 from '$assets/images/product-1.png'; 
+import Product2 from '$assets/images/product-2.png'; 
+import Product3 from '$assets/images/product-3.png'; 
+import Product4 from '$assets/images/product-4.png'; 
+import Product5 from '$assets/images/product-5.png'; 
 
 const products = ref([
       {
@@ -75,11 +79,13 @@ const products = ref([
 <template>
     <BaseLayout title="Products">
         <div class="mb-8 flex items-center justify-between w-full relative">
-            
-            <Message variant="error" title="Product has been deleted" description="Lorem ipsum dolor sit amet consectetur. Orci nec leo risus turpis." />
-            <!-- <Message variant="success" title="Product has been deleted" description="Lorem ipsum dolor sit amet consectetur. Orci nec leo risus turpis." /> -->
+            <!-- <Message variant="error" 
+                     title="Product has been deleted" 
+                     description="Lorem ipsum dolor sit amet consectetur. Orci nec leo risus turpis." /> -->
 
-            <Alert variant="error" title="Delete Product" description="Lorem ipsum dolor sit amet consectetur. Orci nec leo risus turpis accumsan laoreet quam magnis eget. Velit morbi mattis in mi faucibus elementum tortor." />
+            <!-- <Alert variant="error" 
+                   title="Delete Product" 
+                   description="Lorem ipsum dolor sit amet consectetur. Orci nec leo risus turpis accumsan laoreet quam magnis eget. Velit morbi mattis in mi faucibus elementum tortor." /> -->
 
             <Title variant="base">
                 List Products
@@ -166,9 +172,7 @@ const products = ref([
                 <Para size="md" variant="medium" class="text-netral-50">Page 1 of 2</Para>
             <div>
                 <Pagination variant="base">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M10 13L5 8L10 3" stroke="#707784" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
+                    <CaretLeftIcon />
                 </Pagination>
                 <Pagination variant="primary">1</Pagination>
                 <Pagination variant="base">2</Pagination>
@@ -178,26 +182,21 @@ const products = ref([
                 <Pagination variant="base">...</Pagination>
                 <Pagination variant="base">10</Pagination>
                 <Pagination variant="base">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M6 3L11 8L6 13" stroke="#707784" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
+                    <CaretRightIcon />
                 </Pagination>
             </div>
         </div>
 
         <template #extend>
             <!-- Action -->
-            <div class="bg-white rounded-[10px] px-6 py-4 flex items-center justify-between shadow-extend border border-netral-30">
-                <div class="flex items-center gap-2">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M11.5625 6.5625L4.6875 13.4375L1.25 10.0002" stroke="#A0A8B0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M18.7518 6.5625L11.8768 13.4375L10.0508 11.6116" stroke="#A0A8B0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                    <span class="font-semibold text-base text-netral-50">
+            <div class="pageAction">
+                <div class="pageAction_status">
+                    <ChecksIcon />
+                    <span class="pageAction_status-text">
                         2 products selected
                     </span>
                 </div>
-                <div class="flex items-center gap-3">
+                <div class="pageAction_cta">
                     <Button type="outline" variant="primary" size="md">Draft</Button>
                     <Button type="background" variant="error" size="md">Delete</Button>
                 </div>
@@ -205,3 +204,21 @@ const products = ref([
         </template>
     </BaseLayout>
 </template>
+
+<style lang="postcss">
+.pageAction {
+    @apply bg-white rounded-[10px] px-6 py-4 flex items-center justify-between shadow-extend border border-netral-30;
+
+    &_status {
+        @apply flex items-center gap-2;
+
+        &-text {
+            @apply font-semibold text-base text-netral-50;
+        }
+    }
+
+    &_cta {
+        @apply flex items-center gap-3;
+    }
+}
+</style>

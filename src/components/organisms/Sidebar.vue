@@ -1,17 +1,21 @@
 <script setup lang="ts">
-import Heading from '../atoms/Heading.vue';
-import SideMenu from '../atoms/SideMenu.vue';
+import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue';
 
-import HouseSimpleIcon from '../../assets/icons/HouseSimple.vue';
-import UsersIcon from '../../assets/icons/Users.vue';
-import PackageIcon from '../../assets/icons/Package.vue';
-import ReceiptIcon from '../../assets/icons/Receipt.vue';
-import TagIcon from '../../assets/icons/Tag.vue';
-import AppWindowIcon from '../../assets/icons/AppWindow.vue';
-import StorefrontIcon from '../../assets/icons/Storefront.vue';
-import UserCircleIcon from '../../assets/icons/UserCircle.vue';
-import GearSixIcon from '../../assets/icons/GearSix.vue';
-import NijaKit from '../../assets/icons/NijaKit.vue';
+import Heading from '$components/atoms/Heading.vue';
+import SideMenu from '$components/moleculs/SideMenu.vue';
+
+import HouseSimpleIcon from '$assets/icons/HouseSimple.vue';
+import UsersIcon from '$assets/icons/Users.vue';
+import PackageIcon from '$assets/icons/Package.vue';
+import ReceiptIcon from '$assets/icons/Receipt.vue';
+import TagIcon from '$assets/icons/Tag.vue';
+import AppWindowIcon from '$assets/icons/AppWindow.vue';
+import StorefrontIcon from '$assets/icons/Storefront.vue';
+import UserCircleIcon from '$assets/icons/UserCircle.vue';
+import GearSixIcon from '$assets/icons/GearSix.vue';
+import NijaKit from '$assets/icons/NijaKit.vue';
+import CaretDownIcon from '$assets/icons/CaretDown.vue';
+
 </script>
 
 <template>
@@ -28,21 +32,38 @@ import NijaKit from '../../assets/icons/NijaKit.vue';
                 <HouseSimpleIcon class="stroke-inherit stroke-2" />
                 Dashboard
             </SideMenu>
+
             <SideMenu href="customers" variant="main" :expand="true">
                 <UsersIcon class="stroke-inherit stroke-2" />
                 Customers
             </SideMenu>
-            <SideMenu href="products" variant="main" :expand="true">
-                <PackageIcon class="stroke-inherit stroke-2" />
-                Products
-            </SideMenu>
+
+
+            <Disclosure>
+                <DisclosureButton class="flex items-center stroke-netral-100 justify-between w-full">
+                    <SideMenu variant="main" expand>
+                        <PackageIcon class="stroke-inherit stroke-2" />
+                        Products
+                    </SideMenu>
+                </DisclosureButton>
+
+                <DisclosurePanel class="sidebar_avatar">
+                    <div class="sidebar_avatar-divider" /> 
+
+                    <DisclosureButton :as="SideMenu" href="halo" variant="sub">
+                        Halo
+                    </DisclosureButton>
+                </DisclosurePanel>
+            </Disclosure>            
+            
             <SideMenu variant="main" :expand="true">
                 <ReceiptIcon class="stroke-inherit stroke-2" />
                 Transaction
             </SideMenu>
 
             <div class="sidebar_avatar">
-                <div class="sidebar_avatar-divider"></div>
+                <div class="sidebar_avatar-divider" />
+                
                 <SideMenu variant="sub">
                     Sub Menu Test 1
                 </SideMenu>

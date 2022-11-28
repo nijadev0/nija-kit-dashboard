@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Para from './Para.vue';
+import Para from '$components/atoms/Para.vue';
 
 const {variant} = defineProps<{variant?: string | 'primary' | 'outline' | 'base'}>();
 </script>

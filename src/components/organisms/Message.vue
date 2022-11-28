@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import Para from '../atoms/Para.vue';
-import TrashIcon from '../../assets/icons/Trash.vue';
-import CloseXIcon from '../../assets/icons/CloseXIcon.vue';
-import CheckCircleIcon from '../../assets/icons/CheckCircle.vue'
+import Para from '$components/atoms/Para.vue';
+import TrashIcon from '$assets/icons/Trash.vue';
+import CloseXIcon from '$assets/icons/CloseXIcon.vue';
+import CheckCircleIcon from '$assets/icons/CheckCircle.vue';
 
 interface Message {
     variant?: string | 'error' | 'success';

@@ -9,11 +9,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@headlessui/tailwindcss": "^0.1.1",
     "@headlessui/vue": "^1.7.4",
     "vue": "^3.2.41",
     "vue-router": "4"
   },
   "devDependencies": {
+    "@types/node": "^18.11.9",
     "@vitejs/plugin-vue": "^3.2.0",
     "autoprefixer": "^10.4.13",
     "postcss": "^8.4.19",

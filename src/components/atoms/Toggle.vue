@@ -11,7 +11,7 @@ const enabled = ref(false);
     :class="
       enabled ? 'bg-primary-main flex-row' : 'bg-netral-40 flex-row-reverse'
     "
-    class="relative flex max-h-[32px] max-w-[64px] p-1 items-center gap-2.5 rounded-full justify-between outline-none"
+    class="switch"
   >
     <svg
       v-if="enabled === true"
@@ -63,3 +63,9 @@ const enabled = ref(false);
     />
   </Switch>
 </template>
+
+<style lang="postcss">
+.switch {
+  @apply relative flex max-h-[32px] max-w-[64px] p-1 items-center gap-2.5 rounded-full justify-between outline-none;
+}
+</style>

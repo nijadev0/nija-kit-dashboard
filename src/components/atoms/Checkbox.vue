@@ -2,34 +2,23 @@
 import { ref } from 'vue';
 import { Switch } from '@headlessui/vue';
 
+import CheckIcon from '$assets/icons/Check.vue';
+
 interface Checkbox {
   text?: string;
+  enabled?: boolean;
 }
 
 const enabled = ref(false);
 const { text } = defineProps<Checkbox>();
+
+console.log(enabled.value);
 </script>
 
 <template>
   <Switch v-model="enabled" class="checkbox">
     <div class="checkbox-wrapper" :class="enabled ? 'active' : 'default'">
-      <svg
-        class="checkbox-icon"
-        :class="enabled ? 'block' : 'hidden'"
-        width="20"
-        height="20"
-        viewBox="0 0 20 20"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M16.875 5.62537L8.125 14.375L3.75 10.0004"
-          stroke="white"
-          stroke-width="1.25"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        />
-      </svg>
+      <CheckIcon class="checkbox-icon" :class="enabled ? 'block' : 'hidden'" />
     </div>
     <span class="checkbox-text"> {{ text }} </span>
   </Switch>

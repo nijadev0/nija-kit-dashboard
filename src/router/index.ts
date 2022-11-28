@@ -4,7 +4,7 @@ import Home from '$components/pages/Home.vue';
 import Customers from '$components/pages/Customers.vue';
 import Products from '$components/pages/Products.vue';
 import Sandbox from '$components/pages/Sandbox.vue';
-import NotFound from '$components/pages/NotFound.vued.vue';
+import NotFound from '$components/pages/NotFound.vue';
 
 const router = createRouter({
     history: createWebHistory(),

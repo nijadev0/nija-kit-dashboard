@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import Avatar from '../atoms/Avatar.vue';
-import Para from '../atoms/Para.vue';
+import Avatar from '$components/atoms/Avatar.vue';
+import Para from '$components/atoms/Para.vue';
 
-import AvatarPhoto from '../../assets/images/avatar.png';
-import MagnifyingGlass from '../../assets/icons/MagnifyingGlass.vue';
-import CaretDown from '../../assets/icons/CaretDown.vue';
-import BellSimple from '../../assets/icons/BellSimple.vue';
+import AvatarPhoto from '$assets/images/avatar.png';
+import MagnifyingGlass from '$assets/icons/MagnifyingGlass.vue';
+import CaretDown from '$assets/icons/CaretDown.vue';
+import BellSimple from '$assets/icons/BellSimple.vue';
 
 </script>
 
@@ -35,7 +35,7 @@ import BellSimple from '../../assets/icons/BellSimple.vue';
                     Super Admin
                 </Para>
             </div>
-            <CaretDown />
+            <CaretDown class="stroke-netral-50 stroke-2" />
         </div>
     </section>
 </template>

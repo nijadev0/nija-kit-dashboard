@@ -1,18 +1,15 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import { Switch } from '@headlessui/vue';
 
 import CheckIcon from '$assets/icons/Check.vue';
 
 interface Checkbox {
   text?: string;
-  enabled?: boolean;
 }
 
 const enabled = ref(false);
 const { text } = defineProps<Checkbox>();
-
-console.log(enabled.value);
 </script>
 
 <template>

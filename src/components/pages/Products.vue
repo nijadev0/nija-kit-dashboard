@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import { Switch, TransitionRoot, TransitionChild } from '@headlessui/vue';
 
 import BaseLayout from '$components/templates/BaseLayout.vue';
 
 import Title from '$components/atoms/Title.vue';
 import Button from '$components/atoms/Button.vue';
 import Para from '$components/atoms/Para.vue';
-import Checkbox from '$components/atoms/Checkbox.vue';
 import Pagination from '$components/atoms/Pagination.vue';
 
 import ProductsTableItem from '$components/moleculs/TableData.vue'
@@ -17,7 +17,8 @@ import ProductsTableItem from '$components/moleculs/TableData.vue'
 import SortAscendingIcon from '$assets/icons/SortAscending.vue';
 import FunnelIcon from '$assets/icons/Funnel.vue';
 import PlusIcon from '$assets/icons/Plus.vue';
-import ChecksIcon from '$assets/icons/Check.vue';
+import ChecksIcon from '$assets/icons/Checks.vue';
+import CheckIcon from '$assets/icons/Check.vue';
 import CaretLeftIcon from '$assets/icons/CaretLeft.vue';
 import CaretRightIcon from '$assets/icons/CaretRight.vue';
 
@@ -26,9 +27,10 @@ import Product2 from '$assets/images/product-2.png';
 import Product3 from '$assets/images/product-3.png'; 
 import Product4 from '$assets/images/product-4.png'; 
 import Product5 from '$assets/images/product-5.png'; 
+import Alert from '$components/organisms/Alert.vue';
 
 const products = ref([
-      {
+    {
         id: '0',
         image: Product1,
         name: 'UA Storm Armour Down 2\.0 Jacket',
@@ -36,8 +38,8 @@ const products = ref([
         status: 'active',
         stock: 401,
         spent: '$178',
-      },
-      {
+    },
+    {
         id: '1',
         image: Product2,
         name: 'T-Shirt Oversize Cielo Basil',
@@ -45,8 +47,8 @@ const products = ref([
         status: 'scheduled',
         stock: 738,
         spent: '$178',
-      },
-      {
+    },
+    {
         id: '2',
         image: Product3,
         name: 'T-Shirt Thompson Black',
@@ -54,8 +56,8 @@ const products = ref([
         status: 'active',
         stock: 432,
         spent: '$139',
-      },
-      {
+    },
+    {
         id: '2',
         image: Product4,
         name: 'Oversize Yucatan Glacier Lake',
@@ -63,8 +65,8 @@ const products = ref([
         status: 'draft',
         stock: 53,
         spent: '$99',
-      },
-      {
+    },
+    {
         id: '4',
         image: Product5,
         name: 'T-Shirt Project Summer Black',
@@ -72,8 +74,19 @@ const products = ref([
         status: 'active',
         stock: 32,
         spent: '$178',
-      }
-    ])
+    }
+])
+
+const enabled = ref(false);
+const isOpen = ref(false)
+
+function closeModal() {
+  isOpen.value = false
+}
+
+function openModal() {
+  isOpen.value = true
+}
 </script>
 
 <template>
@@ -83,9 +96,6 @@ const products = ref([
                      title="Product has been deleted" 
                      description="Lorem ipsum dolor sit amet consectetur. Orci nec leo risus turpis." /> -->
 
-            <!-- <Alert variant="error" 
-                   title="Delete Product" 
-                   description="Lorem ipsum dolor sit amet consectetur. Orci nec leo risus turpis accumsan laoreet quam magnis eget. Velit morbi mattis in mi faucibus elementum tortor." /> -->
 
             <Title variant="base">
                 List Products
@@ -107,7 +117,7 @@ const products = ref([
                     Filters
                 </Button>
     
-                <Button variant="primary" size="md" type="background" :icon="true" icon-flow="left">
+                <Button href="/products/add" variant="primary" size="md" type="background" :icon="true" icon-flow="left">
                     <template #icon>
                         <PlusIcon />
                     </template>
@@ -123,7 +133,12 @@ const products = ref([
                 <thead class="text-xs bg-[#fafafa] text-netral-50 rounded-lg font-semibold uppercase">
                     <tr>
                         <th class="py-5 text-left w-5 pl-3 pr-6">
-                            <Checkbox />
+                            <Switch v-model="enabled" class="checkbox">
+                                <div class="checkbox-wrapper" :class="enabled ? 'active' : 'default'">
+                                    <CheckIcon class="checkbox-icon" :class="enabled ? 'block' : 'hidden'" />
+                                </div>
+                            </Switch>
+
                         </th>
                         <th class="py-5 text-left w-[270px]">
                             <Para size="md" variant="semibold">
@@ -189,17 +204,40 @@ const products = ref([
 
         <template #extend>
             <!-- Action -->
-            <div class="pageAction">
-                <div class="pageAction_status">
-                    <ChecksIcon />
-                    <span class="pageAction_status-text">
-                        2 products selected
-                    </span>
-                </div>
-                <div class="pageAction_cta">
-                    <Button type="outline" variant="primary" size="md">Draft</Button>
-                    <Button type="background" variant="error" size="md">Delete</Button>
-                </div>
+            <div class="relative">
+                <TransitionRoot appear :show="enabled" as="template">
+                    <TransitionChild
+                        as="template"
+                        enter="duration-300 ease-in"
+                        enter-from="-bottom-40 opacity-0"
+                        enter-to="bottom-0 opacity-100"
+                        leave="duration-300 ease-out"
+                        leave-from="opacity-100 bottom-0"
+                        leave-to="opacity-0 -bottom-80"
+                    >
+                        <div class="pageAction">
+                            <div class="pageAction_status">
+                                <ChecksIcon />
+                                <span class="pageAction_status-text">
+                                    2 products selected
+                                </span>
+                            </div>
+
+                            <div class="pageAction_cta">
+                                <Button type="outline" variant="primary" size="md">Draft</Button>
+                            
+                                <Alert variant="error" 
+                                    :isOpen="isOpen"
+                                    :closeModal="closeModal"
+                                    title="Delete Product" 
+                                    description="Are you sure to delete your product? You won't get your data back once it deleted"
+                                />
+
+                                <Button type="background" variant="error" size="md" @click="openModal">Delete</Button>
+                            </div>
+                        </div>
+                    </TransitionChild>
+                </TransitionRoot>
             </div>
         </template>
     </BaseLayout>
@@ -207,7 +245,7 @@ const products = ref([
 
 <style lang="postcss">
 .pageAction {
-    @apply bg-white rounded-[10px] px-6 py-4 flex items-center justify-between shadow-extend border border-netral-30;
+    @apply relative bg-white rounded-[10px] px-6 py-4 flex items-center justify-between shadow-extend border border-netral-30;
 
     &_status {
         @apply flex items-center gap-2;
@@ -221,4 +259,29 @@ const products = ref([
         @apply flex items-center gap-3;
     }
 }
+
+.checkbox {
+    @apply flex items-center gap-2 outline-none;
+  
+    &-wrapper {
+      @apply relative flex w-5 h-5 items-center gap-2.5 rounded-md border justify-between outline-none;
+  
+      &.active {
+        @apply bg-primary-main border-primary-border;
+      }
+  
+      &.default {
+        @apply border-netral-60;
+      }
+    }
+  
+    &-icon {
+      @apply absolute w-full h-full z-10;
+    }
+  
+    &-text {
+      @apply text-netral-100;
+    }
+  }
+  
 </style>

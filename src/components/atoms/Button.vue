@@ -7,6 +7,8 @@ interface Button {
   type?: string | 'background' | 'outline';
   icon?: boolean;
   iconFlow? : string | 'left' | 'right';
+  href?: string;
+  todoClick?: VoidFunction;
 }
 
 const {
@@ -14,12 +16,15 @@ const {
   size = 'lg',
   type = 'background',
   icon = false,
-  iconFlow = 'left'
+  iconFlow = 'left',
+  href,
+  todoClick
 } = defineProps<Button>();
 </script>
 
 <template>
   <button
+    @click="href && $router.push(`${href}`) || todoClick"
     v-if="type === 'background'"
     class="btn"
     :class="{

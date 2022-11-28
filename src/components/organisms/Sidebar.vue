@@ -14,7 +14,6 @@ import StorefrontIcon from '$assets/icons/Storefront.vue';
 import UserCircleIcon from '$assets/icons/UserCircle.vue';
 import GearSixIcon from '$assets/icons/GearSix.vue';
 import NijaKit from '$assets/icons/NijaKit.vue';
-import CaretDownIcon from '$assets/icons/CaretDown.vue';
 
 </script>
 
@@ -28,7 +27,7 @@ import CaretDownIcon from '$assets/icons/CaretDown.vue';
                 </Heading>
             </div>
 
-            <SideMenu href="" variant="main">
+            <SideMenu href="/" variant="main">
                 <HouseSimpleIcon class="stroke-inherit stroke-2" />
                 Dashboard
             </SideMenu>
@@ -39,19 +38,24 @@ import CaretDownIcon from '$assets/icons/CaretDown.vue';
             </SideMenu>
 
 
-            <Disclosure>
-                <DisclosureButton class="flex items-center stroke-netral-100 justify-between w-full">
-                    <SideMenu variant="main" expand>
+            <Disclosure as="div" v-slot="{ open }">
+                
+                <DisclosureButton>
+                    <SideMenu variant="main" :expand="true">
                         <PackageIcon class="stroke-inherit stroke-2" />
                         Products
                     </SideMenu>
                 </DisclosureButton>
 
-                <DisclosurePanel class="sidebar_avatar">
+                <DisclosurePanel as="div" v-show="open" class="sidebar_avatar">
                     <div class="sidebar_avatar-divider" /> 
 
-                    <DisclosureButton :as="SideMenu" href="halo" variant="sub">
-                        Halo
+                    <DisclosureButton :as="SideMenu" href="/products" variant="sub">
+                        List Products
+                    </DisclosureButton>
+
+                    <DisclosureButton :as="SideMenu" href="/categories" variant="sub">
+                        Categories
                     </DisclosureButton>
                 </DisclosurePanel>
             </Disclosure>            
@@ -60,23 +64,6 @@ import CaretDownIcon from '$assets/icons/CaretDown.vue';
                 <ReceiptIcon class="stroke-inherit stroke-2" />
                 Transaction
             </SideMenu>
-
-            <div class="sidebar_avatar">
-                <div class="sidebar_avatar-divider" />
-                
-                <SideMenu variant="sub">
-                    Sub Menu Test 1
-                </SideMenu>
-
-                <SideMenu variant="sub">
-                    Sub Menu Test 2
-                </SideMenu>
-
-
-                <SideMenu variant="sub">
-                    Sub Menu Test 2
-                </SideMenu>
-            </div>
 
             <SideMenu variant="main">
                 <TagIcon class="stroke-inherit stroke-2" />
@@ -110,7 +97,7 @@ import CaretDownIcon from '$assets/icons/CaretDown.vue';
 .sidebar {
     @apply px-6 h-screen w-full max-w-[15rem] 
     
-    flex flex-col justify-start items-center gap-10 
+    flex flex-col justify-start items-center gap-10
     
     bg-netral-10 border-r border-netral-20;
 
@@ -123,11 +110,16 @@ import CaretDownIcon from '$assets/icons/CaretDown.vue';
     }
 
     &_avatar {
-        @apply flex flex-col items-end w-full gap-4 relative;
+        @apply flex flex-col items-end w-full gap-3 relative mt-3;
 
         &-divider {
             @apply w-0.5 h-full bg-netral-30 absolute inset-0 left-6;
         }
     }
+
+}
+
+button[data-headlessui-state="open"] .sideMenu.main {
+    @apply stroke-primary-main text-primary-main;
 }
 </style>

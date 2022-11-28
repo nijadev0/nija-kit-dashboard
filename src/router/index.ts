@@ -1,9 +1,9 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router';
 
-import Home from '$components/pages/Home.vue'
-import Customers from '$components/pages/Customers.vue'
-import Products from '$components/pages/Products.vue'
-import Sandbox from '$components/pages/Sandbox.vue'
+import Home from '$components/pages/Home.vue';
+import Customers from '$components/pages/Customers.vue';
+import Products from '$components/pages/Products.vue';
+import Sandbox from '$components/pages/Sandbox.vue';
 import NotFound from '$components/pages/404.vue';
 
 const router = createRouter({
@@ -33,4 +33,4 @@ const router = createRouter({
     ]
 })
 
-export default router
+export default router;

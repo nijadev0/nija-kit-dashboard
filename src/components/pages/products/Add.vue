@@ -79,13 +79,13 @@ function openModal() {
         
             <Listbox v-model="selectedPerson">
                 <div class="max-w-[720px] w-full">
-                    <ListboxButton :class="selectedPerson.unavailable ? 'text-netral-50 stroke-netral-50': 'text-netral-80 stroke-netral-80'" class="flex items-center justify-between p-3.5 border border-netral-30 rounded-lg w-full">
+                    <ListboxButton :class="selectedPerson.unavailable ? 'text-netral-50 stroke-netral-50': 'text-netral-80 stroke-netral-80'" class="flex items-center justify-between p-3.5 border border-netral-30 outline-none rounded-lg focus:border focus:border-primary-main w-full">
                         <span>
                             {{ selectedPerson.name }}
                         </span>
                         <CaretDownIcon class="stroke-2 stroke-inherit w-5 h-5"/>
                     </ListboxButton>
-                    <ListboxOptions class="w-full">
+                    <ListboxOptions class="w-full outline-none">
                         <ListboxOption
                             v-for="person in people"
                             :key="person.id"
@@ -112,13 +112,13 @@ function openModal() {
         
             <Listbox v-model="selectedPerson">
                 <div class="max-w-[720px] w-full">
-                    <ListboxButton :class="selectedPerson.unavailable ? 'text-netral-50 stroke-netral-50': 'text-netral-80 stroke-netral-80'" class="flex items-center justify-between p-3.5 border border-netral-30 rounded-lg w-full">
+                    <ListboxButton :class="selectedPerson.unavailable ? 'text-netral-50 stroke-netral-50': 'text-netral-80 stroke-netral-80'" class="flex items-center justify-between p-3.5 border border-netral-30 outline-none rounded-lg focus:border focus:border-primary-main w-full">
                         <span>
                             {{ selectedPerson.name }}
                         </span>
                         <CaretDownIcon class="stroke-2 stroke-inherit w-5 h-5"/>
                     </ListboxButton>
-                    <ListboxOptions class="w-full">
+                    <ListboxOptions class="w-full outline-none">
                         <ListboxOption
                             v-for="person in people"
                             :key="person.id"
@@ -163,7 +163,9 @@ function openModal() {
                     Lorem ipsum dolor sit amet consectetur. Sed quam semper nibh fermentum quis pretium tristique.
                 </Para>
             </div>
-            <Toggle />
+            <div class="w-full max-w-[720px]">
+                <Toggle />
+            </div>
         </div>
 
         <div class="my-7 w-full h-px bg-netral-20" />
@@ -171,7 +173,7 @@ function openModal() {
         <div class="flex items-start justify-between">
             <div class="max-w-[280px]">
                 <Para size="lg" variant="semibold" class="mb-2">
-                    Status
+                    Photo Product
                 </Para>
                 <Para size="md" variant="regular" class="text-netral-50">
                     Lorem ipsum dolor sit amet consectetur. Sed quam semper nibh fermentum quis pretium tristique.
@@ -247,13 +249,13 @@ function openModal() {
                 
                     <Listbox v-model="selectedPerson">
                         <div class="max-w-[720px] w-full">
-                            <ListboxButton :class="selectedPerson.unavailable ? 'text-netral-50 stroke-netral-50': 'text-netral-80 stroke-netral-80'" class="flex items-center justify-between p-3.5 border border-netral-30 rounded-lg w-full">
+                            <ListboxButton :class="selectedPerson.unavailable ? 'text-netral-50 stroke-netral-50': 'text-netral-80 stroke-netral-80'" class="flex items-center justify-between p-3.5 border border-netral-30 outline-none rounded-lg focus:border focus:border-primary-main w-full">
                                 <span>
                                     {{ selectedPerson.name }}
                                 </span>
                                 <CaretDownIcon class="stroke-2 stroke-inherit w-5 h-5"/>
                             </ListboxButton>
-                            <ListboxOptions class="w-full">
+                            <ListboxOptions class="w-full outline-none">
                                 <ListboxOption
                                     v-for="person in people"
                                     :key="person.id"

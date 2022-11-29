@@ -38,8 +38,7 @@ import NijaKit from '$assets/icons/NijaKit.vue';
             </SideMenu>
 
 
-            <Disclosure as="div" v-slot="{ open }">
-                
+            <Disclosure>
                 <DisclosureButton>
                     <SideMenu variant="main" :expand="true">
                         <PackageIcon class="stroke-inherit stroke-2" />
@@ -47,15 +46,19 @@ import NijaKit from '$assets/icons/NijaKit.vue';
                     </SideMenu>
                 </DisclosureButton>
 
-                <DisclosurePanel as="div" v-show="open" class="sidebar_avatar">
+                <DisclosurePanel class="sidebar_avatar">
                     <div class="sidebar_avatar-divider" /> 
 
-                    <DisclosureButton :as="SideMenu" href="/products" variant="sub">
-                        List Products
+                    <DisclosureButton>
+                        <SideMenu href="/products" variant="sub">
+                            List Products
+                        </SideMenu>
                     </DisclosureButton>
 
-                    <DisclosureButton :as="SideMenu" href="/categories" variant="sub">
-                        Categories
+                    <DisclosureButton>
+                        <SideMenu href="/categories" variant="sub">
+                            Categories
+                        </SideMenu>
                     </DisclosureButton>
                 </DisclosurePanel>
             </Disclosure>            

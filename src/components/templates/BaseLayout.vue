@@ -30,6 +30,10 @@ const { title } = defineProps<{title: string}>()
             <slot />
           </div>
 
+          <div class="nijakit-layout">
+            <slot name="layout" />
+          </div>
+
           <div class="nijakit-extend">
             <slot name="extend"/>
           </div>
@@ -49,6 +53,10 @@ const { title } = defineProps<{title: string}>()
 
   &-main {
     @apply relative w-full;
+  }
+
+  &-layout {
+    @apply w-full;
   }
 
   &-navbar {

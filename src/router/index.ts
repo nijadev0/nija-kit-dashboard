@@ -2,8 +2,11 @@ import { createRouter, createWebHistory } from 'vue-router';
 
 import Home from '$components/pages/Home.vue';
 import Customers from '$components/pages/Customers.vue';
+// Products
 import Products from '$components/pages/Products.vue';
-// import Sandbox from '$components/pages/Sandbox.vue';
+import AddProducts from '$components/pages/products/Add.vue';
+
+import Sandbox from '$components/pages/Sandbox.vue';
 import NotFound from '$components/pages/NotFound.vue';
 
 const router = createRouter({
@@ -24,11 +27,16 @@ const router = createRouter({
             name: 'Products',
             component: Products
         },
-        // {
-        //     path: '/sandbox',
-        //     name: 'Sandbox',
-        //     component: Sandbox
-        // },
+        {
+            path: '/products/add',
+            name: 'Add Products',
+            component: AddProducts
+        },
+        {
+            path: '/sandbox',
+            name: 'Sandbox',
+            component: Sandbox
+        },
         { 
             path: '/:pathMatch(.*)*', 
             name: 'NotFound', 

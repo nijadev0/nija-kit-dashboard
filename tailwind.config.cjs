@@ -57,7 +57,8 @@ module.exports = {
       },
       boxShadow: {
         extend: '0px -0px 16px 8px rgba(0, 0, 0, 0.04)',
-        message: '0px 0px 1px rgba(47, 47, 47, 0.2), 0px 3px 5px rgba(47, 47, 47, 0.2)'
+        message: '0px 0px 1px rgba(47, 47, 47, 0.2), 0px 3px 5px rgba(47, 47, 47, 0.2)',
+        input: '0px 1px 0px rgba(0, 0, 0, 0.05)'
       }
     },
   },

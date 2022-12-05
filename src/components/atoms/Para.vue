@@ -32,7 +32,7 @@ const { variant, size } = defineProps<Para>()
   @apply break-words;
 
   &.xxl {
-    @apply text-xl leading-[1.4];
+    @apply text-lg leading-[1.4] 2xl:text-xl 2xl:leading-[1.4];
   }
 
   &.xl {

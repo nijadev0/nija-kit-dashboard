@@ -96,6 +96,7 @@ let inputType = ref('password')
         </div>
 
         <button
+          @click="$router.push('/password/reseted')"
           class="w-full rounded-[10px] bg-primary-main py-4 font-semibold leading-none text-white"
         >
           Reset Password

@@ -92,11 +92,11 @@ const enabled = ref(true)
             </tr>
           </thead>
           <tbody class="w-full capitalize">
-            <tr>
+            <tr class="border-b">
               <td class="w-5 py-5 pl-3 pr-6 text-left"><Checkbox /></td>
               <td class="w-[160px]">Samanta Legend</td>
               <td class="w-[160px]">samanta@mail.com</td>
-              <td class="w-[150px] pr-4">
+              <td class="w-[150px] py-5 pr-4">
                 2972 Westheimer Rd. Santa Ana, Illinois 85486
               </td>
               <td class="w-[100px]">Orange</td>
@@ -111,16 +111,16 @@ const enabled = ref(true)
               </td>
             </tr>
 
-            <tr>
+            <tr class="border-b">
               <td class="w-5 py-5 pl-3 pr-6 text-left"><Checkbox /></td>
-              <td class="">Samanta Legend</td>
-              <td class="">samanta@mail.com</td>
-              <td class="w-[150px] pr-4">
+              <td class="py-5">Samanta Legend</td>
+              <td class="py-5">samanta@mail.com</td>
+              <td class="w-[150px] py-5 pr-4">
                 2972 Westheimer Rd. Santa Ana, Illinois 85486
               </td>
-              <td class="">Orange</td>
-              <td class="">May 6, 2012</td>
-              <td class="">
+              <td class="py-5">Orange</td>
+              <td class="py-5">May 6, 2012</td>
+              <td class="py-5">
                 <button
                   @click="$router.push('/users/detail')"
                   class="font-semibold text-primary-main"
@@ -130,16 +130,16 @@ const enabled = ref(true)
               </td>
             </tr>
 
-            <tr>
+            <tr class="border-b">
               <td class="w-5 py-5 pl-3 pr-6 text-left"><Checkbox /></td>
-              <td class="">Samanta Legend</td>
-              <td class="">samanta@mail.com</td>
-              <td class="w-[150px] pr-4">
+              <td class="py-5">Samanta Legend</td>
+              <td class="py-5">samanta@mail.com</td>
+              <td class="w-[150px] py-5 pr-4">
                 2972 Westheimer Rd. Santa Ana, Illinois 85486
               </td>
-              <td class="">Orange</td>
-              <td class="">May 6, 2012</td>
-              <td class="">
+              <td class="py-5">Orange</td>
+              <td class="py-5">May 6, 2012</td>
+              <td class="py-5">
                 <button
                   @click="$router.push('/users/detail')"
                   class="font-semibold text-primary-main"

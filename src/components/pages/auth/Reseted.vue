@@ -37,6 +37,7 @@ import CheckCirclePurple from '$assets/icons/CheckCirclePurple.vue'
           magically.
         </Para>
         <button
+          @click="$router.push('/account/login')"
           class="w-full max-w-[428px] rounded-[10px] bg-primary-main py-4 font-semibold leading-none text-white"
         >
           Login

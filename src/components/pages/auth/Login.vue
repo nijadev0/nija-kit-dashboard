@@ -83,12 +83,16 @@ let inputType = ref('password')
             <span> Remember Me </span>
           </div>
 
-          <button class="text-right font-semibold underline underline-offset-2">
+          <button
+            @click="$router.push('/password/forgot')"
+            class="text-right font-semibold underline underline-offset-2"
+          >
             Forgot Password
           </button>
         </div>
 
         <button
+          @click="$router.push('/')"
           class="w-full rounded-[10px] bg-primary-main py-4 font-semibold leading-none text-white"
         >
           Log in

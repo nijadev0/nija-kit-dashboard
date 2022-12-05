@@ -19,7 +19,7 @@ const { variant = 'base' } = defineProps<Title>()
         success: variant === 'success',
         info: variant === 'info'
       }"
-    ></div>
+    />
 
     <Para size="xxl" variant="semibold">
       <slot />

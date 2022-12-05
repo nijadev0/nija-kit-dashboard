@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { className } = defineProps<{ className?: string }>();
+const { className } = defineProps<{ className?: string }>()
 </script>
 <template>
   <svg

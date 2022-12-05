@@ -1,10 +1,10 @@
 <script setup lang="ts">
 interface Heading {
-  variant?: string | 'bold' | 'semibold' | 'medium' | 'regular';
-  size?: string | 'xl' | 'lg' | 'md' | 'sm';
+  variant?: 'bold' | 'semibold' | 'medium' | 'regular'
+  size?: 'xl' | 'lg' | 'md' | 'sm'
 }
 
-const { variant, size } = defineProps<Heading>();
+const { variant, size } = defineProps<Heading>()
 </script>
 
 <template>
@@ -18,7 +18,7 @@ const { variant, size } = defineProps<Heading>();
       bold: variant === 'bold',
       semibold: variant === 'semibold',
       medium: variant === 'medium',
-      regular: variant === 'regular',
+      regular: variant === 'regular'
     }"
   >
     <slot />

@@ -1,10 +1,10 @@
 <script setup lang="ts">
 interface Para {
-  variant?: string | 'bold' | 'semibold' | 'medium' | 'regular';
-  size?: string | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs';
+  variant?: 'bold' | 'semibold' | 'medium' | 'regular'
+  size?: 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs'
 }
 
-const { variant, size } = defineProps<Para>();
+const { variant, size } = defineProps<Para>()
 </script>
 
 <template>
@@ -20,7 +20,7 @@ const { variant, size } = defineProps<Para>();
       bold: variant === 'bold',
       semibold: variant === 'semibold',
       medium: variant === 'medium',
-      regular: variant === 'regular',
+      regular: variant === 'regular'
     }"
   >
     <slot />

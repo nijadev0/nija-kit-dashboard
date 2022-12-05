@@ -1,28 +1,30 @@
 <script setup lang="ts">
-import { RouterLink } from 'vue-router';
-import type {_RouterLinkI} from 'vue-router';
+import { RouterLink } from 'vue-router'
+import type { _RouterLinkI } from 'vue-router'
 
-import CaretDownIcon from '$assets/icons/CaretDown.vue';
+import CaretDownIcon from '$assets/icons/CaretDown.vue'
 
 interface Sidebar {
-  variant?: string | 'main' | 'sub';
-  expand?: boolean;
-  label?: string;
-  href?: string;
+  variant?: string | 'main' | 'sub'
+  expand?: boolean
+  label?: string
+  href?: string
 }
 
-const { variant, expand, href } = defineProps<Sidebar>();
+const { variant, expand, href } = defineProps<Sidebar>()
 </script>
 
 <template>
-  <RouterLink v-if="!expand" active-class="active" :to="`${href}`"
+  <RouterLink
+    v-if="!expand"
+    :to="`${href}`"
+    active-class="active"
     class="sideMenu"
     :class="{
-      'main': variant === 'main',
-      'sub': variant === 'sub',
-      'active': variant === 'active'
+      main: variant === 'main',
+      sub: variant === 'sub',
+      active: variant === 'active'
     }"
-
   >
     <div class="sideMenu_wrapper">
       <!-- Icon -->
@@ -31,22 +33,25 @@ const { variant, expand, href } = defineProps<Sidebar>();
       <!-- Label -->
       {{ label }}
     </div>
-    
   </RouterLink>
 
-  <button class="sideMenu" 
-    :class="{
-      'main': variant === 'main',
-      'sub': variant === 'sub',
-      'active': variant === 'active'
-    }"
+  <button
     v-if="expand"
+    class="sideMenu"
+    :class="{
+      main: variant === 'main',
+      sub: variant === 'sub',
+      active: variant === 'active'
+    }"
   >
     <div class="sideMenu_wrapper">
       <slot />
       {{ label }}
     </div>
-    <CaretDownIcon class="stroke-2 stroke-inherit ui-open:rotate-180 transition ease-in-out duration-300" />
+
+    <CaretDownIcon
+      class="stroke-2 stroke-inherit ui-open:rotate-180 transition ease-in-out duration-300"
+    />
   </button>
 </template>
 
@@ -60,7 +65,7 @@ const { variant, expand, href } = defineProps<Sidebar>();
   
   transition-all duration-300 ease-in-out;
 
-  &[data-headlessui-state="open"] {
+  &[data-headlessui-state='open'] {
     @apply bg-red-500;
   }
 

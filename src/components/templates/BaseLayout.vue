@@ -1,16 +1,22 @@
 <script setup lang="ts">
-import Heading from '../../components/atoms/Heading.vue';
+import Heading from '$components/atoms/Heading.vue'
 
-import Sidebar from '../../components/organisms/Sidebar.vue';
-import Navbar from '../../components/organisms/Navbar.vue';
+import Sidebar from '$components/organisms/Sidebar.vue'
+import Navbar from '$components/organisms/Navbar.vue'
 
-const { title } = defineProps<{title: string}>()
+interface BaseLayout {
+  title: string
+  page?: boolean
+  full?: boolean
+}
+
+const { title, page = false, full = true } = defineProps<BaseLayout>()
 </script>
 
 <template>
   <div class="nijakit">
     <slot name="teleport" />
-    
+
     <section class="nijakit-sidebar">
       <Sidebar />
     </section>
@@ -26,8 +32,15 @@ const { title } = defineProps<{title: string}>()
             {{ title }}
           </Heading>
 
-          <div class="nijakit-content">
+          <div
+            class="nijakit-content"
+            :class="{ 'nijakit-contentFirst': full === true }"
+          >
             <slot />
+          </div>
+
+          <div v-if="page" class="nijakit-content">
+            <slot name="page" />
           </div>
 
           <div class="nijakit-layout">
@@ -35,7 +48,7 @@ const { title } = defineProps<{title: string}>()
           </div>
 
           <div class="nijakit-extend">
-            <slot name="extend"/>
+            <slot name="extend" />
           </div>
         </main>
       </section>
@@ -45,10 +58,10 @@ const { title } = defineProps<{title: string}>()
 
 <style lang="postcss">
 .nijakit {
-  @apply relative flex items-start w-full h-full justify-start;
+  @apply relative flex h-full w-full items-start justify-start;
 
   &-sidebar {
-    @apply sticky top-0 left-0 right-auto h-screen; 
+    @apply sticky top-0 left-0 right-auto h-screen;
   }
 
   &-main {
@@ -68,15 +81,19 @@ const { title } = defineProps<{title: string}>()
   }
 
   &-container {
-    @apply container mx-auto flex flex-col items-start gap-6 relative;
+    @apply container relative mx-auto flex flex-col items-start gap-6;
   }
 
   &-extend {
-    @apply container mx-auto sticky z-10 bottom-6 left-0;
+    @apply container sticky bottom-6 left-0 z-10 mx-auto;
   }
 
   &-content {
-    @apply w-full bg-netral-10 h-full rounded-3xl p-6;
+    @apply h-full w-full rounded-[10px] bg-netral-10 p-6;
+
+    &First {
+      @apply min-h-screen;
+    }
   }
 }
 </style>

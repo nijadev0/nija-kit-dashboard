@@ -1,9 +1,16 @@
-@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-body {
+@layer base {
+  body {
     @apply min-h-screen w-screen text-netral-100 bg-netral-10 font-sans;
+  }
+
+  input,
+  textarea {
+    @apply outline-none focus-visible:outline-none;
+  }
 }

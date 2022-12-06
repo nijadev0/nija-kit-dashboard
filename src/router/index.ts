@@ -4,21 +4,21 @@ import Home from '$components/pages/Home.vue'
 import Customers from '$components/pages/Customers.vue'
 
 // Products
-import Products from '$components/pages/Products.vue'
+import Products from '$components/pages/products/Products.vue'
 import AddProducts from '$components/pages/products/Add.vue'
 import Variants from '$components/pages/Variants.vue'
 
 // Categories
-import Categories from '$components/pages/Categories.vue'
+import Categories from '$components/pages/categories/Categories.vue'
 import AddCategories from '$components/pages/categories/Add.vue'
 
-// Categories
-import Users from '$components/pages/Users.vue'
-import DetailsUser from '$components/pages/users/Add.vue'
+// Users
+import Users from '$components/pages/users/Users.vue'
+import DetailsUser from '$components/pages/users/Detail.vue'
 
-// Categories
-import Buyers from '$components/pages/Buyers.vue'
-import DetailsBuyer from '$components/pages/buyers/Add.vue'
+// Buyers
+import Buyers from '$components/pages/buyers/Buyers.vue'
+import DetailsBuyer from '$components/pages/buyers/Detail.vue'
 
 // Authentication
 import Login from '$components/pages/auth/Login.vue'

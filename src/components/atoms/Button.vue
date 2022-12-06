@@ -17,7 +17,7 @@ interface Button {
   typeIconOnly?: 'backgroundIcon' | 'outlineIcon'
   iconFlow?: 'left' | 'right'
   href?: string
-  todoClick?: any
+  onClick?: any
   btnType?: 'button' | 'link'
 }
 
@@ -30,12 +30,13 @@ const {
   typeIconOnly,
   iconFlow = 'left',
   href,
-  todoClick,
+  onClick,
   btnType = 'link'
 } = defineProps<Button>()
 </script>
 
 <template>
+  <!-- Button - Label & Icon toLink -->
   <a
     @click="href && $router.push(`${href}`)"
     v-if="type === 'background' && btnType !== 'button'"
@@ -60,8 +61,8 @@ const {
     <div
       v-if="icon"
       :class="{
-        'w-4 h-4': size === 'lg' || size === 'md',
-        'w-3 h-3': size === 'sm'
+        'h-4 w-4': size === 'lg' || size === 'md',
+        'h-3 w-3': size === 'sm'
       }"
     >
       <slot name="icon">
@@ -72,10 +73,11 @@ const {
     <slot />
   </a>
 
+  <!-- Button - Label & Icon withClick -->
   <button
     v-if="type === 'background' && btnType === 'button'"
+    @click="onClick"
     class="btn"
-    @click="$emit('todo-click', 'todoClick')"
     :class="{
       base: variant === 'base',
       primary: variant === 'primary',
@@ -96,8 +98,8 @@ const {
     <div
       v-if="icon"
       :class="{
-        'w-4 h-4': size === 'lg' || size === 'md',
-        'w-3 h-3': size === 'sm'
+        'h-4 w-4': size === 'lg' || size === 'md',
+        'h-3 w-3': size === 'sm'
       }"
     >
       <slot name="icon">
@@ -108,9 +110,10 @@ const {
     <slot />
   </button>
 
+  <!-- Button - Label & Icon -->
   <button
     v-if="type === 'outline'"
-    @click="todoClick"
+    @click="onClick"
     class="btn outline"
     :class="{
       primary: variant === 'primary',
@@ -131,8 +134,8 @@ const {
     <div
       v-if="icon"
       :class="{
-        'w-4 h-4': size === 'lg' || size === 'md',
-        'w-3 h-3': size === 'sm'
+        'h-4 w-4': size === 'lg' || size === 'md',
+        'h-3 w-3': size === 'sm'
       }"
     >
       <slot name="icon">
@@ -143,6 +146,7 @@ const {
     <slot />
   </button>
 
+  <!-- Button - Icon -->
   <button
     v-if="icon && iconOnly"
     class="btn iconOnly"
@@ -157,7 +161,7 @@ const {
 
 <style lang="postcss">
 .btn {
-  @apply cursor-pointer font-semibold flex items-center justify-center gap-3 rounded-[10px] outline-none border-2 border-transparent whitespace-nowrap transition-colors ease-in-out duration-300;
+  @apply flex cursor-pointer items-center justify-center gap-3 whitespace-nowrap rounded-[10px] border-2 border-transparent font-semibold outline-none transition-colors duration-300 ease-in-out;
 
   &.left {
     @apply flex-row;
@@ -168,7 +172,7 @@ const {
   }
 
   &.iconOnly {
-    @apply p-3 rounded-[10px] flex items-center justify-center;
+    @apply flex items-center justify-center rounded-[10px] p-3;
 
     &.backgroundIcon {
       @apply bg-primary-surface;
@@ -180,51 +184,51 @@ const {
   }
 
   &.base {
-    @apply bg-netral-10 text-primary-main stroke-primary-main 
+    @apply bg-netral-10 stroke-primary-main text-primary-main 
     
-    hover:text-primary-hover hover:stroke-primary-hover 
+    hover:stroke-primary-hover hover:text-primary-hover 
     
-    active:text-primary-pressed active:stroke-primary-pressed active:border-2 active:border-primary-surface;
+    active:border-2 active:border-primary-surface active:stroke-primary-pressed active:text-primary-pressed;
   }
 
   &.primary {
-    @apply bg-primary-main text-netral-10 stroke-netral-10 
+    @apply bg-primary-main stroke-netral-10 text-netral-10 
     
     hover:bg-primary-hover 
     
-    active:bg-primary-pressed active:border-2 active:border-primary-border;
+    active:border-2 active:border-primary-border active:bg-primary-pressed;
   }
 
   &.default {
-    @apply bg-netral-20 text-netral-100 stroke-netral-100 
+    @apply bg-netral-20 stroke-netral-100 text-netral-100 
     
     hover:bg-netral-30 
     
-    active:bg-netral-40 active:border-2 active:border-primary-main/30;
+    active:border-2 active:border-primary-main/30 active:bg-netral-40;
   }
 
   &.error {
-    @apply bg-error-main text-netral-10 stroke-netral-10 
+    @apply bg-error-main stroke-netral-10 text-netral-10 
     
     hover:bg-error-hover 
     
-    active:bg-error-pressed active:border-error-border;
+    active:border-error-border active:bg-error-pressed;
   }
 
   &.warning {
-    @apply bg-warning-main text-netral-10 stroke-netral-10 
+    @apply bg-warning-main stroke-netral-10 text-netral-10 
     
     hover:bg-warning-hover 
     
-    active:bg-warning-pressed active:border-warning-border;
+    active:border-warning-border active:bg-warning-pressed;
   }
 
   &.disabled {
-    @apply bg-netral-30 text-netral-100 stroke-netral-100 pointer-events-none cursor-default;
+    @apply pointer-events-none cursor-default bg-netral-30 stroke-netral-100 text-netral-100;
   }
 
   &.disabledBase {
-    @apply bg-netral-10 text-netral-50 stroke-netral-50 pointer-events-none cursor-default;
+    @apply pointer-events-none cursor-default bg-netral-10 stroke-netral-50 text-netral-50;
   }
 
   &.lgFont,
@@ -249,26 +253,26 @@ const {
   }
 
   &.outline {
-    @apply font-semibold flex items-center justify-center gap-4 rounded-[10px] outline-none;
+    @apply flex items-center justify-center gap-4 rounded-[10px] font-semibold outline-none;
 
     &.primary {
-      @apply bg-netral-10 text-primary-main stroke-primary-main border border-primary-main hover:bg-primary-surface active:border-primary-border active:border-2 active:bg-primary-surface;
+      @apply border border-primary-main bg-netral-10 stroke-primary-main text-primary-main hover:bg-primary-surface active:border-2 active:border-primary-border active:bg-primary-surface;
     }
 
     &.error {
-      @apply bg-netral-10 text-error-main stroke-error-main border border-error-main hover:bg-error-surface active:border-error-border active:border-2 active:bg-error-surface;
+      @apply border border-error-main bg-netral-10 stroke-error-main text-error-main hover:bg-error-surface active:border-2 active:border-error-border active:bg-error-surface;
     }
 
     &.warning {
-      @apply bg-netral-10 text-warning-main stroke-warning-main hover:bg-warning-surface active:border-warning-border active:border-2 active:bg-warning-surface;
+      @apply bg-netral-10 stroke-warning-main text-warning-main hover:bg-warning-surface active:border-2 active:border-warning-border active:bg-warning-surface;
     }
 
     &.disabled {
-      @apply bg-netral-30 text-netral-100 stroke-netral-100 pointer-events-none cursor-default;
+      @apply pointer-events-none cursor-default bg-netral-30 stroke-netral-100 text-netral-100;
     }
 
     &.disabledBase {
-      @apply bg-netral-10 text-netral-50 stroke-netral-50 pointer-events-none cursor-default;
+      @apply pointer-events-none cursor-default bg-netral-10 stroke-netral-50 text-netral-50;
     }
   }
 }

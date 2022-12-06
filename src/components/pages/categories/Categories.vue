@@ -29,6 +29,7 @@ import Product2 from '$assets/images/product-2.png'
 import Product3 from '$assets/images/product-3.png'
 import Product4 from '$assets/images/product-4.png'
 import Product5 from '$assets/images/product-5.png'
+import Paginate from '$components/moleculs/Paginate.vue'
 
 const categories = [
   {
@@ -204,14 +205,14 @@ function openModal() {
 
             <TabList class="flex items-center gap-2">
               <Tab
-                class="p-3 outline-0 border border-netral-30 stroke-netral-90 focus-visible:outline-none ui-selected:border ui-selected:border-transparent ui-selected:bg-primary-surface rounded-[10px] ui-selected:stroke-primary-main"
+                class="rounded-[10px] border border-netral-30 stroke-netral-90 p-3 outline-0 focus-visible:outline-none ui-selected:border ui-selected:border-transparent ui-selected:bg-primary-surface ui-selected:stroke-primary-main"
               >
-                <SquaresFourIcon class="w-6 h-6 stroke-inherit" />
+                <SquaresFourIcon class="h-6 w-6 stroke-inherit" />
               </Tab>
               <Tab
-                class="p-3 outline-0 border border-netral-30 stroke-netral-90 focus-visible:outline-none ui-selected:border ui-selected:border-transparent ui-selected:bg-primary-surface rounded-[10px] ui-selected:stroke-primary-main"
+                class="rounded-[10px] border border-netral-30 stroke-netral-90 p-3 outline-0 focus-visible:outline-none ui-selected:border ui-selected:border-transparent ui-selected:bg-primary-surface ui-selected:stroke-primary-main"
               >
-                <ListIcon class="w-6 h-6 stroke-inherit" />
+                <ListIcon class="h-6 w-6 stroke-inherit" />
               </Tab>
             </TabList>
           </div>
@@ -223,13 +224,13 @@ function openModal() {
               <div
                 v-for="({ image, name, desc }, index) in categories"
                 :key="'category-' + index"
-                class="min-w-[257px] w-full h-full bg-white relative"
+                class="relative h-full w-full min-w-[257px] bg-white"
               >
                 <div class="absolute left-3 top-3 z-10">
                   <Checkbox />
                 </div>
                 <div
-                  class="w-full h-[180px] py-5 relative bg-[#FAFAFA] flex justify-center rounded-[10px]"
+                  class="relative flex h-[180px] w-full justify-center rounded-[10px] bg-[#FAFAFA] py-5"
                 >
                   <img :src="image" alt="category image 1" />
                 </div>
@@ -248,14 +249,14 @@ function openModal() {
           </TabPanel>
           <TabPanel>
             <!-- Table -->
-            <div class="overflow-x-auto mb-6">
-              <table class="table-auto w-full">
+            <div class="mb-6 overflow-x-auto">
+              <table class="w-full table-auto">
                 <!-- Table header -->
                 <thead
-                  class="w-full text-xs bg-[#fafafa] text-netral-50 rounded-lg font-semibold uppercase"
+                  class="w-full rounded-lg bg-[#fafafa] text-xs font-semibold uppercase text-netral-50"
                 >
                   <tr class="w-full">
-                    <th class="py-5 text-left w-px pl-3 pr-6">
+                    <th class="w-px py-5 pl-3 pr-6 text-left">
                       <Switch v-model="enabled" class="checkbox">
                         <div
                           class="checkbox-wrapper"
@@ -284,12 +285,12 @@ function openModal() {
                 </thead>
                 <tbody class="w-full capitalize">
                   <tr class="tableData">
-                    <td class="pl-3 pr-6 py-5 text-left">
+                    <td class="py-5 pl-3 pr-6 text-left">
                       <Checkbox />
                     </td>
                     <td class="py-5 text-left">
                       <div class="flex items-center gap-3">
-                        <div class="max-w-[86px] max-h-[86px]">
+                        <div class="max-h-[86px] max-w-[86px]">
                           <img :src="Categories1" alt="category 1" />
                         </div>
                         <Para
@@ -318,18 +319,18 @@ function openModal() {
                     </td>
 
                     <td class="py-5 text-left">
-                      <button class="text-primary-main font-semibold">
+                      <button class="font-semibold text-primary-main">
                         Detail
                       </button>
                     </td>
                   </tr>
                   <tr class="tableData">
-                    <td class="pl-3 pr-6 py-5 text-left">
+                    <td class="py-5 pl-3 pr-6 text-left">
                       <Checkbox />
                     </td>
                     <td class="py-5 text-left">
                       <div class="flex items-center gap-3">
-                        <div class="max-w-[86px] max-h-[86px]">
+                        <div class="max-h-[86px] max-w-[86px]">
                           <img :src="Categories1" alt="category 1" />
                         </div>
                         <Para
@@ -358,18 +359,18 @@ function openModal() {
                     </td>
 
                     <td class="py-5 text-left">
-                      <button class="text-primary-main font-semibold">
+                      <button class="font-semibold text-primary-main">
                         Detail
                       </button>
                     </td>
                   </tr>
                   <tr class="tableData">
-                    <td class="pl-3 pr-6 py-5 text-left">
+                    <td class="py-5 pl-3 pr-6 text-left">
                       <Checkbox />
                     </td>
                     <td class="py-5 text-left">
                       <div class="flex items-center gap-3">
-                        <div class="max-w-[86px] max-h-[86px]">
+                        <div class="max-h-[86px] max-w-[86px]">
                           <img :src="Categories1" alt="category 1" />
                         </div>
                         <Para
@@ -398,18 +399,18 @@ function openModal() {
                     </td>
 
                     <td class="py-5 text-left">
-                      <button class="text-primary-main font-semibold">
+                      <button class="font-semibold text-primary-main">
                         Detail
                       </button>
                     </td>
                   </tr>
                   <tr class="tableData">
-                    <td class="pl-3 pr-6 py-5 text-left">
+                    <td class="py-5 pl-3 pr-6 text-left">
                       <Checkbox />
                     </td>
                     <td class="py-5 text-left">
                       <div class="flex items-center gap-3">
-                        <div class="max-w-[86px] max-h-[86px]">
+                        <div class="max-h-[86px] max-w-[86px]">
                           <img :src="Categories1" alt="category 1" />
                         </div>
                         <Para
@@ -438,18 +439,18 @@ function openModal() {
                     </td>
 
                     <td class="py-5 text-left">
-                      <button class="text-primary-main font-semibold">
+                      <button class="font-semibold text-primary-main">
                         Detail
                       </button>
                     </td>
                   </tr>
                   <tr class="tableData">
-                    <td class="pl-3 pr-6 py-5 text-left">
+                    <td class="py-5 pl-3 pr-6 text-left">
                       <Checkbox />
                     </td>
                     <td class="py-5 text-left">
                       <div class="flex items-center gap-3">
-                        <div class="max-w-[86px] max-h-[86px]">
+                        <div class="max-h-[86px] max-w-[86px]">
                           <img :src="Categories1" alt="category 1" />
                         </div>
                         <Para
@@ -478,7 +479,7 @@ function openModal() {
                     </td>
 
                     <td class="py-5 text-left">
-                      <button class="text-primary-main font-semibold">
+                      <button class="font-semibold text-primary-main">
                         Detail
                       </button>
                     </td>
@@ -491,27 +492,7 @@ function openModal() {
       </TabGroup>
 
       <!-- Pagination -->
-      <div class="w-full flex items-center justify-between">
-        <Para size="md" variant="medium" class="text-netral-50">
-          Page 1 of 2
-        </Para>
-
-        <div class="flex items-center">
-          <Pagination variant="base">
-            <CaretLeftIcon />
-          </Pagination>
-          <Pagination variant="primary">1</Pagination>
-          <Pagination variant="base">2</Pagination>
-          <Pagination variant="base">3</Pagination>
-          <Pagination variant="base">4</Pagination>
-          <Pagination variant="base">5</Pagination>
-          <Pagination variant="base">...</Pagination>
-          <Pagination variant="base">10</Pagination>
-          <Pagination variant="base">
-            <CaretRightIcon />
-          </Pagination>
-        </div>
-      </div>
+      <Paginate />
     </div>
 
     <template #extend>
@@ -532,7 +513,7 @@ function openModal() {
                 <ChecksIcon />
                 <span class="pageAction_status-text"> Last Saved </span>
                 <span
-                  class="text-sm font-semibold text-netral-80 leading-[1.43]"
+                  class="text-sm font-semibold leading-[1.43] text-netral-80"
                 >
                   Nov 9, 2022 &mdash; 05.09 PM
                 </span>
@@ -572,7 +553,7 @@ function openModal() {
 <style lang="postcss">
 .categories {
   &_heading {
-    @apply mb-8 flex items-center justify-between w-full relative;
+    @apply relative mb-8 flex w-full items-center justify-between;
 
     &-cta {
       @apply flex items-center gap-3;
@@ -580,7 +561,7 @@ function openModal() {
   }
 
   &_card {
-    @apply grid grid-cols-4 gap-5 mb-8;
+    @apply mb-8 grid grid-cols-4 gap-5;
   }
 }
 </style>

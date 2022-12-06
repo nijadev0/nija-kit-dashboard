@@ -5,6 +5,7 @@ import { Switch } from '@headlessui/vue'
 import BaseLayoutVue from '$components/templates/BaseLayout.vue'
 
 import Title from '$components/atoms/Title.vue'
+import Para from '$components/atoms/Para.vue'
 import Button from '$components/atoms/Button.vue'
 import Checkbox from '$components/atoms/Checkbox.vue'
 
@@ -16,7 +17,7 @@ const enabled = ref(true)
 </script>
 
 <template>
-  <BaseLayoutVue title="Halo Customers">
+  <BaseLayoutVue title="Halo Customers" full>
     <div class="relative mb-8 flex w-full items-center justify-between">
       <Title variant="base"> Customers </Title>
 

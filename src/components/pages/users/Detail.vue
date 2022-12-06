@@ -22,7 +22,7 @@ function openModal() {
 </script>
 
 <template>
-  <BaseLayout title="Detail User" full>
+  <BaseLayout title="Detail User" :full="true">
     <Title variant="base" class="mb-8"> User </Title>
 
     <form class="grid grid-cols-2 gap-x-5 gap-y-8">

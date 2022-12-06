@@ -11,80 +11,132 @@ import Para from '$components/atoms/Para.vue'
 import Button from '$components/atoms/Button.vue'
 
 import CloseXIcon from '$assets/icons/CloseXIcon.vue'
+import { ref } from 'vue'
+import Message from './Message.vue'
+// import { setTimeout } from 'timers'
 
 interface Alert {
   variant?: 'error' | 'warning'
   title: string
   description: string
-  isOpen?: boolean
+  isOpen?: any
   closeModal?: any
 }
 
-const { isOpen, variant = 'error', title, description } = defineProps<Alert>()
+const {
+  isOpen,
+  variant = 'error',
+  title,
+  description,
+  closeModal
+} = defineProps<Alert>()
+
+let toast = ref(false)
+
+function showToast() {
+  // Close modal first
+  closeModal()
+
+  // Showing toast after 2s
+  setTimeout(() => {
+    toast.value = true
+  }, 2000)
+}
+
+function closeToast() {
+  toast.value = false
+}
 </script>
 
 <template>
-  <TransitionRoot appear :show="isOpen" as="template">
-    <Dialog as="div" @close="closeModal" class="alert">
-      <TransitionChild
-        as="template"
-        enter="duration-150 ease-in"
-        enter-from="opacity-0"
-        enter-to="opacity-100"
-        leave="duration-150 ease-in"
-        leave-from="opacity-100"
-        leave-to="opacity-0"
-      >
-        <div class="alert-overlay" />
-      </TransitionChild>
+  <div class="alertBase">
+    <TransitionRoot appear :show="isOpen" as="template">
+      <Dialog as="div" @close="closeModal" class="alert">
+        <TransitionChild
+          as="template"
+          enter="duration-150 ease-in"
+          enter-from="opacity-0"
+          enter-to="opacity-100"
+          leave="duration-150 ease-in"
+          leave-from="opacity-100"
+          leave-to="opacity-0"
+        >
+          <div class="alert-overlay" />
+        </TransitionChild>
 
-      <div class="alert_card-wrapper">
-        <div class="alert_card-center">
-          <TransitionChild
-            as="template"
-            enter="duration-150 ease-in"
-            enter-from="opacity-0 scale-95"
-            enter-to="opacity-100 scale-100"
-            leave="duration-150 ease-in"
-            leave-from="opacity-100 scale-100"
-            leave-to="opacity-0 scale-95"
-          >
-            <DialogPanel class="alert_card">
-              <DialogTitle class="alert_heading">
-                <div class="alert_title">
-                  <div
-                    class="alert_title-bg"
-                    :class="{
-                      error: variant === 'error',
-                      warning: variant === 'warning'
-                    }"
+        <div class="alert_card-wrapper">
+          <div class="alert_card-center">
+            <TransitionChild
+              as="template"
+              enter="duration-150 ease-in"
+              enter-from="opacity-0 scale-95"
+              enter-to="opacity-100 scale-100"
+              leave="duration-150 ease-in"
+              leave-from="opacity-100 scale-100"
+              leave-to="opacity-0 scale-95"
+            >
+              <DialogPanel class="alert_card">
+                <DialogTitle class="alert_heading">
+                  <div class="alert_title">
+                    <div
+                      class="alert_title-bg"
+                      :class="{
+                        error: variant === 'error',
+                        warning: variant === 'warning'
+                      }"
+                    />
+                    <Para size="xl" variant="semibold">{{ title }}</Para>
+                  </div>
+
+                  <CloseXIcon
+                    @click="closeModal"
+                    class="h-6 w-6 cursor-pointer stroke-netral-60"
                   />
-                  <Para size="xl" variant="semibold">{{ title }}</Para>
-                </div>
-                <CloseXIcon @click="closeModal" class="cursor-pointer" />
-              </DialogTitle>
+                </DialogTitle>
 
-              <Para size="lg" variant="regular" class="mb-10">
-                {{ description }}
-              </Para>
+                <Para size="lg" variant="regular" class="mb-10">
+                  {{ description }}
+                </Para>
 
-              <div class="alert_cta">
-                <div class="alert_cta-default">
-                  <button @click="closeModal" class="w-full text-netral-50">
-                    Cancel
-                  </button>
-                </div>
+                <div class="alert_cta">
+                  <div class="alert_cta-default">
+                    <button
+                      @click="closeModal"
+                      class="w-full font-semibold leading-tight text-netral-50"
+                    >
+                      Cancel
+                    </button>
+                  </div>
 
-                <div class="alert_cta-error">
-                  <button>Delete</button>
+                  <div class="alert_cta-error">
+                    <Button
+                      variant="error"
+                      size="md"
+                      btn-type="button"
+                      type="background"
+                      :on-click="showToast"
+                    >
+                      Delete
+                    </Button>
+                  </div>
                 </div>
-              </div>
-            </DialogPanel>
-          </TransitionChild>
+              </DialogPanel>
+            </TransitionChild>
+          </div>
         </div>
-      </div>
-    </Dialog>
-  </TransitionRoot>
+      </Dialog>
+    </TransitionRoot>
+  </div>
+
+  <div v-if="toast" class="relative">
+    <Message
+      variant="error"
+      title="Category has been deleted"
+      description="Category which already deleted can not be recovered."
+      :toast="toast"
+      :close-toast="closeToast"
+    />
+  </div>
 </template>
 
 <style lang="postcss">
@@ -103,7 +155,7 @@ const { isOpen, variant = 'error', title, description } = defineProps<Alert>()
     }
 
     &-center {
-      @apply flex min-h-full items-center justify-center p-4 text-center -mt-12;
+      @apply -mt-12 flex min-h-full items-center justify-center p-4 text-center;
     }
   }
 
@@ -112,10 +164,10 @@ const { isOpen, variant = 'error', title, description } = defineProps<Alert>()
   }
 
   &_title {
-    @apply flex gap-3 mb-6;
+    @apply mb-6 flex gap-3;
 
     &-bg {
-      @apply w-2 h-6 rounded-full;
+      @apply h-6 w-2 rounded-full;
 
       &.error {
         @apply bg-error-main;
@@ -128,7 +180,7 @@ const { isOpen, variant = 'error', title, description } = defineProps<Alert>()
   }
 
   &_cta {
-    @apply w-full flex items-center justify-end gap-8;
+    @apply flex w-full items-center justify-end gap-8;
   }
 }
 </style>

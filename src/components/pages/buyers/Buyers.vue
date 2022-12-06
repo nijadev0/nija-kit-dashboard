@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import BaseLayout from '$components/templates/BaseLayout.vue'
 import Pagination from '$components/atoms/Pagination.vue'
+import Paginate from '$components/moleculs/Paginate.vue'
 </script>
 
 <template>
@@ -94,23 +95,6 @@ import Pagination from '$components/atoms/Pagination.vue'
     </section>
 
     <!-- Pagination -->
-    <div class="flex w-full items-center justify-between">
-      <Para size="md" variant="medium" class="text-netral-50">Page 1 of 2</Para>
-      <div>
-        <Pagination variant="base">
-          <CaretLeftIcon />
-        </Pagination>
-        <Pagination variant="primary">1</Pagination>
-        <Pagination variant="base">2</Pagination>
-        <Pagination variant="base">3</Pagination>
-        <Pagination variant="base">4</Pagination>
-        <Pagination variant="base">5</Pagination>
-        <Pagination variant="base">...</Pagination>
-        <Pagination variant="base">10</Pagination>
-        <Pagination variant="base">
-          <CaretRightIcon />
-        </Pagination>
-      </div>
-    </div>
+    <Paginate />
   </BaseLayout>
 </template>

@@ -34,7 +34,7 @@ const { title, page = false, full = true } = defineProps<BaseLayout>()
 
           <div
             class="nijakit-content"
-            :class="{ 'nijakit-contentFirst': full === true }"
+            :class="{ 'nijakit-isFull': full === true }"
           >
             <slot />
           </div>
@@ -90,10 +90,9 @@ const { title, page = false, full = true } = defineProps<BaseLayout>()
 
   &-content {
     @apply h-full w-full rounded-[10px] bg-netral-10 p-6;
-
-    &First {
-      @apply min-h-screen;
-    }
+  }
+  &-isFull {
+    @apply min-h-[calc(100vh-12.5rem)];
   }
 }
 </style>

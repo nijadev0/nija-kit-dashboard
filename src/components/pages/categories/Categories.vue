@@ -522,7 +522,7 @@ const enabled = ref(false)
     </div>
 
     <template #extend>
-      <PageAction :isEnabled="enabled" />
+      <PageAction :isEnabled="enabled" variant="error" />
     </template>
   </BaseLayout>
 </template>

@@ -77,7 +77,7 @@ const { title, page = false, full = true } = defineProps<BaseLayout>()
   }
 
   &-wrapper {
-    @apply min-h-screen bg-netral-20 p-8;
+    @apply relative min-h-screen bg-netral-20 p-8;
   }
 
   &-container {

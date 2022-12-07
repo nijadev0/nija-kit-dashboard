@@ -86,513 +86,470 @@ const openModalUploadSecond = () => {
 
 <template>
   <BaseLayout title="Variants">
-    <TransitionRoot appear :show="isOpen" as="template">
-      <Dialog as="div" @close="closeModalUpload" class="relative z-50">
-        <TransitionChild
-          as="template"
-          enter="duration-300 ease-out"
-          enter-from="opacity-0"
-          enter-to="opacity-100"
-          leave="duration-200 ease-in"
-          leave-from="opacity-100"
-          leave-to="opacity-0"
+    <Dialog
+      as="div"
+      :open="isOpen"
+      @close="closeModalUpload"
+      class="relative z-50"
+    >
+      <div class="fixed inset-0 bg-black bg-opacity-25" />
+
+      <div class="fixed inset-0">
+        <div
+          class="flex min-h-full items-center justify-center p-4 text-center"
         >
-          <div class="fixed inset-0 bg-black bg-opacity-25" />
-        </TransitionChild>
-
-        <div class="fixed inset-0 overflow-y-auto">
-          <div
-            class="flex min-h-full items-center justify-center p-4 text-center"
+          <DialogPanel
+            class="w-full max-w-[960px] transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all"
           >
-            <TransitionChild
-              as="template"
-              enter="duration-300 ease-out"
-              enter-from="opacity-0 scale-95"
-              enter-to="opacity-100 scale-100"
-              leave="duration-200 ease-in"
-              leave-from="opacity-100 scale-100"
-              leave-to="opacity-0 scale-95"
+            <DialogTitle
+              as="div"
+              class="mb-6 flex items-center justify-between stroke-netral-100"
             >
-              <DialogPanel
-                class="w-full max-w-[960px] transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all"
+              <Title variant="base">Upload variant image</Title>
+              <CloseXIcon
+                @close="closeModalUpload"
+                class="h-6 w-6 cursor-pointer stroke-netral-80 stroke-2"
+              />
+            </DialogTitle>
+
+            <div class="flex w-full items-center justify-center">
+              <label
+                for="dropzone-file"
+                class="flex h-64 w-full cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-netral-30 bg-gray-50"
               >
-                <DialogTitle
-                  as="div"
-                  class="mb-6 flex items-center justify-between stroke-netral-100"
+                <div
+                  class="flex flex-col items-center justify-center pt-5 pb-6"
                 >
-                  <Title variant="base">Upload variant image</Title>
-                  <CloseXIcon
-                    @close="closeModalUpload"
-                    class="h-6 w-6 cursor-pointer stroke-netral-80 stroke-2"
-                  />
-                </DialogTitle>
-
-                <div class="flex w-full items-center justify-center">
-                  <label
-                    for="dropzone-file"
-                    class="flex h-64 w-full cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-netral-30 bg-gray-50"
+                  <svg
+                    aria-hidden="true"
+                    class="mb-3 h-10 w-10 text-gray-400"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
                   >
-                    <div
-                      class="flex flex-col items-center justify-center pt-5 pb-6"
-                    >
-                      <svg
-                        aria-hidden="true"
-                        class="mb-3 h-10 w-10 text-gray-400"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
-                        ></path>
-                      </svg>
-                      <p class="mb-2 text-sm text-gray-500">
-                        <span class="font-semibold">Click to upload</span> or
-                        drag and drop
-                      </p>
-                      <p class="text-xs text-gray-500">
-                        SVG, PNG, JPG or GIF (MAX. 800x400px)
-                      </p>
-                    </div>
-                  </label>
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
+                    ></path>
+                  </svg>
+                  <p class="mb-2 text-sm text-gray-500">
+                    <span class="font-semibold">Click to upload</span> or drag
+                    and drop
+                  </p>
+                  <p class="text-xs text-gray-500">
+                    SVG, PNG, JPG or GIF (MAX. 800x400px)
+                  </p>
                 </div>
+              </label>
+            </div>
 
-                <div class="mt-4 flex justify-end gap-3">
-                  <Button
-                    variant="base"
-                    :on-click="closeModalUpload"
-                    size="md"
-                    type="outline"
-                    btn-type="button"
-                  >
-                    Discard
-                  </Button>
-                  <Button
-                    btn-type="button"
-                    variant="primary"
-                    size="md"
-                    type="background"
-                    :on-click="openModalUploadSecond"
-                  >
-                    Save
-                  </Button>
-                </div>
-              </DialogPanel>
-            </TransitionChild>
-          </div>
+            <div class="mt-4 flex justify-end gap-3">
+              <Button
+                variant="base"
+                :on-click="closeModalUpload"
+                size="md"
+                type="outline"
+                btn-type="button"
+              >
+                Discard
+              </Button>
+              <Button
+                btn-type="button"
+                variant="primary"
+                size="md"
+                type="background"
+                :on-click="openModalUploadSecond"
+              >
+                Save
+              </Button>
+            </div>
+          </DialogPanel>
         </div>
-      </Dialog>
-    </TransitionRoot>
+      </div>
+    </Dialog>
 
-    <TransitionRoot appear :show="isOpenUploadTwo" as="template">
-      <Dialog as="div" @close="closeModalUploadSecond" class="relative z-50">
-        <TransitionChild
-          as="template"
-          enter="duration-300 ease-out"
-          enter-from="opacity-0"
-          enter-to="opacity-100"
-          leave="duration-200 ease-in"
-          leave-from="opacity-100"
-          leave-to="opacity-0"
+    <Dialog
+      as="div"
+      :open="isOpenUploadTwo"
+      @close="closeModalUploadSecond"
+      class="relative z-50"
+    >
+      <div class="fixed inset-0 bg-black bg-opacity-25" />
+
+      <div class="fixed inset-0">
+        <div
+          class="flex min-h-full items-center justify-center p-4 text-center"
         >
-          <div class="fixed inset-0 bg-black bg-opacity-25" />
-        </TransitionChild>
-
-        <div class="fixed inset-0 overflow-y-auto">
-          <div
-            class="flex min-h-full items-center justify-center p-4 text-center"
+          <DialogPanel
+            class="w-full max-w-[960px] transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all"
           >
-            <TransitionChild
-              as="template"
-              enter="duration-300 ease-out"
-              enter-from="opacity-0 scale-95"
-              enter-to="opacity-100 scale-100"
-              leave="duration-200 ease-in"
-              leave-from="opacity-100 scale-100"
-              leave-to="opacity-0 scale-95"
+            <DialogTitle
+              as="div"
+              class="mb-6 flex items-center justify-between stroke-netral-100"
             >
-              <DialogPanel
-                class="w-full max-w-[960px] transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all"
+              <Title variant="base">Upload variant image</Title>
+              <CloseXIcon
+                @close="closeModalUploadSecond"
+                class="h-6 w-6 cursor-pointer stroke-netral-80 stroke-2"
+              />
+            </DialogTitle>
+
+            <div class="flex w-full items-center justify-center">
+              <label
+                for="dropzone-file"
+                class="flex h-96 w-full cursor-pointer gap-4 rounded-lg border-2 border-dashed border-netral-30 bg-gray-50 p-6"
               >
-                <DialogTitle
-                  as="div"
-                  class="mb-6 flex items-center justify-between stroke-netral-100"
-                >
-                  <Title variant="base">Upload variant image</Title>
-                  <CloseXIcon
-                    @close="closeModalUploadSecond"
-                    class="h-6 w-6 cursor-pointer stroke-netral-80 stroke-2"
-                  />
-                </DialogTitle>
+                <div class="relative h-40 w-40 rounded-[10px]">
+                  <img :src="UploadPhoto1" class="h-full w-full object-cover" />
 
-                <div class="flex w-full items-center justify-center">
-                  <label
-                    for="dropzone-file"
-                    class="flex h-96 w-full cursor-pointer gap-4 rounded-lg border-2 border-dashed border-netral-30 bg-gray-50 p-6"
+                  <div
+                    class="absolute bottom-2.5 right-2.5 flex items-center gap-1.5"
                   >
-                    <div class="relative h-40 w-40 rounded-[10px]">
-                      <img
-                        :src="UploadPhoto1"
-                        class="h-full w-full object-cover"
-                      />
-
-                      <div
-                        class="absolute bottom-2.5 right-2.5 flex items-center gap-1.5"
-                      >
-                        <svg
-                          width="40"
-                          height="40"
-                          viewBox="0 0 40 40"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <rect
-                            width="40"
-                            height="40"
-                            rx="8"
-                            fill="white"
-                            fill-opacity="0.5"
-                          />
-                          <path
-                            d="M24.5156 17.3486H29.0156V12.8486"
-                            stroke="#3B4453"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          />
-                          <path
-                            d="M14.1641 14.1664C14.9301 13.4003 15.8396 12.7926 16.8406 12.378C17.8415 11.9634 18.9143 11.75 19.9977 11.75C21.0811 11.75 22.1539 11.9634 23.1548 12.378C24.1558 12.7926 25.0652 13.4003 25.8313 14.1664L29.0133 17.3484"
-                            stroke="#3B4453"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          />
-                          <path
-                            d="M15.4844 22.6514H10.9844V27.1514"
-                            stroke="#3B4453"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          />
-                          <path
-                            d="M25.8336 25.8333C25.0675 26.5994 24.1581 27.2071 23.1571 27.6217C22.1562 28.0363 21.0834 28.2497 20 28.2497C18.9166 28.2497 17.8438 28.0363 16.8428 27.6217C15.8419 27.2071 14.9324 26.5994 14.1664 25.8333L10.9844 22.6514"
-                            stroke="#3B4453"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          />
-                        </svg>
-
-                        <svg
-                          width="40"
-                          height="40"
-                          viewBox="0 0 40 40"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <rect
-                            width="40"
-                            height="40"
-                            rx="8"
-                            fill="white"
-                            fill-opacity="0.5"
-                          />
-                          <path
-                            d="M28.25 13.25L11.75 13.25"
-                            stroke="#FF5630"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          />
-                          <path
-                            d="M17.75 17.75V23.75"
-                            stroke="#FF5630"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          />
-                          <path
-                            d="M22.25 17.75V23.75"
-                            stroke="#FF5630"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          />
-                          <path
-                            d="M26.75 13.25V27.5C26.75 27.6989 26.671 27.8897 26.5303 28.0303C26.3897 28.171 26.1989 28.25 26 28.25H14C13.8011 28.25 13.6103 28.171 13.4697 28.0303C13.329 27.8897 13.25 27.6989 13.25 27.5V13.25"
-                            stroke="#FF5630"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          />
-                          <path
-                            d="M23.75 13.25V11.75C23.75 11.3522 23.592 10.9706 23.3107 10.6893C23.0294 10.408 22.6478 10.25 22.25 10.25H17.75C17.3522 10.25 16.9706 10.408 16.6893 10.6893C16.408 10.9706 16.25 11.3522 16.25 11.75V13.25"
-                            stroke="#FF5630"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          />
-                        </svg>
-                      </div>
-                    </div>
-
-                    <div class="relative h-40 w-40 rounded-[10px]">
-                      <img
-                        :src="UploadPhoto2"
-                        class="h-full w-full object-cover"
-                      />
-
-                      <div
-                        class="absolute bottom-2.5 right-2.5 flex items-center gap-1.5"
-                      >
-                        <svg
-                          width="40"
-                          height="40"
-                          viewBox="0 0 40 40"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <rect
-                            width="40"
-                            height="40"
-                            rx="8"
-                            fill="white"
-                            fill-opacity="0.5"
-                          />
-                          <path
-                            d="M24.5156 17.3486H29.0156V12.8486"
-                            stroke="#3B4453"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          />
-                          <path
-                            d="M14.1641 14.1664C14.9301 13.4003 15.8396 12.7926 16.8406 12.378C17.8415 11.9634 18.9143 11.75 19.9977 11.75C21.0811 11.75 22.1539 11.9634 23.1548 12.378C24.1558 12.7926 25.0652 13.4003 25.8313 14.1664L29.0133 17.3484"
-                            stroke="#3B4453"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          />
-                          <path
-                            d="M15.4844 22.6514H10.9844V27.1514"
-                            stroke="#3B4453"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          />
-                          <path
-                            d="M25.8336 25.8333C25.0675 26.5994 24.1581 27.2071 23.1571 27.6217C22.1562 28.0363 21.0834 28.2497 20 28.2497C18.9166 28.2497 17.8438 28.0363 16.8428 27.6217C15.8419 27.2071 14.9324 26.5994 14.1664 25.8333L10.9844 22.6514"
-                            stroke="#3B4453"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          />
-                        </svg>
-
-                        <svg
-                          width="40"
-                          height="40"
-                          viewBox="0 0 40 40"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <rect
-                            width="40"
-                            height="40"
-                            rx="8"
-                            fill="white"
-                            fill-opacity="0.5"
-                          />
-                          <path
-                            d="M28.25 13.25L11.75 13.25"
-                            stroke="#FF5630"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          />
-                          <path
-                            d="M17.75 17.75V23.75"
-                            stroke="#FF5630"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          />
-                          <path
-                            d="M22.25 17.75V23.75"
-                            stroke="#FF5630"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          />
-                          <path
-                            d="M26.75 13.25V27.5C26.75 27.6989 26.671 27.8897 26.5303 28.0303C26.3897 28.171 26.1989 28.25 26 28.25H14C13.8011 28.25 13.6103 28.171 13.4697 28.0303C13.329 27.8897 13.25 27.6989 13.25 27.5V13.25"
-                            stroke="#FF5630"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          />
-                          <path
-                            d="M23.75 13.25V11.75C23.75 11.3522 23.592 10.9706 23.3107 10.6893C23.0294 10.408 22.6478 10.25 22.25 10.25H17.75C17.3522 10.25 16.9706 10.408 16.6893 10.6893C16.408 10.9706 16.25 11.3522 16.25 11.75V13.25"
-                            stroke="#FF5630"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          />
-                        </svg>
-                      </div>
-                    </div>
-
-                    <div class="relative h-40 w-40 rounded-[10px]">
-                      <img
-                        :src="UploadPhoto3"
-                        class="h-full w-full object-cover"
-                      />
-
-                      <div
-                        class="absolute bottom-2.5 right-2.5 flex items-center gap-1.5"
-                      >
-                        <svg
-                          width="40"
-                          height="40"
-                          viewBox="0 0 40 40"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <rect
-                            width="40"
-                            height="40"
-                            rx="8"
-                            fill="white"
-                            fill-opacity="0.5"
-                          />
-                          <path
-                            d="M24.5156 17.3486H29.0156V12.8486"
-                            stroke="#3B4453"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          />
-                          <path
-                            d="M14.1641 14.1664C14.9301 13.4003 15.8396 12.7926 16.8406 12.378C17.8415 11.9634 18.9143 11.75 19.9977 11.75C21.0811 11.75 22.1539 11.9634 23.1548 12.378C24.1558 12.7926 25.0652 13.4003 25.8313 14.1664L29.0133 17.3484"
-                            stroke="#3B4453"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          />
-                          <path
-                            d="M15.4844 22.6514H10.9844V27.1514"
-                            stroke="#3B4453"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          />
-                          <path
-                            d="M25.8336 25.8333C25.0675 26.5994 24.1581 27.2071 23.1571 27.6217C22.1562 28.0363 21.0834 28.2497 20 28.2497C18.9166 28.2497 17.8438 28.0363 16.8428 27.6217C15.8419 27.2071 14.9324 26.5994 14.1664 25.8333L10.9844 22.6514"
-                            stroke="#3B4453"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          />
-                        </svg>
-
-                        <svg
-                          width="40"
-                          height="40"
-                          viewBox="0 0 40 40"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <rect
-                            width="40"
-                            height="40"
-                            rx="8"
-                            fill="white"
-                            fill-opacity="0.5"
-                          />
-                          <path
-                            d="M28.25 13.25L11.75 13.25"
-                            stroke="#FF5630"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          />
-                          <path
-                            d="M17.75 17.75V23.75"
-                            stroke="#FF5630"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          />
-                          <path
-                            d="M22.25 17.75V23.75"
-                            stroke="#FF5630"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          />
-                          <path
-                            d="M26.75 13.25V27.5C26.75 27.6989 26.671 27.8897 26.5303 28.0303C26.3897 28.171 26.1989 28.25 26 28.25H14C13.8011 28.25 13.6103 28.171 13.4697 28.0303C13.329 27.8897 13.25 27.6989 13.25 27.5V13.25"
-                            stroke="#FF5630"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          />
-                          <path
-                            d="M23.75 13.25V11.75C23.75 11.3522 23.592 10.9706 23.3107 10.6893C23.0294 10.408 22.6478 10.25 22.25 10.25H17.75C17.3522 10.25 16.9706 10.408 16.6893 10.6893C16.408 10.9706 16.25 11.3522 16.25 11.75V13.25"
-                            stroke="#FF5630"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          />
-                        </svg>
-                      </div>
-                    </div>
-
-                    <div
-                      class="relative flex h-40 w-40 flex-col items-center justify-center gap-2 rounded-[10px] border-2 border-dashed border-netral-30"
+                    <svg
+                      width="40"
+                      height="40"
+                      viewBox="0 0 40 40"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
                     >
-                      <PlusIcon class="h-5 w-5 stroke-netral-50 stroke-1" />
+                      <rect
+                        width="40"
+                        height="40"
+                        rx="8"
+                        fill="white"
+                        fill-opacity="0.5"
+                      />
+                      <path
+                        d="M24.5156 17.3486H29.0156V12.8486"
+                        stroke="#3B4453"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="M14.1641 14.1664C14.9301 13.4003 15.8396 12.7926 16.8406 12.378C17.8415 11.9634 18.9143 11.75 19.9977 11.75C21.0811 11.75 22.1539 11.9634 23.1548 12.378C24.1558 12.7926 25.0652 13.4003 25.8313 14.1664L29.0133 17.3484"
+                        stroke="#3B4453"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="M15.4844 22.6514H10.9844V27.1514"
+                        stroke="#3B4453"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="M25.8336 25.8333C25.0675 26.5994 24.1581 27.2071 23.1571 27.6217C22.1562 28.0363 21.0834 28.2497 20 28.2497C18.9166 28.2497 17.8438 28.0363 16.8428 27.6217C15.8419 27.2071 14.9324 26.5994 14.1664 25.8333L10.9844 22.6514"
+                        stroke="#3B4453"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
 
-                      <Para
-                        variant="regular"
-                        size="md"
-                        class="w-20 text-center text-netral-50"
-                      >
-                        Add more images
-                      </Para>
-                    </div>
-                  </label>
+                    <svg
+                      width="40"
+                      height="40"
+                      viewBox="0 0 40 40"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <rect
+                        width="40"
+                        height="40"
+                        rx="8"
+                        fill="white"
+                        fill-opacity="0.5"
+                      />
+                      <path
+                        d="M28.25 13.25L11.75 13.25"
+                        stroke="#FF5630"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="M17.75 17.75V23.75"
+                        stroke="#FF5630"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="M22.25 17.75V23.75"
+                        stroke="#FF5630"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="M26.75 13.25V27.5C26.75 27.6989 26.671 27.8897 26.5303 28.0303C26.3897 28.171 26.1989 28.25 26 28.25H14C13.8011 28.25 13.6103 28.171 13.4697 28.0303C13.329 27.8897 13.25 27.6989 13.25 27.5V13.25"
+                        stroke="#FF5630"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="M23.75 13.25V11.75C23.75 11.3522 23.592 10.9706 23.3107 10.6893C23.0294 10.408 22.6478 10.25 22.25 10.25H17.75C17.3522 10.25 16.9706 10.408 16.6893 10.6893C16.408 10.9706 16.25 11.3522 16.25 11.75V13.25"
+                        stroke="#FF5630"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </div>
                 </div>
 
-                <div class="mt-4 flex justify-end gap-3">
-                  <Button
-                    variant="base"
-                    :on-click="closeModalUploadSecond"
-                    size="md"
-                    type="outline"
+                <div class="relative h-40 w-40 rounded-[10px]">
+                  <img :src="UploadPhoto2" class="h-full w-full object-cover" />
+
+                  <div
+                    class="absolute bottom-2.5 right-2.5 flex items-center gap-1.5"
                   >
-                    Discard
-                  </Button>
-                  <Button
-                    variant="primary"
-                    size="md"
-                    type="background"
-                    btn-type="button"
-                    :on-click="openToast"
-                  >
-                    Save
-                  </Button>
+                    <svg
+                      width="40"
+                      height="40"
+                      viewBox="0 0 40 40"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <rect
+                        width="40"
+                        height="40"
+                        rx="8"
+                        fill="white"
+                        fill-opacity="0.5"
+                      />
+                      <path
+                        d="M24.5156 17.3486H29.0156V12.8486"
+                        stroke="#3B4453"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="M14.1641 14.1664C14.9301 13.4003 15.8396 12.7926 16.8406 12.378C17.8415 11.9634 18.9143 11.75 19.9977 11.75C21.0811 11.75 22.1539 11.9634 23.1548 12.378C24.1558 12.7926 25.0652 13.4003 25.8313 14.1664L29.0133 17.3484"
+                        stroke="#3B4453"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="M15.4844 22.6514H10.9844V27.1514"
+                        stroke="#3B4453"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="M25.8336 25.8333C25.0675 26.5994 24.1581 27.2071 23.1571 27.6217C22.1562 28.0363 21.0834 28.2497 20 28.2497C18.9166 28.2497 17.8438 28.0363 16.8428 27.6217C15.8419 27.2071 14.9324 26.5994 14.1664 25.8333L10.9844 22.6514"
+                        stroke="#3B4453"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+
+                    <svg
+                      width="40"
+                      height="40"
+                      viewBox="0 0 40 40"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <rect
+                        width="40"
+                        height="40"
+                        rx="8"
+                        fill="white"
+                        fill-opacity="0.5"
+                      />
+                      <path
+                        d="M28.25 13.25L11.75 13.25"
+                        stroke="#FF5630"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="M17.75 17.75V23.75"
+                        stroke="#FF5630"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="M22.25 17.75V23.75"
+                        stroke="#FF5630"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="M26.75 13.25V27.5C26.75 27.6989 26.671 27.8897 26.5303 28.0303C26.3897 28.171 26.1989 28.25 26 28.25H14C13.8011 28.25 13.6103 28.171 13.4697 28.0303C13.329 27.8897 13.25 27.6989 13.25 27.5V13.25"
+                        stroke="#FF5630"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="M23.75 13.25V11.75C23.75 11.3522 23.592 10.9706 23.3107 10.6893C23.0294 10.408 22.6478 10.25 22.25 10.25H17.75C17.3522 10.25 16.9706 10.408 16.6893 10.6893C16.408 10.9706 16.25 11.3522 16.25 11.75V13.25"
+                        stroke="#FF5630"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </div>
                 </div>
-              </DialogPanel>
-            </TransitionChild>
-          </div>
+
+                <div class="relative h-40 w-40 rounded-[10px]">
+                  <img :src="UploadPhoto3" class="h-full w-full object-cover" />
+
+                  <div
+                    class="absolute bottom-2.5 right-2.5 flex items-center gap-1.5"
+                  >
+                    <svg
+                      width="40"
+                      height="40"
+                      viewBox="0 0 40 40"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <rect
+                        width="40"
+                        height="40"
+                        rx="8"
+                        fill="white"
+                        fill-opacity="0.5"
+                      />
+                      <path
+                        d="M24.5156 17.3486H29.0156V12.8486"
+                        stroke="#3B4453"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="M14.1641 14.1664C14.9301 13.4003 15.8396 12.7926 16.8406 12.378C17.8415 11.9634 18.9143 11.75 19.9977 11.75C21.0811 11.75 22.1539 11.9634 23.1548 12.378C24.1558 12.7926 25.0652 13.4003 25.8313 14.1664L29.0133 17.3484"
+                        stroke="#3B4453"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="M15.4844 22.6514H10.9844V27.1514"
+                        stroke="#3B4453"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="M25.8336 25.8333C25.0675 26.5994 24.1581 27.2071 23.1571 27.6217C22.1562 28.0363 21.0834 28.2497 20 28.2497C18.9166 28.2497 17.8438 28.0363 16.8428 27.6217C15.8419 27.2071 14.9324 26.5994 14.1664 25.8333L10.9844 22.6514"
+                        stroke="#3B4453"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+
+                    <svg
+                      width="40"
+                      height="40"
+                      viewBox="0 0 40 40"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <rect
+                        width="40"
+                        height="40"
+                        rx="8"
+                        fill="white"
+                        fill-opacity="0.5"
+                      />
+                      <path
+                        d="M28.25 13.25L11.75 13.25"
+                        stroke="#FF5630"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="M17.75 17.75V23.75"
+                        stroke="#FF5630"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="M22.25 17.75V23.75"
+                        stroke="#FF5630"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="M26.75 13.25V27.5C26.75 27.6989 26.671 27.8897 26.5303 28.0303C26.3897 28.171 26.1989 28.25 26 28.25H14C13.8011 28.25 13.6103 28.171 13.4697 28.0303C13.329 27.8897 13.25 27.6989 13.25 27.5V13.25"
+                        stroke="#FF5630"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="M23.75 13.25V11.75C23.75 11.3522 23.592 10.9706 23.3107 10.6893C23.0294 10.408 22.6478 10.25 22.25 10.25H17.75C17.3522 10.25 16.9706 10.408 16.6893 10.6893C16.408 10.9706 16.25 11.3522 16.25 11.75V13.25"
+                        stroke="#FF5630"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </div>
+                </div>
+
+                <div
+                  class="relative flex h-40 w-40 flex-col items-center justify-center gap-2 rounded-[10px] border-2 border-dashed border-netral-30"
+                >
+                  <PlusIcon class="h-5 w-5 stroke-netral-50 stroke-1" />
+
+                  <Para
+                    variant="regular"
+                    size="md"
+                    class="w-20 text-center text-netral-50"
+                  >
+                    Add more images
+                  </Para>
+                </div>
+              </label>
+            </div>
+
+            <div class="mt-4 flex justify-end gap-3">
+              <Button
+                variant="base"
+                :on-click="closeModalUploadSecond"
+                size="md"
+                type="outline"
+              >
+                Discard
+              </Button>
+              <Button
+                variant="primary"
+                size="md"
+                type="background"
+                btn-type="button"
+                :on-click="openToast"
+              >
+                Save
+              </Button>
+            </div>
+          </DialogPanel>
         </div>
-      </Dialog>
-    </TransitionRoot>
+      </div>
+    </Dialog>
 
     <div v-if="toast" class="relative">
       <Message

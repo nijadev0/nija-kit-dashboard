@@ -1,6 +1,13 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { TabGroup, TabList, TabPanels, TabPanel, Tab } from '@headlessui/vue'
+import {
+  TabGroup,
+  TabList,
+  TabPanels,
+  TabPanel,
+  Tab,
+  Switch
+} from '@headlessui/vue'
 
 import BaseLayout from '$components/templates/BaseLayout.vue'
 
@@ -30,6 +37,8 @@ import Product3 from '$assets/images/product-3.png'
 import Product4 from '$assets/images/product-4.png'
 import Product5 from '$assets/images/product-5.png'
 import Paginate from '$components/moleculs/Paginate.vue'
+import PageAction from '$components/organisms/PageAction.vue'
+import Check from '$assets/icons/Check.vue'
 
 const categories = [
   {
@@ -143,15 +152,6 @@ const products = ref([
 ])
 
 const enabled = ref(false)
-const isOpen = ref(false)
-
-function closeModal() {
-  isOpen.value = false
-}
-
-function openModal() {
-  isOpen.value = true
-}
 </script>
 
 <template>
@@ -181,7 +181,6 @@ function openModal() {
               type="background"
               :icon="true"
               icon-flow="right"
-              class="leading-4"
             >
               <template #icon>
                 <FunnelIcon />
@@ -198,7 +197,7 @@ function openModal() {
               icon-flow="left"
             >
               <template #icon>
-                <PlusIcon />
+                <PlusIcon class="stroke-white" />
               </template>
               Add Category
             </Button>
@@ -227,7 +226,23 @@ function openModal() {
                 class="relative h-full w-full min-w-[257px] bg-white"
               >
                 <div class="absolute left-3 top-3 z-10">
-                  <Checkbox />
+                  <div v-if="index === 0">
+                    <Switch v-model="enabled" class="checkbox">
+                      <div
+                        class="checkbox-wrapper"
+                        :class="enabled ? 'active' : 'default'"
+                      >
+                        <Check
+                          class="checkbox-icon"
+                          :class="enabled ? 'block' : 'hidden'"
+                        />
+                      </div>
+                    </Switch>
+                  </div>
+
+                  <div v-else>
+                    <Checkbox />
+                  </div>
                 </div>
                 <div
                   class="relative flex h-[180px] w-full justify-center rounded-[10px] bg-[#FAFAFA] py-5"
@@ -247,6 +262,7 @@ function openModal() {
               </div>
             </div>
           </TabPanel>
+
           <TabPanel>
             <!-- Table -->
             <div class="mb-6 overflow-x-auto">
@@ -262,7 +278,7 @@ function openModal() {
                           class="checkbox-wrapper"
                           :class="enabled ? 'active' : 'default'"
                         >
-                          <CheckIcon
+                          <Check
                             class="checkbox-icon"
                             :class="enabled ? 'block' : 'hidden'"
                           />
@@ -406,7 +422,17 @@ function openModal() {
                   </tr>
                   <tr class="tableData">
                     <td class="py-5 pl-3 pr-6 text-left">
-                      <Checkbox />
+                      <Switch v-model="enabled" class="checkbox">
+                        <div
+                          class="checkbox-wrapper"
+                          :class="enabled ? 'active' : 'default'"
+                        >
+                          <Check
+                            class="checkbox-icon"
+                            :class="enabled ? 'block' : 'hidden'"
+                          />
+                        </div>
+                      </Switch>
                     </td>
                     <td class="py-5 text-left">
                       <div class="flex items-center gap-3">
@@ -496,56 +522,7 @@ function openModal() {
     </div>
 
     <template #extend>
-      <!-- Action -->
-      <div class="relative">
-        <TransitionRoot appear :show="enabled" as="template">
-          <TransitionChild
-            as="template"
-            enter="duration-300 ease-in"
-            enter-from="-bottom-40 opacity-0"
-            enter-to="bottom-0 opacity-100"
-            leave="duration-300 ease-out"
-            leave-from="opacity-100 bottom-0"
-            leave-to="opacity-0 -bottom-80"
-          >
-            <div class="pageAction">
-              <div class="pageAction_status">
-                <ChecksIcon />
-                <span class="pageAction_status-text"> Last Saved </span>
-                <span
-                  class="text-sm font-semibold leading-[1.43] text-netral-80"
-                >
-                  Nov 9, 2022 &mdash; 05.09 PM
-                </span>
-              </div>
-
-              <div class="pageAction_cta">
-                <Button type="outline" variant="warning" size="md">
-                  Draft
-                </Button>
-
-                <Alert
-                  variant="error"
-                  :isOpen="isOpen"
-                  :closeModal="closeModal"
-                  title="Delete Product"
-                  description="Are you sure to delete your product? You won't get your data back once it deleted"
-                />
-
-                <Button
-                  btnType="button"
-                  type="background"
-                  variant="error"
-                  size="md"
-                  @todo-click="openModal"
-                >
-                  Delete
-                </Button>
-              </div>
-            </div>
-          </TransitionChild>
-        </TransitionRoot>
-      </div>
+      <PageAction :isEnabled="enabled" />
     </template>
   </BaseLayout>
 </template>

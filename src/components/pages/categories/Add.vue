@@ -11,30 +11,13 @@ import Divider from '$components/atoms/Divider.vue'
 
 import Input from '$components/moleculs/Input.vue'
 import TextArea from '$components/moleculs/TextArea.vue'
-import Select from '$components/moleculs/Select.vue'
+import Alert from '$components/organisms/Alert.vue'
 
 import UploadSimpleIcon from '$assets/icons/UploadSimple.vue'
 import ChecksIcon from '$assets/icons/Checks.vue'
 import PercentIcon from '$assets/icons/Percent.vue'
 
-const categories = [
-  { id: 1, name: 'Select Category', unavailable: true },
-  { id: 2, name: 'T-Shirt', unavailable: false },
-  { id: 3, name: 'Unisex', unavailable: false },
-  { id: 4, name: 'Jacket', unavailable: false },
-  { id: 5, name: 'Jeans', unavailable: false }
-]
-const genders = [
-  { id: 1, name: 'Select Genders', unavailable: true },
-  { id: 2, name: 'Male', unavailable: true },
-  { id: 3, name: 'Female', unavailable: true }
-]
-
 const isOpen = ref(false)
-
-const openModal = () => {
-  isOpen.value = true
-}
 
 const closeModal = () => {
   isOpen.value = false

@@ -114,7 +114,7 @@ let enabled = ref(false)
           icon-flow="left"
         >
           <template #icon>
-            <PlusIcon />
+            <PlusIcon class="stroke-white" />
           </template>
           Add Product
         </Button>
@@ -189,7 +189,7 @@ let enabled = ref(false)
     <Paginate />
 
     <template #extend>
-      <PageAction :isEnabled="enabled" />
+      <PageAction :isEnabled="enabled" variant="error" />
     </template>
   </BaseLayout>
 </template>

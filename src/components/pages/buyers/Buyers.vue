@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import BaseLayout from '$components/templates/BaseLayout.vue'
-import Pagination from '$components/atoms/Pagination.vue'
+
+import Para from '$components/atoms/Para.vue'
 import Paginate from '$components/moleculs/Paginate.vue'
 </script>
 

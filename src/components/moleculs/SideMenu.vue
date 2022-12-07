@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import { RouterLink } from 'vue-router'
-import type { _RouterLinkI } from 'vue-router'
-
 import CaretDownIcon from '$assets/icons/CaretDown.vue'
 
 interface Sidebar {
@@ -12,10 +9,12 @@ interface Sidebar {
 }
 
 const { variant, expand, href } = defineProps<Sidebar>()
+
+// let routes = ref(useRouter().currentRoute.value.path.toString())
 </script>
 
 <template>
-  <RouterLink
+  <router-link
     v-if="!expand"
     :to="`${href}`"
     active-class="active"
@@ -23,7 +22,8 @@ const { variant, expand, href } = defineProps<Sidebar>()
     :class="{
       main: variant === 'main',
       sub: variant === 'sub',
-      active: variant === 'active'
+      active: variant === 'active',
+      activeOn: variant === ''
     }"
   >
     <div class="sideMenu_wrapper">
@@ -33,7 +33,7 @@ const { variant, expand, href } = defineProps<Sidebar>()
       <!-- Label -->
       {{ label }}
     </div>
-  </RouterLink>
+  </router-link>
 
   <button
     v-if="expand"
@@ -50,20 +50,20 @@ const { variant, expand, href } = defineProps<Sidebar>()
     </div>
 
     <CaretDownIcon
-      class="stroke-2 stroke-inherit ui-open:rotate-180 transition ease-in-out duration-300"
+      class="stroke-inherit stroke-2 transition duration-300 ease-in-out ui-open:rotate-180"
     />
   </button>
 </template>
 
 <style lang="postcss">
 .sideMenu {
-  @apply cursor-pointer p-3 text-netral-50 bg-netral-10 
+  @apply flex cursor-pointer items-center 
   
-  rounded-[10px] flex items-center justify-between stroke-netral-50 fill-netral-50 
+  justify-between rounded-[10px] bg-netral-10 fill-netral-50 stroke-netral-50 p-3 
   
-  hover:bg-netral-20 active:fill-primary-main active:stroke-primary-main active:text-primary-main 
+  text-netral-50 transition-all duration-300 ease-in-out hover:bg-netral-20
   
-  transition-all duration-300 ease-in-out;
+  active:fill-primary-main active:stroke-primary-main active:text-primary-main;
 
   &[data-headlessui-state='open'] {
     @apply bg-red-500;
@@ -78,11 +78,11 @@ const { variant, expand, href } = defineProps<Sidebar>()
   }
 
   &_wrapper {
-    @apply flex font-semibold items-center gap-3 stroke-inherit text-sm;
+    @apply flex items-center gap-3 stroke-inherit text-sm font-semibold;
   }
 }
 
 .active {
-  @apply stroke-primary-main fill-primary-main text-primary-main bg-netral-20;
+  @apply bg-netral-20 fill-primary-main stroke-primary-main text-primary-main;
 }
 </style>

@@ -40,7 +40,7 @@ function showToast() {
   // Showing toast after 2s
   setTimeout(() => {
     toast.value = true
-  }, 2000)
+  }, 1500)
 }
 
 function closeToast() {
@@ -110,7 +110,19 @@ function closeToast() {
 
                   <div class="alert_cta-error">
                     <Button
+                      v-if="variant === 'error'"
                       variant="error"
+                      size="md"
+                      btn-type="button"
+                      type="background"
+                      :on-click="showToast"
+                    >
+                      Delete
+                    </Button>
+
+                    <Button
+                      v-if="variant === 'warning'"
+                      variant="warning"
                       size="md"
                       btn-type="button"
                       type="background"

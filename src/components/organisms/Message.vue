@@ -35,7 +35,7 @@ onMounted(() => {
   <TransitionRoot appear :show="toast" as="template">
     <TransitionChild
       as="template"
-      enter="duration-150 ease-in"
+      enter="duration-300 ease-in"
       enter-from="opacity-0 scale-95 -right-80"
       enter-to="opacity-100 scale-100 right-0"
       leave="duration-500 ease-out"
@@ -69,7 +69,7 @@ onMounted(() => {
 
 <style lang="postcss">
 .message {
-  @apply fixed top-24 right-8 flex items-start gap-3 rounded-[10px] border-l bg-white p-7 text-netral-80 shadow-message;
+  @apply fixed top-24 right-8 z-50 flex items-start gap-3 rounded-[10px] border-l bg-white p-7 text-netral-80 shadow-message;
 
   &.error {
     @apply border-error-border;

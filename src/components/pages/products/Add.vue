@@ -16,6 +16,7 @@ import Select from '$components/moleculs/Select.vue'
 import UploadSimpleIcon from '$assets/icons/UploadSimple.vue'
 import ChecksIcon from '$assets/icons/Checks.vue'
 import PercentIcon from '$assets/icons/Percent.vue'
+import PageAction from '$components/organisms/PageAction.vue'
 
 const categories = [
   { id: 1, name: 'Select Category', unavailable: true },
@@ -30,15 +31,7 @@ const genders = [
   { id: 3, name: 'Female', unavailable: true }
 ]
 
-const isOpen = ref(false)
-
-const openModal = () => {
-  isOpen.value = true
-}
-
-const closeModal = () => {
-  isOpen.value = false
-}
+let isEnabled = ref(true)
 </script>
 
 <template>
@@ -272,40 +265,7 @@ const closeModal = () => {
     </template>
 
     <template #extend>
-      <!-- Action -->
-      <div class="relative">
-        <div class="pageAction">
-          <div class="pageAction_status">
-            <ChecksIcon />
-            <span class="pageAction_status-text"> Last saved </span>
-            <span class="text-sm font-semibold leading-[1.43] text-netral-80">
-              Nov 9, 2022 &mdash; 05.09 PM
-            </span>
-          </div>
-
-          <div class="pageAction_cta">
-            <Button type="background" variant="base" size="md">Cancel</Button>
-
-            <Alert
-              variant="error"
-              :isOpen="isOpen"
-              :closeModal="closeModal"
-              title="Delete Product"
-              description="Are you sure to delete your product? You won't get your data back once it deleted"
-            />
-
-            <Button
-              btn-type="link"
-              type="background"
-              variant="primary"
-              size="md"
-              href="/variants"
-            >
-              Next
-            </Button>
-          </div>
-        </div>
-      </div>
+      <PageAction :is-enabled="isEnabled" variant="primary" href="/variants" />
     </template>
   </BaseLayout>
 </template>

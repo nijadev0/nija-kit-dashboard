@@ -4,21 +4,11 @@ import { ref } from 'vue'
 import BaseLayout from '$components//templates/BaseLayout.vue'
 
 import Title from '$components/atoms/Title.vue'
-import Button from '$components/atoms/Button.vue'
 
 import CaretDown from '$assets/icons/CaretDown.vue'
-import ChecksIcon from '$assets/icons/Checks.vue'
+import PageAction from '$components/organisms/PageAction.vue'
 
-const enabled = ref(true)
-const isOpen = ref(false)
-
-function closeModal() {
-  isOpen.value = false
-}
-
-function openModal() {
-  isOpen.value = true
-}
+const isEnabled = ref(true)
 </script>
 
 <template>
@@ -82,57 +72,7 @@ function openModal() {
 
     <template #extend>
       <!-- Action -->
-      <div class="relative">
-        <TransitionRoot appear :show="enabled" as="template">
-          <TransitionChild
-            as="template"
-            enter="duration-300 ease-in"
-            enter-from="-bottom-40 opacity-0"
-            enter-to="bottom-0 opacity-100"
-            leave="duration-300 ease-out"
-            leave-from="opacity-100 bottom-0"
-            leave-to="opacity-0 -bottom-80"
-          >
-            <div class="pageAction">
-              <div class="pageAction_status">
-                <ChecksIcon />
-                <span class="pageAction_status-text">
-                  2 products selected
-                </span>
-              </div>
-
-              <div class="pageAction_cta">
-                <Button
-                  btn-type="button"
-                  type="outline"
-                  variant="primary"
-                  size="md"
-                >
-                  Draft
-                </Button>
-
-                <Alert
-                  variant="error"
-                  :isOpen="isOpen"
-                  :closeModal="closeModal"
-                  title="Delete Product"
-                  description="Are you sure to delete your product? You won't get your data back once it deleted"
-                />
-
-                <Button
-                  type="background"
-                  btnType="button"
-                  variant="error"
-                  size="md"
-                  @todo-click="openModal"
-                >
-                  Delete
-                </Button>
-              </div>
-            </div>
-          </TransitionChild>
-        </TransitionRoot>
-      </div>
+      <PageAction :is-enabled="isEnabled" />
     </template>
   </BaseLayout>
 </template>

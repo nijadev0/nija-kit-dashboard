@@ -38,8 +38,8 @@ const {
 <template>
   <!-- Button - Label & Icon toLink -->
   <a
-    @click="href && $router.push(`${href}`)"
     v-if="type === 'background' && btnType !== 'button'"
+    @click="$router.push(`${href}`)"
     class="btn"
     :class="{
       base: variant === 'base',
@@ -77,6 +77,7 @@ const {
   <button
     v-if="type === 'background' && btnType === 'button'"
     @click="onClick"
+    :href="href"
     class="btn"
     :class="{
       base: variant === 'base',

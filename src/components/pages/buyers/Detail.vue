@@ -12,9 +12,17 @@ import Status from '$components/atoms/Badge.vue'
 </script>
 <template>
   <BaseLayout title="Buyers" page>
+    <!-- Heading -->
     <div class="mb-7 flex items-start justify-between">
       <Title variant="base"> Detail Buyers </Title>
-      <Button variant="primary" type="background" size="md" icon>
+      <Button
+        variant="primary"
+        type="background"
+        size="md"
+        icon
+        btn-type="link"
+        href="/buyers/update"
+      >
         <template #icon>
           <PencilIcon class="h-4 w-4 stroke-white stroke-[1.25px]" />
         </template>
@@ -22,6 +30,7 @@ import Status from '$components/atoms/Badge.vue'
       </Button>
     </div>
 
+    <!-- Buyers Info -->
     <div class="flex w-full flex-row items-center gap-5">
       <AvatarDefault />
 

@@ -19,6 +19,7 @@ import DetailsUser from '$components/pages/users/Detail.vue'
 // Buyers
 import Buyers from '$components/pages/buyers/Buyers.vue'
 import DetailsBuyer from '$components/pages/buyers/Detail.vue'
+import UpdateBuyer from '$components/pages/buyers/Update.vue'
 
 // Authentication
 import Login from '$components/pages/auth/Login.vue'
@@ -75,6 +76,11 @@ const router = createRouter({
       path: '/buyers/detail',
       name: 'Details Buyer',
       component: DetailsBuyer
+    },
+    {
+      path: '/buyers/update',
+      name: 'Update Buyer',
+      component: UpdateBuyer
     },
     {
       path: '/categories',

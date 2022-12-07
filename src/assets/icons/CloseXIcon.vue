@@ -7,13 +7,11 @@
   >
     <path
       d="M18.75 5.25L5.25 18.75"
-      stroke-width="1.33333"
       stroke-linecap="round"
       stroke-linejoin="round"
     />
     <path
       d="M18.75 18.75L5.25 5.25"
-      stroke-width="1.33333"
       stroke-linecap="round"
       stroke-linejoin="round"
     />

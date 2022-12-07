@@ -13,7 +13,7 @@ import SortAscendingIcon from '$assets/icons/SortAscending.vue'
 import FunnelIcon from '$assets/icons/Funnel.vue'
 import CheckIcon from '$assets/icons/Check.vue'
 
-const enabled = ref(true)
+const enabled = ref(false)
 </script>
 
 <template>

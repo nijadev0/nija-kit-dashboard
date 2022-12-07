@@ -36,6 +36,7 @@ import Paginate from '$components/moleculs/Paginate.vue'
               </th>
             </tr>
           </thead>
+
           <tbody class="w-full capitalize">
             <tr class="border-b">
               <td class="py-5 pl-4 pr-6 text-left">Jenny Wilson</td>

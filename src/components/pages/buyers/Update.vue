@@ -1,21 +1,18 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 
-import BaseLayout from '$components//templates/BaseLayout.vue'
-
 import Title from '$components/atoms/Title.vue'
-
-import CaretDown from '$assets/icons/CaretDown.vue'
 import PageAction from '$components/organisms/PageAction.vue'
+import BaseLayout from '$components/templates/BaseLayout.vue'
 
-const isEnabled = ref(true)
+let isEnabled = ref(true)
 </script>
 
 <template>
-  <BaseLayout title="Detail User" :full="true">
-    <Title variant="base" class="mb-8"> User </Title>
+  <BaseLayout title="Update Buyer">
+    <Title variant="base" class="mb-8"> Update Buyer </Title>
 
-    <form class="grid grid-cols-2 gap-x-5 gap-y-8">
+    <form class="mb-8 grid grid-cols-2 gap-x-5 gap-y-8">
       <div class="w-full">
         <label class="font-semibold" for="name"> Name </label>
         <input

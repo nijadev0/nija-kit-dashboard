@@ -71,10 +71,34 @@ import NijaKit from '$assets/icons/NijaKit.vue'
         </DisclosurePanel>
       </Disclosure>
 
-      <SideMenu variant="main" :expand="true">
+      <Disclosure>
+        <DisclosureButton>
+          <SideMenu variant="main" :expand="true">
+            <ReceiptIcon class="stroke-inherit stroke-2" />
+            Transaction
+          </SideMenu>
+        </DisclosureButton>
+
+        <DisclosurePanel class="sidebar_avatar">
+          <div class="sidebar_avatar-divider" />
+
+          <DisclosureButton>
+            <SideMenu href="/transactions/manage" variant="sub">
+              Manage Transaction
+            </SideMenu>
+          </DisclosureButton>
+
+          <DisclosureButton>
+            <SideMenu href="/transactions/refund" variant="sub">
+              Manage Refund
+            </SideMenu>
+          </DisclosureButton>
+        </DisclosurePanel>
+      </Disclosure>
+      <!-- <SideMenu variant="main" :expand="true">
         <ReceiptIcon class="stroke-inherit stroke-2" />
         Transaction
-      </SideMenu>
+      </SideMenu> -->
 
       <SideMenu variant="main">
         <TagIcon class="stroke-inherit stroke-2" />

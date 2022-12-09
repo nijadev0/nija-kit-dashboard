@@ -7,15 +7,21 @@ import {
   ListboxOption
 } from '@headlessui/vue'
 
+import Tag from '$components/atoms/Tag.vue'
 import CaretDownIcon from '$assets/icons/CaretDown.vue'
 
 interface Data {
-  id: number
-  name: string
-  unavailable: boolean
+  id?: number
+  name?: string
+  color?: string
+  unavailable?: boolean
+}
+interface Select {
+  isColor?: boolean
+  data: Data[]
 }
 
-const { data } = defineProps<{ data: Data[] }>()
+const { data } = defineProps<Select>()
 
 const dataModel = ref(data[0])
 </script>
@@ -25,11 +31,17 @@ const dataModel = ref(data[0])
   <Listbox v-model="dataModel">
     <div class="relative w-full">
       <ListboxButton class="select_button">
-        <span class="select_button-text">
-          {{ dataModel.name }}
-        </span>
+        <div class="select_button-text relative">
+          <Tag
+            v-if="isColor"
+            :active="isColor"
+            :color="dataModel.color"
+            :label="dataModel.name"
+          />
+          <span> {{ dataModel.name }} </span>
+        </div>
 
-        <CaretDownIcon class="w-5 h-5 stroke-netral-100 stroke-2" />
+        <CaretDownIcon class="h-5 w-5 stroke-netral-100 stroke-2" />
       </ListboxButton>
 
       <ListboxOptions class="select_wrapper">
@@ -38,7 +50,7 @@ const dataModel = ref(data[0])
           :key="item.id"
           :value="item"
           :disabled="item.id === 1"
-          class="select-option"
+          class="select-option relative"
         >
           {{ item.name }}
         </ListboxOption>
@@ -49,18 +61,18 @@ const dataModel = ref(data[0])
 
 <style lang="postcss">
 .select {
-  @apply flex items-center justify-between p-3.5 border border-netral-30 outline-none rounded-lg focus:border focus:border-primary-main w-full;
+  @apply flex w-full items-center justify-between rounded-lg border border-netral-30 p-3.5 outline-none focus:border focus:border-primary-main;
 
   &_button {
-    @apply flex items-center justify-between p-3.5 border border-netral-30 w-full rounded-[10px];
+    @apply flex w-full items-center justify-between rounded-[10px] border border-netral-30 p-3.5;
   }
 
   &_wrapper {
-    @apply absolute top-14 bg-white left-0 z-10 w-full border-x border-b rounded-br-[10px] rounded-bl-[10px] border-netral-30;
+    @apply absolute top-14 left-0 z-30 w-full rounded-br-[10px] rounded-bl-[10px] border-x border-b border-netral-30 bg-white;
   }
 
   &-option {
-    @apply p-3.5 cursor-pointer whitespace-nowrap ui-active:bg-netral-20/50 ui-active:text-netral-90 rounded-[10px] ui-not-active:bg-white ui-not-active:text-black ui-disabled:cursor-default flex items-center justify-between;
+    @apply flex cursor-pointer items-center justify-between whitespace-nowrap rounded-[10px] bg-white p-3.5 ui-active:bg-netral-20/50 ui-active:text-netral-90 ui-not-active:bg-white ui-not-active:text-black ui-disabled:cursor-default;
   }
 }
 </style>

@@ -21,6 +21,10 @@ import Buyers from '$components/pages/buyers/Buyers.vue'
 import DetailsBuyer from '$components/pages/buyers/Detail.vue'
 import UpdateBuyer from '$components/pages/buyers/Update.vue'
 
+// Transactions
+import Transactions from '$components/pages/transactions/Transactions.vue'
+import Refund from '$components/pages/transactions/Refund.vue'
+
 // Authentication
 import Login from '$components/pages/auth/Login.vue'
 import Forgot from '$components/pages/auth/Forgot.vue'
@@ -91,6 +95,16 @@ const router = createRouter({
       path: '/variants',
       name: 'Variants',
       component: Variants
+    },
+    {
+      path: '/transactions/manage',
+      name: 'Transactions',
+      component: Transactions
+    },
+    {
+      path: '/transactions/refund',
+      name: 'Refund',
+      component: Refund
     },
     {
       path: '/categories/add',

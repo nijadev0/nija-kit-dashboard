@@ -8,7 +8,7 @@ import Title from '$components/atoms/Title.vue'
 import Button from '$components/atoms/Button.vue'
 import Para from '$components/atoms/Para.vue'
 
-import TableDataProduct from '$components/moleculs/TableData/Products.vue'
+import TableDataProduct from '$components/moleculs/Table/TableData/Products.vue'
 import Paginate from '$components/moleculs/Paginate.vue'
 import PageAction from '$components/organisms/PageAction.vue'
 

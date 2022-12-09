@@ -422,17 +422,7 @@ const enabled = ref(false)
                   </tr>
                   <tr class="tableData">
                     <td class="py-5 pl-3 pr-6 text-left">
-                      <Switch v-model="enabled" class="checkbox">
-                        <div
-                          class="checkbox-wrapper"
-                          :class="enabled ? 'active' : 'default'"
-                        >
-                          <Check
-                            class="checkbox-icon"
-                            :class="enabled ? 'block' : 'hidden'"
-                          />
-                        </div>
-                      </Switch>
+                      <Checkbox />
                     </td>
                     <td class="py-5 text-left">
                       <div class="flex items-center gap-3">
@@ -460,7 +450,7 @@ const enabled = ref(false)
                       </Para>
                     </td>
 
-                    <td class="py-5 text-left">
+                    <td class="min-w-[140px] py-5 text-left">
                       <Status variant="success">Mantep</Status>
                     </td>
 

@@ -9,15 +9,16 @@ const { variant = 'base' } = defineProps<Title>()
 </script>
 
 <template>
-  <div class="title">
+  <!-- Title -->
+  <div class="Title flex flex-row items-end gap-3">
     <div
-      class="title_icon"
+      class="h-6 w-2 rounded-full"
       :class="{
-        base: variant === 'base',
-        critical: variant === 'critical',
-        warning: variant === 'warning',
-        success: variant === 'success',
-        info: variant === 'info'
+        'bg-netral-100': variant === 'base',
+        'bg-error-main': variant === 'critical',
+        'bg-warning-main': variant === 'warning',
+        'bg-success-main': variant === 'success',
+        'bg-primary-main': variant === 'info'
       }"
     />
 
@@ -26,33 +27,3 @@ const { variant = 'base' } = defineProps<Title>()
     </Para>
   </div>
 </template>
-
-<style lang="postcss">
-.title {
-  @apply flex flex-row items-end gap-3;
-
-  &_icon {
-    @apply h-6 w-2 rounded-full;
-
-    &.base {
-      @apply bg-netral-100;
-    }
-
-    &.critical {
-      @apply bg-error-main;
-    }
-
-    &.warning {
-      @apply bg-warning-main;
-    }
-
-    &.success {
-      @apply bg-success-main;
-    }
-
-    &.info {
-      @apply bg-primary-main;
-    }
-  }
-}
-</style>

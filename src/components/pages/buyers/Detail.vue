@@ -2,32 +2,69 @@
 import BaseLayout from '$components/templates/BaseLayout.vue'
 
 import Title from '$components/atoms/Title.vue'
-import Button from '$components/atoms/Button.vue'
-
-import PencilIcon from '$assets/icons/Pencil.vue'
-import AvatarDefault from '$assets/icons/AvatarDefault.vue'
 import Heading from '$components/atoms/Heading.vue'
 import Para from '$components/atoms/Para.vue'
-import Status from '$components/atoms/Badge.vue'
+import Badge from '$components/atoms/Badge.vue'
+
+import AvatarDefault from '$assets/icons/AvatarDefault.vue'
+
+const detailsUser = [
+  {
+    id: 653518,
+    nameItem: "Lego Star'War edition'",
+    amount: 2,
+    status: 'successful',
+    price: '$782.01',
+    date: '02 Jan 2022. 16.00'
+  },
+  {
+    id: 653518,
+    nameItem: "Lego Star'War edition'",
+    amount: 2,
+    status: 'successful',
+    price: '$782.01',
+    date: '02 Jan 2022. 16.00'
+  },
+  {
+    id: 653518,
+    nameItem: "Lego Star'War edition'",
+    amount: 2,
+    status: 'successful',
+    price: '$782.01',
+    date: '02 Jan 2022. 16.00'
+  },
+  {
+    id: 653518,
+    nameItem: "Lego Star'War edition'",
+    amount: 2,
+    status: 'successful',
+    price: '$782.01',
+    date: '02 Jan 2022. 16.00'
+  },
+  {
+    id: 653518,
+    nameItem: "Lego Star'War edition'",
+    amount: 2,
+    status: 'successful',
+    price: '$782.01',
+    date: '02 Jan 2022. 16.00'
+  },
+  {
+    id: 653518,
+    nameItem: "Lego Star'War edition'",
+    amount: 2,
+    status: 'successful',
+    price: '$782.01',
+    date: '02 Jan 2022. 16.00'
+  }
+]
 </script>
+
 <template>
   <BaseLayout title="Buyers" page>
     <!-- Heading -->
     <div class="mb-7 flex items-start justify-between">
       <Title variant="base"> Detail Buyers </Title>
-      <Button
-        variant="primary"
-        type="background"
-        size="md"
-        icon
-        btn-type="link"
-        href="/buyers/update"
-      >
-        <template #icon>
-          <PencilIcon class="h-4 w-4 stroke-white stroke-[1.25px]" />
-        </template>
-        Edit
-      </Button>
     </div>
 
     <!-- Buyers Info -->
@@ -69,84 +106,88 @@ import Status from '$components/atoms/Badge.vue'
 
     <template #page>
       <Title variant="base" class="mb-8"> Transaction History </Title>
-      <section>
-        <!-- Table -->
-        <div class="mb-6 overflow-x-auto">
-          <table class="w-full table-auto">
-            <!-- Table header -->
-            <thead
-              class="rounded-lg bg-[#fafafa] text-xs font-semibold uppercase text-netral-50"
+      <!-- Table -->
+
+      <div class="mb-6 w-full overflow-x-auto">
+        <table class="w-full">
+          <!-- Table Head -->
+          <thead class="tableHead w-full">
+            <tr
+              class="flex w-full items-center justify-between gap-14 rounded-lg bg-[#fafafa] py-4 px-3 uppercase"
             >
-              <tr>
-                <th class="w-px whitespace-nowrap py-5 pl-4 pr-24 text-left">
-                  <Para size="md" variant="semibold"> Transaction ID </Para>
-                </th>
-                <th class="py-5 text-left">
-                  <Para size="md" variant="semibold"> Purchased Item</Para>
-                </th>
-                <th class="py-5 pr-4 text-left">
-                  <Para size="md" variant="semibold"> Amount </Para>
-                </th>
-                <th class="py-5 text-left">
-                  <Para size="md" variant="semibold"> Status </Para>
-                </th>
-                <th class="py-5 text-left">
-                  <Para size="md" variant="semibold"> Total Price </Para>
-                </th>
-                <th class="py-5 text-left">
-                  <Para size="md" variant="semibold"> Transaction Date</Para>
-                </th>
-              </tr>
-            </thead>
-            <tbody class="w-full capitalize">
-              <tr>
-                <td class="w-px py-5 pl-4 pr-6">653518</td>
-                <td class="py-5">Lego Star'War edition</td>
-                <td class="py-5 pr-4">2</td>
-                <td class="py-5">
-                  <Status variant="success">Successful</Status>
-                </td>
-                <td class="py-5">May 6, 2012</td>
-                <td class="py-5">
-                  <button class="font-semibold text-primary-main">
-                    Detail
-                  </button>
-                </td>
-              </tr>
+              <th class="w-full max-w-[140px] text-left">
+                <Para class="text-[#A0A8B0]" variant="medium" size="md">
+                  Transaction ID
+                </Para>
+              </th>
 
-              <tr>
-                <td class="w-px py-5 pl-4 pr-6">653518</td>
-                <td class="py-5">Lego Star'War edition</td>
-                <td class="py-5 pr-4">2</td>
-                <td class="py-5">
-                  <Status variant="success">Successful</Status>
-                </td>
-                <td class="py-5">May 6, 2012</td>
-                <td class="py-5">
-                  <button class="font-semibold text-primary-main">
-                    Detail
-                  </button>
-                </td>
-              </tr>
+              <th class="w-full text-left">
+                <Para class="text-[#A0A8B0]" variant="medium" size="md">
+                  Purchased Item
+                </Para>
+              </th>
 
-              <tr>
-                <td class="w-px py-5 pl-4 pr-6">653518</td>
-                <td class="py-5">Lego Star'War edition</td>
-                <td class="py-5 pr-4">2</td>
-                <td class="py-5">
-                  <Status variant="success">Successful</Status>
-                </td>
-                <td class="py-5">May 6, 2012</td>
-                <td class="py-5">
-                  <button class="font-semibold text-primary-main">
-                    Detail
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
+              <th class="min-w-[80px] text-left">
+                <Para class="text-[#A0A8B0]" variant="medium" size="md">
+                  Amount
+                </Para>
+              </th>
+
+              <th class="w-full text-left">
+                <Para class="text-[#A0A8B0]" variant="medium" size="md">
+                  Status
+                </Para>
+              </th>
+
+              <th class="w-full text-left">
+                <Para class="text-[#A0A8B0]" variant="medium" size="md">
+                  Total Price
+                </Para>
+              </th>
+
+              <th class="w-full text-left">
+                <Para class="text-[#A0A8B0]" variant="medium" size="md">
+                  Transaction Date
+                </Para>
+              </th>
+            </tr>
+          </thead>
+
+          <!-- Table Data -->
+          <tbody class="tableData w-full">
+            <tr
+              v-for="item in detailsUser"
+              class="flex w-full items-center justify-between gap-14 border-b border-netral-30 py-[26px] px-3 text-netral-80"
+            >
+              <td class="w-full max-w-[140px]">
+                <Para size="lg" variant="medium"> {{ item.id }} </Para>
+              </td>
+
+              <td class="w-full max-w-[280px] text-left">
+                <Para size="lg" variant="medium">
+                  {{ item.nameItem }}
+                </Para>
+              </td>
+
+              <td class="min-w-[80px] text-left">
+                <Para size="lg" variant="medium">{{ item.amount }}</Para>
+              </td>
+
+              <td class="w-full">
+                <Badge variant="success"> {{ item.status }} </Badge>
+              </td>
+
+              <td class="w-full text-left">
+                <Para size="lg" variant="medium"> {{ item.price }} </Para>
+              </td>
+
+              <td class="w-full">
+                <Para size="lg" variant="medium"> {{ item.date }} </Para>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </template>
   </BaseLayout>
 </template>

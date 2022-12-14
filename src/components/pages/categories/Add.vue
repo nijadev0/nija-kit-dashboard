@@ -16,6 +16,7 @@ import Alert from '$components/organisms/Alert.vue'
 import UploadSimpleIcon from '$assets/icons/UploadSimple.vue'
 import ChecksIcon from '$assets/icons/Checks.vue'
 import PercentIcon from '$assets/icons/Percent.vue'
+import PageAction from '$components/organisms/PageAction.vue'
 
 const isOpen = ref(false)
 
@@ -51,8 +52,8 @@ const closeModal = () => {
       <div class="max-w-[280px]">
         <Para size="lg" variant="semibold" class="mb-2"> Description </Para>
         <Para size="md" variant="regular" class="text-netral-50">
-          Lorem ipsum dolor sit amet consectetur. Sed quam semper nibh
-          fermentum.
+          Set a description on category to detail your category and better
+          visibility
         </Para>
       </div>
 
@@ -66,8 +67,8 @@ const closeModal = () => {
       <div class="max-w-[280px]">
         <Para size="lg" variant="semibold" class="mb-2"> Status </Para>
         <Para size="md" variant="regular" class="text-netral-50">
-          Lorem ipsum dolor sit amet consectetur. Sed quam semper nibh fermentum
-          quis pretium tristique.
+          Set a status for category to determine whether your category is
+          displayed or not
         </Para>
       </div>
       <div class="w-full max-w-[720px]">
@@ -82,8 +83,9 @@ const closeModal = () => {
       <div class="max-w-[280px]">
         <Para size="lg" variant="semibold" class="mb-2"> Thumbnail </Para>
         <Para size="md" variant="regular" class="text-netral-50">
-          Lorem ipsum dolor sit amet consectetur. Sed quam semper nibh fermentum
-          quis pretium tristique.
+          Set the product thumbnail image. Only *.png, *.jpg and *.jpeg image
+          files are accepted. Recommended minimum width 1080px X 1080px, with a
+          max size of 5MB
         </Para>
       </div>
 
@@ -110,97 +112,15 @@ const closeModal = () => {
       </div>
     </div>
 
-    <template #layout>
-      <section class="min-h-[428px] w-full rounded-[10px] bg-white p-6">
-        <Title variant="base"> Price </Title>
-
-        <Divider variant="addProducts" />
-
-        <div class="flex items-start justify-between">
-          <div class="max-w-[280px]">
-            <Para size="lg" variant="semibold" class="mb-2"> Price </Para>
-          </div>
-
-          <div class="w-full max-w-[720px]">
-            <Input label="Rp. 0,-" icon variant="price" />
-          </div>
-        </div>
-
-        <Divider variant="addProducts" />
-
-        <div class="flex items-start justify-between">
-          <div class="max-w-[280px]">
-            <Para size="lg" variant="semibold" class="mb-2">
-              Discount Type
-            </Para>
-            <Para size="md" variant="regular" class="text-netral-50">
-              Lorem ipsum dolor sit amet consectetur. Sed quam semper nibh
-              fermentum.
-            </Para>
-          </div>
-        </div>
-
-        <Divider variant="addProducts" />
-
-        <div class="flex items-start justify-between">
-          <div class="max-w-[280px]">
-            <Para size="lg" variant="semibold" class="mb-2"> Price </Para>
-            <Para size="md" variant="regular" class="text-netral-50">
-              Lorem ipsum dolor sit amet consectetur. Sed quam semper nibh
-              fermentum quis pretium tristique.
-            </Para>
-          </div>
-
-          <div class="relative w-full max-w-[720px]">
-            <input
-              class="w-full rounded-lg border border-netral-30 p-3.5 pl-12 shadow-input outline-none focus-within:border focus-within:border-primary-main"
-              placeholder="Enter nominal discount"
-            />
-            <div
-              class="absolute left-2 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-md bg-netral-20 text-center text-netral-80"
-            >
-              <PercentIcon />
-            </div>
-          </div>
-        </div>
-      </section>
-    </template>
-
     <template #extend>
       <!-- Action -->
-      <div class="relative">
-        <div class="pageAction">
-          <div class="pageAction_status">
-            <ChecksIcon />
-            <span class="pageAction_status-text"> Last saved </span>
-            <span class="text-sm font-semibold leading-[1.43] text-netral-80">
-              Nov 9, 2022 &mdash; 05.09 PM
-            </span>
-          </div>
-
-          <div class="pageAction_cta">
-            <Button type="background" variant="base" size="md">Cancel</Button>
-
-            <Alert
-              variant="error"
-              :isOpen="isOpen"
-              :closeModal="closeModal"
-              title="Delete Product"
-              description="Are you sure to delete your product? You won't get your data back once it deleted"
-            />
-
-            <Button
-              btn-type="link"
-              type="background"
-              variant="primary"
-              size="md"
-              href="/variants"
-            >
-              Next
-            </Button>
-          </div>
-        </div>
-      </div>
+      <PageAction
+        variant="primary"
+        :is-enabled="true"
+        hide-secondary
+        label-primary="Save"
+        label-secondary="Cancel"
+      />
     </template>
   </BaseLayout>
 </template>

@@ -1,12 +1,9 @@
 <script lang="ts" setup>
 import Button from '$components/atoms/Button.vue'
 import Checkbox from '$components/atoms/Checkbox.vue'
-import Para from '$components/atoms/Para.vue'
 import Toggle from '$components/atoms/Toggle.vue'
 import Input from '$components/moleculs/Input.vue'
 import Select from '$components/moleculs/Select.vue'
-
-import UploadSimple from '$assets/icons/UploadSimple.vue'
 
 interface VariantsTableData {
   openModal: any | undefined
@@ -19,23 +16,27 @@ const { openModal, colors, sizes } = defineProps<VariantsTableData>()
 
 <template>
   <tr class="VariantsTableData w-full">
-    <td class="py-5 pl-3 pr-6 text-left">
+    <td class="max-w-[20px] py-5 pl-3 pr-6 text-left">
       <Checkbox />
     </td>
 
-    <td class="py-5 px-4 text-left">
+    <td class="max-w-[90px] py-5 px-4 text-left">
       <button @click="openModal" class="flex cursor-pointer items-center gap-3">
         <div
-          class="pointer-events-none flex h-full flex-col items-center justify-center gap-2 rounded-[10px] bg-netral-20 stroke-netral-50 px-3 py-6"
+          class="pointer-events-none flex min-h-[86px] min-w-[86px] flex-col items-center justify-center gap-2 rounded-[10px] bg-netral-20 stroke-netral-50 px-3 py-6"
         >
-          <UploadSimple class="h-5 w-5 stroke-inherit stroke-2" />
-          <Para
-            variant="medium"
-            size="sm"
-            class="whitespace-nowrap text-primary-main"
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="40"
+            height="40"
+            class="fill-netral-40"
+            viewBox="0 0 256 256"
           >
-            Add Image
-          </Para>
+            <circle cx="100" cy="92" r="12"></circle>
+            <path
+              d="M208,32H48A16,16,0,0,0,32,48V176h0v32a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32Zm-28.7,80a16.1,16.1,0,0,0-22.6,0L112,156.7,91.3,136a16.1,16.1,0,0,0-22.6,0L48,156.7V48H208v92.7Z"
+            ></path>
+          </svg>
         </div>
       </button>
     </td>
@@ -55,11 +56,11 @@ const { openModal, colors, sizes } = defineProps<VariantsTableData>()
       <Input label="000" variety="number" />
     </td>
 
-    <td class="py-5 px-4 text-left">
+    <td class="min-w-[70px] py-5 px-4 text-left">
       <Toggle />
     </td>
 
-    <td class="py-5 px-4 text-left">
+    <td class="max-w-[112px] py-5 px-4 text-left">
       <div class="flex items-center gap-2.5">
         <Button
           btn-type="button"
@@ -68,7 +69,7 @@ const { openModal, colors, sizes } = defineProps<VariantsTableData>()
           variant="primary"
           size="md"
         >
-          Add image
+          Add Image
         </Button>
       </div>
     </td>

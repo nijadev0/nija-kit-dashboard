@@ -7,9 +7,10 @@ import Para from '$components/atoms/Para.vue'
 import TrashIcon from '$assets/icons/Trash.vue'
 import CloseXIcon from '$assets/icons/CloseXIcon.vue'
 import CheckCircleIcon from '$assets/icons/CheckCircle.vue'
+import InfoIcon from '$assets/icons/Info.vue'
 
 interface Message {
-  variant?: 'error' | 'success'
+  variant?: 'error' | 'success' | 'warning'
   title?: string
   description?: string
   toast: boolean
@@ -27,7 +28,7 @@ const {
 onMounted(() => {
   setTimeout(() => {
     closeToast()
-  }, 2000)
+  }, 3000)
 })
 </script>
 
@@ -44,10 +45,18 @@ onMounted(() => {
     >
       <section
         class="message"
-        :class="{ error: variant === 'error', success: variant === 'success' }"
+        :class="{
+          error: variant === 'error',
+          success: variant === 'success',
+          warning: variant === 'warning'
+        }"
       >
         <TrashIcon v-if="variant === 'error'" />
         <CheckCircleIcon v-if="variant === 'success'" />
+        <InfoIcon
+          v-if="variant === 'warning'"
+          class="h-6 w-6 fill-warning-main stroke-warning-main text-warning-main"
+        />
 
         <div class="message_content">
           <Para size="lg" variant="medium" class="mb-3">
@@ -77,6 +86,10 @@ onMounted(() => {
 
   &.success {
     @apply border-success-border;
+  }
+
+  &.warning {
+    @apply border-warning-border;
   }
 
   &_content {

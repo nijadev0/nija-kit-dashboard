@@ -33,7 +33,11 @@ let isActive = ref(false)
         </PopoverButton>
 
         <PopoverPanel
-          class="absolute top-8 right-0 z-10 w-80 rounded-2xl border border-netral-30 bg-white shadow-2xl"
+          class="absolute top-8 right-0 z-10 w-80 rounded-2xl border border-netral-30 bg-white"
+          style="
+            filter: drop-shadow(0px 3px 5px rgba(47, 47, 47, 0.2))
+              drop-shadow(0px 0px 1px rgba(47, 47, 47, 0.2));
+          "
         >
           <div
             class="flex h-full w-full items-center justify-between border-b border-netral-30 py-6 px-4"
@@ -283,7 +287,7 @@ let isActive = ref(false)
 
 <style lang="postcss">
 .navbar {
-  @apply container mx-auto flex items-center justify-between py-3.5 px-8;
+  @apply flex items-center justify-between py-3.5 px-8;
 
   &_search {
     @apply relative max-w-sm;

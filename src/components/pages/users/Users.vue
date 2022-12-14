@@ -12,6 +12,7 @@ import Checkbox from '$components/atoms/Checkbox.vue'
 import SortAscendingIcon from '$assets/icons/SortAscending.vue'
 import FunnelIcon from '$assets/icons/Funnel.vue'
 import CheckIcon from '$assets/icons/Check.vue'
+import PageAction from '$components/organisms/PageAction.vue'
 
 const enabled = ref(false)
 </script>
@@ -53,13 +54,14 @@ const enabled = ref(false)
     <section>
       <!-- Table -->
       <div class="mb-6 overflow-x-auto">
-        <table class="w-full table-auto">
-          <!-- Table header -->
-          <thead
-            class="rounded-lg bg-[#fafafa] text-xs font-semibold uppercase text-netral-50"
-          >
-            <tr>
-              <th class="py-5 pl-3 pr-6 text-left">
+        <table class="w-full">
+          <!-- Table Head -->
+          <thead class="tableHead w-full">
+            <tr
+              class="flex w-full items-center justify-between gap-11 rounded-lg bg-[#fafafa] py-4 px-3 uppercase"
+            >
+              <!-- Checkbox -->
+              <th class="checkbox w-px pr-6 text-left">
                 <Switch v-model="enabled" class="checkbox">
                   <div
                     class="checkbox-wrapper"
@@ -72,86 +74,101 @@ const enabled = ref(false)
                   </div>
                 </Switch>
               </th>
-              <th class="py-5 text-left">
-                <Para size="md" variant="semibold"> Name </Para>
+
+              <th class="w-full text-left">
+                <Para class="text-[#A0A8B0]" variant="semibold" size="md">
+                  Name
+                </Para>
               </th>
-              <th class="py-5 text-left">
-                <Para size="md" variant="semibold"> Email address </Para>
+
+              <th class="w-full text-left">
+                <Para class="text-[#A0A8B0]" variant="semibold" size="md">
+                  Email Adress
+                </Para>
               </th>
-              <th class="py-5 pr-4 text-left">
-                <Para size="md" variant="semibold"> Complete address </Para>
+
+              <th class="w-full text-left">
+                <Para class="text-[#A0A8B0]" variant="semibold" size="md">
+                  Complete Address
+                </Para>
               </th>
-              <th class="py-5 text-left">
-                <Para size="md" variant="semibold"> Create at </Para>
+
+              <th class="w-full text-left">
+                <Para class="text-[#A0A8B0]" variant="semibold" size="md">
+                  Created At
+                </Para>
               </th>
-              <th class="py-5 text-left">
-                <Para size="md" variant="semibold"> Last activity </Para>
+
+              <th class="w-full text-left">
+                <Para class="text-[#A0A8B0]" variant="semibold" size="md">
+                  Last Activity
+                </Para>
               </th>
-              <th class="py-5 text-left">
-                <Para size="md" variant="semibold"> Action </Para>
+
+              <th class="w-full text-left">
+                <Para class="text-[#A0A8B0]" variant="semibold" size="md">
+                  Action
+                </Para>
               </th>
             </tr>
           </thead>
-          <tbody class="w-full capitalize">
-            <tr class="border-b">
-              <td class="w-5 py-5 pl-3 pr-6 text-left"><Checkbox /></td>
-              <td class="w-[160px]">Samanta Legend</td>
-              <td class="w-[160px]">samanta@mail.com</td>
-              <td class="w-[150px] py-5 pr-4">
-                2972 Westheimer Rd. Santa Ana, Illinois 85486
-              </td>
-              <td class="w-[100px]">Orange</td>
-              <td class="w-[120px]">May 6, 2012</td>
-              <td class="w-[60px]">
-                <button
-                  @click="$router.push('/users/detail')"
-                  class="font-semibold text-primary-main"
-                >
-                  Detail
-                </button>
-              </td>
-            </tr>
 
-            <tr class="border-b">
-              <td class="w-5 py-5 pl-3 pr-6 text-left"><Checkbox /></td>
-              <td class="py-5">Samanta Legend</td>
-              <td class="py-5">samanta@mail.com</td>
-              <td class="w-[150px] py-5 pr-4">
-                2972 Westheimer Rd. Santa Ana, Illinois 85486
-              </td>
-              <td class="py-5">Orange</td>
-              <td class="py-5">May 6, 2012</td>
-              <td class="py-5">
-                <button
-                  @click="$router.push('/users/detail')"
-                  class="font-semibold text-primary-main"
-                >
-                  Detail
-                </button>
-              </td>
-            </tr>
+          <!-- Table Data -->
+          <tbody class="tableData w-full">
+            <div v-for="item in [1, 2, 3, 4]">
+              <tr
+                class="flex w-full items-center justify-between gap-11 border-b border-netral-30 py-[26px] px-3"
+              >
+                <td class="checkbox w-px pr-6">
+                  <Checkbox />
+                </td>
 
-            <tr class="border-b">
-              <td class="w-5 py-5 pl-3 pr-6 text-left"><Checkbox /></td>
-              <td class="py-5">Samanta Legend</td>
-              <td class="py-5">samanta@mail.com</td>
-              <td class="w-[150px] py-5 pr-4">
-                2972 Westheimer Rd. Santa Ana, Illinois 85486
-              </td>
-              <td class="py-5">Orange</td>
-              <td class="py-5">May 6, 2012</td>
-              <td class="py-5">
-                <button
-                  @click="$router.push('/users/detail')"
-                  class="font-semibold text-primary-main"
-                >
-                  Detail
-                </button>
-              </td>
-            </tr>
+                <td class="w-full text-left">
+                  <Para size="lg" variant="medium" class="text-netral-80">
+                    Samanta Legend
+                  </Para>
+                </td>
+
+                <td class="w-full text-left">
+                  <Para size="lg" variant="medium"> samanta@mail.com </Para>
+                </td>
+
+                <td class="w-full">
+                  <Para size="lg" variant="medium">
+                    2972 Westheimer Rd. Santa Ana, Illinois 85486
+                  </Para>
+                </td>
+
+                <td class="w-full">
+                  <Para size="lg" variant="medium"> Orange </Para>
+                </td>
+
+                <td class="w-full text-left">
+                  <Para size="lg" variant="medium"> May 6, 2012 </Para>
+                </td>
+
+                <td class="w-full">
+                  <button
+                    @click="$router.push('/users/detail')"
+                    class="font-bold text-primary-main"
+                  >
+                    Detail
+                  </button>
+                </td>
+              </tr>
+            </div>
           </tbody>
         </table>
       </div>
     </section>
+
+    <template #extend>
+      <PageAction
+        :isEnabled="enabled"
+        variant="error"
+        label-primary="Delete"
+        hideSecondary
+      />
+    </template>
   </BaseLayoutVue>
 </template>

@@ -5,7 +5,9 @@ import Customers from '$components/pages/Customers.vue'
 
 // Products
 import Products from '$components/pages/products/Products.vue'
+import EmptyProducts from '$components/pages/products/Empty.vue'
 import AddProducts from '$components/pages/products/Add.vue'
+import DetailProducts from '$components/pages/products/Detail.vue'
 import Variants from '$components/pages/Variants.vue'
 
 // Categories
@@ -57,9 +59,19 @@ const router = createRouter({
       component: Products
     },
     {
+      path: '/products/empty',
+      name: 'Empty Products',
+      component: EmptyProducts
+    },
+    {
       path: '/products/add',
       name: 'Add Products',
       component: AddProducts
+    },
+    {
+      path: '/products/detail',
+      name: 'Detail Products',
+      component: DetailProducts
     },
     {
       path: '/users',

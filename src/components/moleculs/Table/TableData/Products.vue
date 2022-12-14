@@ -56,7 +56,12 @@ const { image, name, category, status, stock, spent } =
     </td>
 
     <td class="tableData_col7">
-      <button class="text-primary-main font-semibold">Detail</button>
+      <button
+        @click="$router.push('/products/detail')"
+        class="font-semibold text-primary-main"
+      >
+        Detail
+      </button>
     </td>
   </tr>
 </template>
@@ -66,42 +71,42 @@ const { image, name, category, status, stock, spent } =
   @apply border-b border-netral-30;
 
   &_col1 {
-    @apply py-5 pl-3 w-5;
+    @apply w-5 py-5 pl-3;
   }
 
   &_col2 {
-    @apply py-5 w-[16.875rem];
+    @apply w-[16.875rem] py-5;
   }
 
   &_col3 {
-    @apply py-5 w-[8.75rem];
+    @apply w-[8.75rem] py-5;
   }
 
   &_col4 {
-    @apply py-5 w-[7.5rem];
+    @apply w-[7.5rem] py-5;
   }
 
   &_col5 {
-    @apply py-5 w-16;
+    @apply w-16 py-5;
   }
 
   &_col6 {
-    @apply py-5 w-[7.5rem];
+    @apply w-[7.5rem] py-5;
   }
 
   &_col7 {
-    @apply py-5 w-24;
+    @apply w-24 py-5;
   }
 
   &_product {
     @apply flex items-center gap-3;
 
     &-photo {
-      @apply rounded-[10px] w-[5.375rem] h-[5.375rem];
+      @apply h-[5.375rem] w-[5.375rem] rounded-[10px];
     }
 
     &-default {
-      @apply bg-primary-main rounded-[10px] w-20 h-20;
+      @apply h-20 w-20 rounded-[10px] bg-primary-main;
     }
   }
 }

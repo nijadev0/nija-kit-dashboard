@@ -13,10 +13,9 @@ import Button from '$components/atoms/Button.vue'
 import CloseXIcon from '$assets/icons/CloseXIcon.vue'
 import { ref } from 'vue'
 import Message from './Message.vue'
-// import { setTimeout } from 'timers'
 
 interface Alert {
-  variant?: 'error' | 'warning'
+  variant?: 'error' | 'warning' | 'success'
   title: string
   description: string
   isOpen?: any
@@ -128,7 +127,7 @@ function closeToast() {
                       type="background"
                       :on-click="showToast"
                     >
-                      Delete
+                      Draft
                     </Button>
                   </div>
                 </div>
@@ -142,9 +141,18 @@ function closeToast() {
 
   <div v-if="toast" class="relative">
     <Message
+      v-if="variant === 'error'"
       variant="error"
       title="Category has been deleted"
       description="Category which already deleted can not be recovered."
+      :toast="toast"
+      :close-toast="closeToast"
+    />
+    <Message
+      v-if="variant === 'warning'"
+      variant="warning"
+      title="Category has been drafted"
+      description="Don't worry, you can access drafted categories"
       :toast="toast"
       :close-toast="closeToast"
     />
@@ -187,6 +195,10 @@ function closeToast() {
 
       &.warning {
         @apply bg-warning-main;
+      }
+
+      &.success {
+        @apply bg-success-main;
       }
     }
   }

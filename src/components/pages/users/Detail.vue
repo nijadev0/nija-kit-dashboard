@@ -22,7 +22,7 @@ const isEnabled = ref(true)
           name="name"
           class="mt-1.5 w-full rounded-[10px] border border-netral-30 bg-netral-10 p-3.5 shadow-input"
           type="text"
-          placeholder="Your name"
+          placeholder="John Doe"
         />
       </div>
       <div class="w-full">
@@ -31,7 +31,7 @@ const isEnabled = ref(true)
           name="name"
           class="mt-1.5 w-full rounded-[10px] border border-netral-30 bg-netral-10 p-3.5 shadow-input"
           type="text"
-          placeholder="Your email address"
+          placeholder="johndoe@gmail.com"
         />
       </div>
 
@@ -54,25 +54,31 @@ const isEnabled = ref(true)
             name="name"
             class="relative w-full rounded-[10px] border border-netral-30 bg-netral-10 p-3.5 pl-24 shadow-input"
             type="text"
-            placeholder="Complete address"
+            placeholder="8791238193"
           />
         </div>
       </div>
 
       <div class="relative w-full">
-        <label class="font-semibold" for="name"> Complete address </label>
+        <label class="font-semibold" for="name"> Phone number </label>
         <input
           name="name"
           class="mt-1.5 w-full rounded-[10px] border border-netral-30 bg-netral-10 p-3.5 shadow-input"
           type="text"
-          placeholder="Your complete address"
+          placeholder="2972 Westheimer Rd. Santa Ana, Illinois 85486"
         />
       </div>
     </form>
 
     <template #extend>
       <!-- Action -->
-      <PageAction :is-enabled="isEnabled" variant="primary" />
+      <PageAction
+        :is-enabled="isEnabled"
+        variant="primary"
+        label-primary="Save"
+        label-secondary="Discard"
+        :hide-secondary="false"
+      />
     </template>
   </BaseLayout>
 </template>

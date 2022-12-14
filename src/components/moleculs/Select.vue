@@ -61,7 +61,7 @@ const dataModel = ref(data[0])
 
 <style lang="postcss">
 .select {
-  @apply flex w-full items-center justify-between rounded-lg border border-netral-30 p-3.5 outline-none focus:border focus:border-primary-main;
+  @apply relative flex w-full items-center justify-between rounded-lg border border-netral-30 p-3.5 outline-none focus:border focus:border-primary-main;
 
   &_button {
     @apply flex w-full items-center justify-between rounded-[10px] border border-netral-30 p-3.5;

@@ -8,14 +8,18 @@ import Title from '$components/atoms/Title.vue'
 import Button from '$components/atoms/Button.vue'
 import Para from '$components/atoms/Para.vue'
 
-import Variants from '$components/moleculs/Table/TableData/Variants.vue'
-
 import PageAction from '$components/organisms/PageAction.vue'
 import Message from '$components/organisms/Message.vue'
 import UploadList from '$components/organisms/UploadList.vue'
 import UploadEmpty from '$components/organisms/UploadEmpty.vue'
 
 import PlusIcon from '$assets/icons/Plus.vue'
+import Toggle from '$components/atoms/Toggle.vue'
+import Input from '$components/moleculs/Input.vue'
+import Select from '$components/moleculs/Select.vue'
+
+import Product1 from '$assets/images/product-1.png'
+import Checkbox from '$components/atoms/Checkbox.vue'
 import Check from '$assets/icons/Check.vue'
 
 const colors = [
@@ -92,15 +96,17 @@ const openModalUploadSecond = () => {
         :close-toast="closeToast"
       />
     </div>
+
     <div class="relative mb-8 flex w-full items-center justify-between">
       <Title variant="base"> Variant </Title>
 
       <div class="flex items-center gap-3">
-        <Button variant="error" size="md" type="outline">
+        <Button v-if="enabled" variant="error" size="md" type="outline">
           Delete Variant
         </Button>
 
         <Button
+          btn-type="button"
           variant="primary"
           size="md"
           type="background"
@@ -115,13 +121,15 @@ const openModalUploadSecond = () => {
       </div>
     </div>
 
-    <div class="mb-6">
+    <div class="mb-6 overflow-x-visible">
       <table class="w-full table-auto">
-        <thead
-          class="VariantsTableHead rounded-lg bg-[#fafafa] text-xs font-semibold uppercase text-netral-50"
-        >
-          <tr>
-            <th class="w-px py-5 pl-3 pr-6 text-left">
+        <!-- Table Head -->
+        <thead class="tableHead w-full">
+          <tr
+            class="flex w-full items-center justify-between gap-8 rounded-lg bg-[#fafafa] py-4 px-3 uppercase"
+          >
+            <!-- Checkbox -->
+            <th class="checkbox w-full max-w-[20px] pr-6 text-left">
               <Switch v-model="enabled" class="checkbox">
                 <div
                   class="checkbox-wrapper"
@@ -135,49 +143,114 @@ const openModalUploadSecond = () => {
               </Switch>
             </th>
 
-            <th class="py-5 px-4 text-left">
-              <Para size="md" variant="semibold"> Image </Para>
+            <!-- Image -->
+            <th class="w-full max-w-[90px] text-left">
+              <Para class="text-[#A0A8B0]" variant="semibold" size="md">
+                Image
+              </Para>
             </th>
 
-            <th class="max-w-[140px] py-5 px-4 text-left">
-              <Para size="md" variant="semibold"> Color </Para>
+            <th class="w-full min-w-[140px] text-left">
+              <Para class="text-[#A0A8B0]" variant="semibold" size="md">
+                Color
+              </Para>
             </th>
 
-            <th class="max-w-[140px] py-5 px-4 text-left">
-              <Para size="md" variant="semibold"> Size </Para>
+            <th class="w-full min-w-[140px] text-left">
+              <Para class="text-[#A0A8B0]" variant="semibold" size="md">
+                Size
+              </Para>
             </th>
 
-            <th class="max-w-[140px] py-5 px-4 text-left">
-              <Para size="md" variant="semibold"> Stock </Para>
+            <th class="w-full min-w-[140px] text-left">
+              <Para class="text-[#A0A8B0]" variant="semibold" size="md">
+                Stock
+              </Para>
             </th>
 
-            <th class="max-w-[140px] py-5 px-4 text-left">
-              <Para size="md" variant="semibold"> Sku </Para>
+            <th class="w-full min-w-[140px] text-left">
+              <Para class="text-[#A0A8B0]" variant="semibold" size="md">
+                SKU
+              </Para>
             </th>
 
-            <th class="py-5 px-4 text-left">
-              <Para size="md" variant="semibold"> Status </Para>
+            <th class="w-full max-w-[70px] text-left">
+              <Para class="text-[#A0A8B0]" variant="semibold" size="md">
+                Status
+              </Para>
             </th>
 
-            <th class="py-5 px-4 text-left">
-              <Para size="md" variant="semibold"> Action </Para>
+            <th class="w-full max-w-[112px] text-left">
+              <Para class="text-[#A0A8B0]" variant="semibold" size="md">
+                Action
+              </Para>
             </th>
           </tr>
         </thead>
 
-        <tbody class="w-full capitalize">
-          <Variants
-            v-for="item in [1, 2, 3, 4, 5]"
-            :open-modal="openModalUpload"
-            :colors="colors"
-            :sizes="sizes"
-          />
+        <!-- Table Data -->
+        <tbody class="tableData w-full">
+          <div v-for="item in [1, 2, 3, 4]">
+            <tr
+              class="flex items-center justify-between gap-8 border-b border-netral-30 py-[26px] px-3"
+            >
+              <td class="checkbox w-full max-w-[20px] pr-6">
+                <Checkbox />
+              </td>
+
+              <td class="h-full max-h-[90px] w-full max-w-[90px]">
+                <img class="max-w-[90px]" :src="Product1" alt="Product 1" />
+              </td>
+
+              <td class="w-full min-w-[140px]">
+                <Select :data="colors" isColor label-tag="Halo Bosque" />
+              </td>
+
+              <td class="w-full min-w-[140px]">
+                <Select :data="sizes" />
+              </td>
+
+              <td class="w-full min-w-[140px]">
+                <Input label="000" variety="number" />
+              </td>
+
+              <td class="w-full min-w-[140px]">
+                <Input label="000" variety="number" />
+              </td>
+
+              <td class="w-full max-w-[70px]">
+                <Toggle />
+              </td>
+
+              <td class="w-full max-w-[112px]">
+                <div class="flex items-center gap-2.5">
+                  <!-- @click="openModal" -->
+                  <Button
+                    btn-type="button"
+                    type="outline"
+                    variant="primary"
+                    size="md"
+                    :on-click="openModalUpload"
+                  >
+                    Add Image
+                  </Button>
+                </div>
+              </td>
+            </tr>
+          </div>
         </tbody>
       </table>
     </div>
+
     <template #extend>
       <!-- Action -->
-      <PageAction :is-enabled="enabled" />
+      <PageAction
+        :is-enabled="enabled"
+        variant="primary"
+        hide-secondary
+        label-primary="Save"
+        label-secondary="Discard"
+      />
     </template>
   </BaseLayout>
 </template>

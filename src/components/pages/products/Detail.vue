@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref } from 'vue'
 
 import BaseLayout from '$components/templates/BaseLayout.vue'
@@ -39,7 +39,6 @@ const discountType = [
 
 let isEnabled = ref(true)
 </script>
-
 <template>
   <BaseLayout title="Products">
     <Title variant="base"> Product Information </Title>
@@ -277,10 +276,11 @@ let isEnabled = ref(true)
     <template #extend>
       <PageAction
         :is-enabled="isEnabled"
-        variant="primary"
         label-primary="Next"
-        label-secondary="Draft"
+        label-secondary="Cancel"
+        variant="primary"
         href="/variants"
+        hide-secondary
       />
     </template>
   </BaseLayout>

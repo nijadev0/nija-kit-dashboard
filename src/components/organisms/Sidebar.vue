@@ -30,6 +30,9 @@ import NijaKit from '$assets/icons/NijaKit.vue'
       </SideMenu>
 
       <Disclosure>
+        <!-- data-headlessui-state="open"
+        aria-expanded="true"
+        aria-controls="headlessui-disclosure-panel-2" -->
         <DisclosureButton>
           <SideMenu variant="main" :expand="true">
             <UsersIcon class="stroke-inherit stroke-2" />

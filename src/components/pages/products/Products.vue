@@ -8,7 +8,6 @@ import Title from '$components/atoms/Title.vue'
 import Button from '$components/atoms/Button.vue'
 import Para from '$components/atoms/Para.vue'
 
-import TableDataProduct from '$components/moleculs/Table/TableData/Products.vue'
 import Paginate from '$components/moleculs/Paginate.vue'
 import PageAction from '$components/organisms/PageAction.vue'
 
@@ -17,11 +16,13 @@ import FunnelIcon from '$assets/icons/Funnel.vue'
 import PlusIcon from '$assets/icons/Plus.vue'
 import CheckIcon from '$assets/icons/Check.vue'
 
-import Product1 from '$assets/images/product-1.png'
-import Product2 from '$assets/images/product-2.png'
-import Product3 from '$assets/images/product-3.png'
-import Product4 from '$assets/images/product-4.png'
-import Product5 from '$assets/images/product-5.png'
+import Product1 from '$assets/images/product-5.png'
+import Product2 from '$assets/images/product-1.png'
+import Product3 from '$assets/images/product-2.png'
+import Product4 from '$assets/images/product-3.png'
+import Product5 from '$assets/images/product-4.png'
+import Checkbox from '$components/atoms/Checkbox.vue'
+import Badge from '$components/atoms/Badge.vue'
 
 const products = ref([
   {
@@ -36,8 +37,8 @@ const products = ref([
   {
     id: '1',
     image: Product2,
-    name: 'T-Shirt Oversize Cielo Basil',
-    category: 'jacket',
+    name: 'Windproof Handbell Oversized Long Coat',
+    category: 'Outer',
     status: 'scheduled',
     stock: 738,
     spent: '$178'
@@ -45,7 +46,7 @@ const products = ref([
   {
     id: '2',
     image: Product3,
-    name: 'T-Shirt Thompson Black',
+    name: "Women's Stripe Sweater",
     category: 'shirt',
     status: 'active',
     stock: 432,
@@ -54,7 +55,7 @@ const products = ref([
   {
     id: '2',
     image: Product4,
-    name: 'Oversize Yucatan Glacier Lake',
+    name: "Women's Turtleneck Sweater",
     category: 'pants',
     status: 'draft',
     stock: 53,
@@ -63,7 +64,7 @@ const products = ref([
   {
     id: '4',
     image: Product5,
-    name: 'T-Shirt Project Summer Black',
+    name: 'One Set - Casual Hoodie with Buttons for Tooddler',
     category: 'shirt',
     status: 'active',
     stock: 32,
@@ -76,8 +77,11 @@ let enabled = ref(false)
 
 <template>
   <BaseLayout title="Products">
-    <div class="relative mb-8 flex w-full items-center justify-between">
+    <div
+      class="Products relative mb-8 flex w-full items-center justify-between"
+    >
       <Title variant="base"> List Products </Title>
+
       <div class="flex items-center gap-3">
         <Button
           variant="default"
@@ -124,12 +128,13 @@ let enabled = ref(false)
     <!-- Table -->
     <div class="mb-6 overflow-x-auto">
       <table class="w-full table-auto">
-        <!-- Table header -->
-        <thead
-          class="rounded-lg bg-[#fafafa] text-xs font-semibold uppercase text-netral-50"
-        >
-          <tr>
-            <th class="w-5 py-5 pl-3 pr-6 text-left">
+        <!-- Table Head -->
+        <thead class="tableHead w-full">
+          <tr
+            class="flex w-full items-center justify-between gap-10 rounded-lg bg-[#fafafa] py-4 px-3 uppercase"
+          >
+            <!-- Checkbox -->
+            <th class="checkbox w-full max-w-[20px] pr-6 text-left">
               <Switch v-model="enabled" class="checkbox">
                 <div
                   class="checkbox-wrapper"
@@ -142,45 +147,104 @@ let enabled = ref(false)
                 </div>
               </Switch>
             </th>
-            <th class="w-[270px] py-5 text-left">
-              <Para size="md" variant="semibold"> Product </Para>
+
+            <th class="w-full min-w-[270px] text-left">
+              <Para class="text-[#A0A8B0]" variant="semibold" size="md">
+                Product
+              </Para>
             </th>
-            <th class="w-[140px] py-5 text-left">
-              <Para size="md" variant="semibold"> Category </Para>
+
+            <th class="w-full min-w-[140px] text-left">
+              <Para class="text-[#A0A8B0]" variant="semibold" size="md">
+                Category
+              </Para>
             </th>
-            <th class="w-[120px] py-5 text-left">
-              <Para size="md" variant="semibold"> Status </Para>
+
+            <th class="w-full min-w-[120px] text-left">
+              <Para class="text-[#A0A8B0]" variant="semibold" size="md">
+                Status
+              </Para>
             </th>
-            <th class="w-16 py-5 text-left">
-              <Para size="md" variant="semibold"> Stock </Para>
+
+            <th class="w-full min-w-[64px] text-left">
+              <Para class="text-[#A0A8B0]" variant="semibold" size="md">
+                Stock
+              </Para>
             </th>
-            <th class="w-[120px] py-5 text-left">
-              <Para size="md" variant="semibold"> Price </Para>
+
+            <th class="w-full min-w-[120px] text-left">
+              <Para class="text-[#A0A8B0]" variant="semibold" size="md">
+                Price
+              </Para>
             </th>
-            <th class="w-[100px] py-5 text-left">
-              <Para size="md" variant="semibold"> Action </Para>
+
+            <th class="w-full max-w-[100px] text-left">
+              <Para class="text-[#A0A8B0]" variant="semibold" size="md">
+                Action
+              </Para>
             </th>
           </tr>
         </thead>
-        <tbody class="w-full capitalize">
-          <TableDataProduct
-            v-for="{
-              id,
-              category,
-              name,
-              image,
-              spent,
-              status,
-              stock
-            } in products"
-            :key="id"
-            :name="name"
-            :category="category"
-            :image="image"
-            :spent="spent"
-            :status="status"
-            :stock="stock"
-          />
+
+        <!-- Table Data -->
+        <tbody class="tableData w-full">
+          <div v-for="item in products">
+            <tr
+              class="flex w-full items-center justify-between gap-10 border-b border-netral-30 py-[26px] px-3"
+            >
+              <td class="checkbox w-full max-w-[20px] pr-6">
+                <Checkbox />
+              </td>
+
+              <td class="w-full min-w-[270px]">
+                <div class="flex max-w-[270px] items-center gap-3">
+                  <img
+                    class="max-h-[90px] max-w-[90px]"
+                    :src="item.image"
+                    alt="Product 1"
+                  />
+                  <Para size="lg" variant="semibold" class="text-netral-80">
+                    {{ item.name }}
+                  </Para>
+                </div>
+              </td>
+
+              <td class="w-full min-w-[140px] text-left">
+                <Para size="lg" variant="semibold" class="capitalize">
+                  {{ item.category }}
+                </Para>
+              </td>
+
+              <td class="w-full min-w-[120px]">
+                <Badge v-if="item.status === 'active'" variant="success">
+                  {{ item.status }}
+                </Badge>
+                <Badge v-if="item.status === 'scheduled'" variant="info">
+                  {{ item.status }}
+                </Badge>
+                <Badge v-if="item.status === 'draft'" variant="warning">
+                  {{ item.status }}
+                </Badge>
+              </td>
+
+              <td class="w-full min-w-[64px]">
+                <Para size="lg" variant="semibold"> {{ item.stock }} </Para>
+              </td>
+
+              <td class="w-full min-w-[120px]">
+                <Para size="lg" variant="semibold"> {{ item.spent }} </Para>
+              </td>
+
+              <td class="w-full max-w-[100px]">
+                <button
+                  @click="$router.push('/products/detail')"
+                  class="font-bold text-primary-main"
+                >
+                  Detail
+                </button>
+              </td>
+            </tr>
+          </div>
         </tbody>
       </table>
     </div>
@@ -189,7 +253,12 @@ let enabled = ref(false)
     <Paginate />
 
     <template #extend>
-      <PageAction :isEnabled="enabled" variant="error" />
+      <PageAction
+        :isEnabled="enabled"
+        label-primary="Delete"
+        label-secondary="Draft"
+        variant="error"
+      />
     </template>
   </BaseLayout>
 </template>

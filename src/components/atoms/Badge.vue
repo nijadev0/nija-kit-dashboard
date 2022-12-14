@@ -1,28 +1,22 @@
 <script setup lang="ts">
-import Para from '$components/atoms/Para.vue';
+import Para from '$components/atoms/Para.vue'
 
 interface Status {
-  variant?:
-    | string
-    | 'success'
-    | 'warning'
-    | 'info'
-    | 'critical'
-    | 'neutral';
+  variant?: 'success' | 'warning' | 'info' | 'critical' | 'neutral'
 }
 
-const { variant } = defineProps<Status>();
+const { variant } = defineProps<Status>()
 </script>
 
 <template>
   <div
     class="badge"
     :class="{
-      'success': variant === 'success',
-      'warning': variant === 'warning',
-      'info': variant === 'info',
-      'critical': variant === 'critical',
-      'neutral': variant === 'neutral',
+      success: variant === 'success',
+      warning: variant === 'warning',
+      info: variant === 'info',
+      critical: variant === 'critical',
+      neutral: variant === 'neutral'
     }"
   >
     <Para size="md" variant="medium">
@@ -33,26 +27,26 @@ const { variant } = defineProps<Status>();
 
 <style lang="postcss">
 .badge {
-  @apply py-1 px-2 capitalize rounded-full w-max;
+  @apply w-max rounded-full py-1 px-4 capitalize;
 
   &.success {
-    @apply text-success-main bg-success-surface/50;
+    @apply bg-success-surface/50 text-success-main;
   }
 
   &.warning {
-    @apply text-warning-main bg-warning-surface/50;
+    @apply bg-warning-surface/50 text-warning-main;
   }
 
   &.info {
-    @apply text-info-main bg-info-surface/50;
+    @apply bg-info-surface/50 text-info-main;
   }
 
   &.critical {
-    @apply text-error-main bg-error-surface/50;
+    @apply bg-error-surface/50 text-error-main;
   }
 
   &.neutral {
-    @apply text-netral-80 bg-netral-30;
+    @apply bg-netral-30 text-netral-80;
   }
 }
 </style>

@@ -15,141 +15,58 @@ import Title from '$components/atoms/Title.vue'
 import Button from '$components/atoms/Button.vue'
 import Para from '$components/atoms/Para.vue'
 import Checkbox from '$components/atoms/Checkbox.vue'
-import Pagination from '$components/atoms/Pagination.vue'
 import Status from '$components/atoms/Badge.vue'
-
-import Alert from '$components/organisms/Alert.vue'
+import PageAction from '$components/organisms/PageAction.vue'
+import Paginate from '$components/moleculs/Paginate.vue'
 
 import SortAscendingIcon from '$assets/icons/SortAscending.vue'
 import FunnelIcon from '$assets/icons/Funnel.vue'
 import PlusIcon from '$assets/icons/Plus.vue'
 import SquaresFourIcon from '$assets/icons/SquaresFour.vue'
 import ListIcon from '$assets/icons/List.vue'
-import CaretLeftIcon from '$assets/icons/CaretLeft.vue'
-import CaretRightIcon from '$assets/icons/CaretRight.vue'
-import ChecksIcon from '$assets/icons/Checks.vue'
-
-import Categories1 from '$assets/images/categories-1.png'
-
-import Product1 from '$assets/images/product-1.png'
-import Product2 from '$assets/images/product-2.png'
-import Product3 from '$assets/images/product-3.png'
-import Product4 from '$assets/images/product-4.png'
-import Product5 from '$assets/images/product-5.png'
-import Paginate from '$components/moleculs/Paginate.vue'
-import PageAction from '$components/organisms/PageAction.vue'
+import ArrowRight from '$assets/icons/ArrowRight.vue'
 import Check from '$assets/icons/Check.vue'
+
+import Categories1Tshirt from '$assets/images/categories-1-tshirt.png'
+import Categories2Outer from '$assets/images/categories-2-outer.png'
+import Categories3Bag from '$assets/images/categories-3-bag.png'
+import Categories4Accessories from '$assets/images/categories-4-accessories.png'
+import Categories5Shirt from '$assets/images/categories-5-shirt.png'
+
+import Badge from '$components/atoms/Badge.vue'
 
 const categories = [
   {
-    image: Categories1,
-    name: 'Outer',
-    desc: 'Lorem ipsum dolor sit amet consectetur. Aenean leo senectus vulputate sed purus.'
+    image: Categories1Tshirt,
+    name: 'T-shirt',
+    desc: 'Discover easy and casual t-shirt for women and men with variety of colors, pattern and comfy materials.',
+    status: 'active'
   },
   {
-    image: Categories1,
+    image: Categories2Outer,
     name: 'Outer',
-    desc: 'Lorem ipsum dolor sit amet consectetur. Aenean leo senectus vulputate sed purus.'
+    desc: 'Discovery a variety of outers to keep yourself warm with stylish and comfortable ways.',
+    status: 'draft'
   },
   {
-    image: Categories1,
-    name: 'Outer',
-    desc: 'Lorem ipsum dolor sit amet consectetur. Aenean leo senectus vulputate sed purus.'
+    image: Categories3Bag,
+    name: 'Bag',
+    desc: 'Discover a variety of bags that are suitable for men, women and children in all situations.',
+    status: 'active'
   },
   {
-    image: Categories1,
-    name: 'Outer',
-    desc: 'Lorem ipsum dolor sit amet consectetur. Aenean leo senectus vulputate sed purus.'
+    image: Categories4Accessories,
+    name: 'Accessories',
+    desc: 'Complete your outfit with accessories - whether jewelry, hat, sunglasses, belt or scarf. To do so, you can rely on the latest trends and the classics.',
+    status: 'draft'
   },
   {
-    image: Categories1,
-    name: 'Outer',
-    desc: 'Lorem ipsum dolor sit amet consectetur. Aenean leo senectus vulputate sed purus.'
-  },
-  {
-    image: Categories1,
-    name: 'Outer',
-    desc: 'Lorem ipsum dolor sit amet consectetur. Aenean leo senectus vulputate sed purus.'
-  },
-  {
-    image: Categories1,
-    name: 'Outer',
-    desc: 'Lorem ipsum dolor sit amet consectetur. Aenean leo senectus vulputate sed purus.'
-  },
-  {
-    image: Categories1,
-    name: 'Outer',
-    desc: 'Lorem ipsum dolor sit amet consectetur. Aenean leo senectus vulputate sed purus.'
-  },
-  {
-    image: Categories1,
-    name: 'Outer',
-    desc: 'Lorem ipsum dolor sit amet consectetur. Aenean leo senectus vulputate sed purus.'
-  },
-  {
-    image: Categories1,
-    name: 'Outer',
-    desc: 'Lorem ipsum dolor sit amet consectetur. Aenean leo senectus vulputate sed purus.'
-  },
-  {
-    image: Categories1,
-    name: 'Outer',
-    desc: 'Lorem ipsum dolor sit amet consectetur. Aenean leo senectus vulputate sed purus.'
-  },
-  {
-    image: Categories1,
-    name: 'Outer',
-    desc: 'Lorem ipsum dolor sit amet consectetur. Aenean leo senectus vulputate sed purus.'
+    image: Categories5Shirt,
+    name: 'Shirt',
+    desc: 'Find most elegant and comfortable shirt from casual to formal wear.',
+    status: 'active'
   }
 ]
-
-const products = ref([
-  {
-    id: '0',
-    image: Product1,
-    name: 'UA Storm Armour Down 2\.0 Jacket',
-    category: 'outer',
-    status: 'active',
-    stock: 401,
-    spent: '$178'
-  },
-  {
-    id: '1',
-    image: Product2,
-    name: 'T-Shirt Oversize Cielo Basil',
-    category: 'jacket',
-    status: 'scheduled',
-    stock: 738,
-    spent: '$178'
-  },
-  {
-    id: '2',
-    image: Product3,
-    name: 'T-Shirt Thompson Black',
-    category: 'shirt',
-    status: 'active',
-    stock: 432,
-    spent: '$139'
-  },
-  {
-    id: '2',
-    image: Product4,
-    name: 'Oversize Yucatan Glacier Lake',
-    category: 'pants',
-    status: 'draft',
-    stock: 53,
-    spent: '$99'
-  },
-  {
-    id: '4',
-    image: Product5,
-    name: 'T-Shirt Project Summer Black',
-    category: 'shirt',
-    status: 'active',
-    stock: 32,
-    spent: '$178'
-  }
-])
 
 const enabled = ref(false)
 </script>
@@ -218,12 +135,13 @@ const enabled = ref(false)
         </div>
 
         <TabPanels>
+          <!-- Card -->
           <TabPanel>
-            <div class="categories_card">
+            <RouterLink to="/" class="categories_card">
               <div
                 v-for="({ image, name, desc }, index) in categories"
                 :key="'category-' + index"
-                class="relative h-full w-full min-w-[257px] bg-white"
+                class="relative h-full w-full min-w-[258px] bg-white"
               >
                 <div class="absolute left-3 top-3 z-10">
                   <div v-if="index === 0">
@@ -245,8 +163,18 @@ const enabled = ref(false)
                   </div>
                 </div>
                 <div
-                  class="relative flex h-[180px] w-full justify-center rounded-[10px] bg-[#FAFAFA] py-5"
+                  class="relative flex h-[180px] w-full justify-center rounded-[10px] bg-[#FAFAFA] py-5 transition-all duration-500 ease-in-out"
                 >
+                  <div
+                    class="absolute top-0 left-0 flex h-full w-full items-center justify-center rounded-[10px] bg-transparent opacity-0 transition-colors duration-500 ease-in-out hover:bg-netral-80/40 hover:opacity-100"
+                  >
+                    <button
+                      class="flex items-center justify-center gap-2 rounded-lg border-[1.5px] border-white/60 stroke-white/60 p-2 text-white/90 duration-500"
+                    >
+                      <span class="font-bold"> Detail </span>
+                      <ArrowRight />
+                    </button>
+                  </div>
                   <img :src="image" alt="category image 1" />
                 </div>
                 <Para
@@ -260,242 +188,106 @@ const enabled = ref(false)
                   {{ desc }}
                 </Para>
               </div>
-            </div>
+            </RouterLink>
           </TabPanel>
 
-          <TabPanel>
+          <!-- List -->
+          <TabPanel class="w-full">
             <!-- Table -->
             <div class="mb-6 overflow-x-auto">
               <table class="w-full table-auto">
-                <!-- Table header -->
-                <thead
-                  class="w-full rounded-lg bg-[#fafafa] text-xs font-semibold uppercase text-netral-50"
-                >
-                  <tr class="w-full">
-                    <th class="w-px py-5 pl-3 pr-6 text-left">
+                <!-- Table Head -->
+                <thead class="tableHead w-full">
+                  <tr
+                    class="flex w-full items-center justify-between gap-24 rounded-lg bg-[#fafafa] py-4 px-3 uppercase"
+                  >
+                    <!-- Checkbox -->
+                    <th class="checkbox w-px pr-6 text-left">
                       <Switch v-model="enabled" class="checkbox">
                         <div
                           class="checkbox-wrapper"
                           :class="enabled ? 'active' : 'default'"
                         >
-                          <Check
+                          <CheckIcon
                             class="checkbox-icon"
                             :class="enabled ? 'block' : 'hidden'"
                           />
                         </div>
                       </Switch>
                     </th>
-                    <th class="py-5 text-left">
-                      <Para size="md" variant="semibold"> Product </Para>
+
+                    <th class="-ml-40 w-full max-w-[220px] text-left">
+                      <Para class="text-[#A0A8B0]" variant="semibold" size="md">
+                        Category
+                      </Para>
                     </th>
-                    <th class="py-5 text-left">
-                      <Para size="md" variant="semibold"> Description </Para>
+
+                    <th class="w-full max-w-[280px] text-left">
+                      <Para class="text-[#A0A8B0]" variant="semibold" size="md">
+                        Description
+                      </Para>
                     </th>
-                    <th class="py-5 text-left">
-                      <Para size="md" variant="semibold"> Status </Para>
+
+                    <th class="w-full max-w-[142px] text-left">
+                      <Para class="text-[#A0A8B0]" variant="semibold" size="md">
+                        Status
+                      </Para>
                     </th>
-                    <th class="py-5 text-left">
-                      <Para size="md" variant="semibold"> Action </Para>
+
+                    <th class="w-full max-w-[100px] text-left">
+                      <Para class="text-[#A0A8B0]" variant="semibold" size="md">
+                        Action
+                      </Para>
                     </th>
                   </tr>
                 </thead>
-                <tbody class="w-full capitalize">
-                  <tr class="tableData">
-                    <td class="py-5 pl-3 pr-6 text-left">
+
+                <!-- Table Data -->
+                <tbody class="tableData w-full">
+                  <tr
+                    v-for="item in categories"
+                    class="flex w-full items-center justify-between gap-24 border-b border-netral-30 py-[26px] px-3"
+                  >
+                    <td class="checkbox w-px pr-6">
                       <Checkbox />
                     </td>
-                    <td class="py-5 text-left">
-                      <div class="flex items-center gap-3">
-                        <div class="max-h-[86px] max-w-[86px]">
-                          <img :src="Categories1" alt="category 1" />
-                        </div>
+
+                    <td class="-ml-40 w-full max-w-[220px] text-left">
+                      <div class="inline-flex items-center justify-start gap-4">
+                        <img
+                          class="max-h-[90px] w-[90px] rounded-lg"
+                          :src="item.image"
+                        />
                         <Para
                           size="lg"
                           variant="semibold"
-                          class="max-w-[160px]"
+                          class="text-netral-80"
                         >
-                          Outer
+                          {{ item.name }}
                         </Para>
                       </div>
                     </td>
 
-                    <td class="py-5 text-left">
-                      <Para
-                        size="lg"
-                        variant="regular"
-                        class="max-w-[280px] text-netral-80"
-                      >
-                        Lorem ipsum dolor sit amet consectetur. Eleifend arcu
-                        molestie ac orci sit velit ipsum interdum convallis.
+                    <td class="w-full max-w-[280px] text-left">
+                      <Para size="lg" variant="regular">
+                        {{ item.desc }}
                       </Para>
                     </td>
 
-                    <td class="py-5 text-left">
-                      <Status variant="success">Mantep</Status>
+                    <td class="w-full max-w-[142px]">
+                      <Badge v-if="item.status === 'active'" variant="success">
+                        {{ item.status }}
+                      </Badge>
+                      <Badge v-if="item.status === 'draft'" variant="warning">
+                        {{ item.status }}
+                      </Badge>
                     </td>
 
-                    <td class="py-5 text-left">
-                      <button class="font-semibold text-primary-main">
-                        Detail
-                      </button>
-                    </td>
-                  </tr>
-                  <tr class="tableData">
-                    <td class="py-5 pl-3 pr-6 text-left">
-                      <Checkbox />
-                    </td>
-                    <td class="py-5 text-left">
-                      <div class="flex items-center gap-3">
-                        <div class="max-h-[86px] max-w-[86px]">
-                          <img :src="Categories1" alt="category 1" />
-                        </div>
-                        <Para
-                          size="lg"
-                          variant="semibold"
-                          class="max-w-[160px]"
-                        >
-                          Outer
-                        </Para>
-                      </div>
-                    </td>
-
-                    <td class="py-5 text-left">
-                      <Para
-                        size="lg"
-                        variant="regular"
-                        class="max-w-[280px] text-netral-80"
+                    <td class="w-full max-w-[100px]">
+                      <button
+                        @click="$router.push('/users/detail')"
+                        class="font-bold text-primary-main"
                       >
-                        Lorem ipsum dolor sit amet consectetur. Eleifend arcu
-                        molestie ac orci sit velit ipsum interdum convallis.
-                      </Para>
-                    </td>
-
-                    <td class="py-5 text-left">
-                      <Status variant="success">Mantep</Status>
-                    </td>
-
-                    <td class="py-5 text-left">
-                      <button class="font-semibold text-primary-main">
-                        Detail
-                      </button>
-                    </td>
-                  </tr>
-                  <tr class="tableData">
-                    <td class="py-5 pl-3 pr-6 text-left">
-                      <Checkbox />
-                    </td>
-                    <td class="py-5 text-left">
-                      <div class="flex items-center gap-3">
-                        <div class="max-h-[86px] max-w-[86px]">
-                          <img :src="Categories1" alt="category 1" />
-                        </div>
-                        <Para
-                          size="lg"
-                          variant="semibold"
-                          class="max-w-[160px]"
-                        >
-                          Outer
-                        </Para>
-                      </div>
-                    </td>
-
-                    <td class="py-5 text-left">
-                      <Para
-                        size="lg"
-                        variant="regular"
-                        class="max-w-[280px] text-netral-80"
-                      >
-                        Lorem ipsum dolor sit amet consectetur. Eleifend arcu
-                        molestie ac orci sit velit ipsum interdum convallis.
-                      </Para>
-                    </td>
-
-                    <td class="py-5 text-left">
-                      <Status variant="success">Mantep</Status>
-                    </td>
-
-                    <td class="py-5 text-left">
-                      <button class="font-semibold text-primary-main">
-                        Detail
-                      </button>
-                    </td>
-                  </tr>
-                  <tr class="tableData">
-                    <td class="py-5 pl-3 pr-6 text-left">
-                      <Checkbox />
-                    </td>
-                    <td class="py-5 text-left">
-                      <div class="flex items-center gap-3">
-                        <div class="max-h-[86px] max-w-[86px]">
-                          <img :src="Categories1" alt="category 1" />
-                        </div>
-                        <Para
-                          size="lg"
-                          variant="semibold"
-                          class="max-w-[160px]"
-                        >
-                          Outer
-                        </Para>
-                      </div>
-                    </td>
-
-                    <td class="py-5 text-left">
-                      <Para
-                        size="lg"
-                        variant="regular"
-                        class="max-w-[280px] text-netral-80"
-                      >
-                        Lorem ipsum dolor sit amet consectetur. Eleifend arcu
-                        molestie ac orci sit velit ipsum interdum convallis.
-                      </Para>
-                    </td>
-
-                    <td class="min-w-[140px] py-5 text-left">
-                      <Status variant="success">Mantep</Status>
-                    </td>
-
-                    <td class="py-5 text-left">
-                      <button class="font-semibold text-primary-main">
-                        Detail
-                      </button>
-                    </td>
-                  </tr>
-                  <tr class="tableData">
-                    <td class="py-5 pl-3 pr-6 text-left">
-                      <Checkbox />
-                    </td>
-                    <td class="py-5 text-left">
-                      <div class="flex items-center gap-3">
-                        <div class="max-h-[86px] max-w-[86px]">
-                          <img :src="Categories1" alt="category 1" />
-                        </div>
-                        <Para
-                          size="lg"
-                          variant="semibold"
-                          class="max-w-[160px]"
-                        >
-                          Outer
-                        </Para>
-                      </div>
-                    </td>
-
-                    <td class="py-5 text-left">
-                      <Para
-                        size="lg"
-                        variant="regular"
-                        class="max-w-[280px] text-netral-80"
-                      >
-                        Lorem ipsum dolor sit amet consectetur. Eleifend arcu
-                        molestie ac orci sit velit ipsum interdum convallis.
-                      </Para>
-                    </td>
-
-                    <td class="py-5 text-left">
-                      <Status variant="success">Mantep</Status>
-                    </td>
-
-                    <td class="py-5 text-left">
-                      <button class="font-semibold text-primary-main">
                         Detail
                       </button>
                     </td>
@@ -512,7 +304,12 @@ const enabled = ref(false)
     </div>
 
     <template #extend>
-      <PageAction :isEnabled="enabled" variant="error" />
+      <PageAction
+        :isEnabled="enabled"
+        variant="error"
+        label-primary="Delete"
+        label-secondary="Draft"
+      />
     </template>
   </BaseLayout>
 </template>

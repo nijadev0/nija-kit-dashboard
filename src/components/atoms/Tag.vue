@@ -13,7 +13,7 @@ const { label, active, color } = defineProps<Tag>()
     <div
       class="min-w-20 flex h-8 items-center gap-2 rounded-md bg-[#F4F5F6] py-1.5 px-2"
     >
-      <div class="h-5 w-5 rounded-sm" :class="color" />
+      <div class="h-5 w-5 rounded-md" :class="color" />
       <span> {{ label }} </span>
     </div>
   </div>

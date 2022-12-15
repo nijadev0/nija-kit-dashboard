@@ -8,6 +8,8 @@ import Products from '$components/pages/products/Products.vue'
 import EmptyProducts from '$components/pages/products/Empty.vue'
 import AddProducts from '$components/pages/products/Add.vue'
 import DetailProducts from '$components/pages/products/Detail.vue'
+
+// Variants
 import Variants from '$components/pages/Variants.vue'
 
 // Categories

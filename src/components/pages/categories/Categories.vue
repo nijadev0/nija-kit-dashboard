@@ -202,24 +202,32 @@ const enabled = ref(false)
                     class="flex w-full items-center justify-between gap-24 rounded-lg bg-[#fafafa] py-4 px-3 uppercase"
                   >
                     <!-- Checkbox -->
-                    <th class="checkbox w-px pr-6 text-left">
-                      <Switch v-model="enabled" class="checkbox">
-                        <div
-                          class="checkbox-wrapper"
-                          :class="enabled ? 'active' : 'default'"
-                        >
-                          <CheckIcon
-                            class="checkbox-icon"
-                            :class="enabled ? 'block' : 'hidden'"
-                          />
-                        </div>
-                      </Switch>
-                    </th>
+                    <th class="w-full max-w-[260px]">
+                      <tr class="flex items-start gap-8">
+                        <th class="checkbox max-w-[20px] pr-6 text-left">
+                          <Switch v-model="enabled" class="checkbox">
+                            <div
+                              class="checkbox-wrapper"
+                              :class="enabled ? 'active' : 'default'"
+                            >
+                              <Check
+                                class="checkbox-icon"
+                                :class="enabled ? 'block' : 'hidden'"
+                              />
+                            </div>
+                          </Switch>
+                        </th>
 
-                    <th class="-ml-40 w-full max-w-[220px] text-left">
-                      <Para class="text-[#A0A8B0]" variant="semibold" size="md">
-                        Category
-                      </Para>
+                        <th class="w-full max-w-[220px] text-left">
+                          <Para
+                            class="text-[#A0A8B0]"
+                            variant="semibold"
+                            size="md"
+                          >
+                            Category
+                          </Para>
+                        </th>
+                      </tr>
                     </th>
 
                     <th class="w-full max-w-[280px] text-left">
@@ -246,26 +254,32 @@ const enabled = ref(false)
                 <tbody class="tableData w-full">
                   <tr
                     v-for="item in categories"
-                    class="flex w-full items-center justify-between gap-24 border-b border-netral-30 py-[26px] px-3"
+                    class="flex w-full items-center justify-between border-b border-netral-30 py-[26px] px-3"
                   >
-                    <td class="checkbox w-px pr-6">
-                      <Checkbox />
-                    </td>
+                    <td class="w-full max-w-[260px]">
+                      <tr class="flex items-start gap-8">
+                        <td class="checkbox max-w-[20px] pr-6">
+                          <Checkbox />
+                        </td>
 
-                    <td class="-ml-40 w-full max-w-[220px] text-left">
-                      <div class="inline-flex items-center justify-start gap-4">
-                        <img
-                          class="max-h-[90px] w-[90px] rounded-lg"
-                          :src="item.image"
-                        />
-                        <Para
-                          size="lg"
-                          variant="semibold"
-                          class="text-netral-80"
-                        >
-                          {{ item.name }}
-                        </Para>
-                      </div>
+                        <td class="w-full max-w-[220px] text-left">
+                          <div
+                            class="flex w-full items-center justify-start gap-4"
+                          >
+                            <img
+                              class="max-h-[90px] w-[90px] rounded-lg"
+                              :src="item.image"
+                            />
+                            <Para
+                              size="lg"
+                              variant="semibold"
+                              class="text-netral-80"
+                            >
+                              {{ item.name }}
+                            </Para>
+                          </div>
+                        </td>
+                      </tr>
                     </td>
 
                     <td class="w-full max-w-[280px] text-left">
@@ -325,7 +339,7 @@ const enabled = ref(false)
   }
 
   &_card {
-    @apply mb-8 grid grid-cols-4 gap-5;
+    @apply mb-8 grid auto-cols-min grid-flow-row grid-cols-4 gap-5;
   }
 }
 </style>

@@ -18,43 +18,43 @@ const detailsUser = [
     date: '02 Jan 2022. 16.00'
   },
   {
-    id: 653518,
-    nameItem: "Lego Star'War edition'",
-    amount: 2,
+    id: 267400,
+    nameItem: 'Heimer Miller Sofa (Mint Condition)',
+    amount: 4,
     status: 'successful',
-    price: '$782.01',
+    price: '$169.43',
+    date: '02 jan 2022. 16.00'
+  },
+  {
+    id: 653528,
+    nameItem: "Coach Tabby 26 for sale'",
+    amount: 3,
+    status: 'refund',
+    price: '$328.85',
+    date: '02 Jan 2022. 16.00'
+  },
+  {
+    id: 558612,
+    nameItem: 'Tablet Coaching 32 for sale',
+    amount: 1,
+    status: 'successful',
+    price: '$105.55',
+    date: '02 Jan 2022. 16.00'
+  },
+  {
+    id: 267400,
+    nameItem: 'Heimer Miller Sofa (Mint Condition)',
+    amount: 3,
+    status: 'wishlist',
+    price: '$739.65',
     date: '02 Jan 2022. 16.00'
   },
   {
     id: 653518,
-    nameItem: "Lego Star'War edition'",
+    nameItem: "Klemer Sofa Muller (German Player)'",
     amount: 2,
-    status: 'successful',
-    price: '$782.01',
-    date: '02 Jan 2022. 16.00'
-  },
-  {
-    id: 653518,
-    nameItem: "Lego Star'War edition'",
-    amount: 2,
-    status: 'successful',
-    price: '$782.01',
-    date: '02 Jan 2022. 16.00'
-  },
-  {
-    id: 653518,
-    nameItem: "Lego Star'War edition'",
-    amount: 2,
-    status: 'successful',
-    price: '$782.01',
-    date: '02 Jan 2022. 16.00'
-  },
-  {
-    id: 653518,
-    nameItem: "Lego Star'War edition'",
-    amount: 2,
-    status: 'successful',
-    price: '$782.01',
+    status: 'refund',
+    price: '$396.84',
     date: '02 Jan 2022. 16.00'
   }
 ]
@@ -174,7 +174,15 @@ const detailsUser = [
               </td>
 
               <td class="w-full">
-                <Badge variant="success"> {{ item.status }} </Badge>
+                <Badge v-if="item.status === 'successful'" variant="success">
+                  {{ item.status }}
+                </Badge>
+                <Badge v-if="item.status === 'wishlist'" variant="warning">
+                  {{ item.status }}
+                </Badge>
+                <Badge v-if="item.status === 'refund'" variant="critical">
+                  {{ item.status }}
+                </Badge>
               </td>
 
               <td class="w-full text-left">

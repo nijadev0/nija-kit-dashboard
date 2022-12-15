@@ -52,7 +52,10 @@ const dataModel = ref(data[0])
           :disabled="item.id === 1"
           class="select-option relative"
         >
-          {{ item.name }}
+          <Tag :active="isColor" :color="item.color" :label="item.name" />
+          <span>
+            {{ item.name }}
+          </span>
         </ListboxOption>
       </ListboxOptions>
     </div>
@@ -68,7 +71,7 @@ const dataModel = ref(data[0])
   }
 
   &_wrapper {
-    @apply absolute top-14 left-0 z-30 w-full rounded-br-[10px] rounded-bl-[10px] border-x border-b border-netral-30 bg-white;
+    @apply absolute top-14 left-0 z-30 w-full rounded-br-[10px] rounded-bl-[10px] border-x border-b border-netral-30 bg-white px-3.5 shadow-lg;
   }
 
   &-option {

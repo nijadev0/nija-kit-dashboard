@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { TransitionChild, TransitionRoot } from '@headlessui/vue'
 
 import Button from '$components/atoms/Button.vue'
 import Alert from '$components/organisms/Alert.vue'
+import Message from '$components/organisms/Message.vue'
 
 import ChecksIcon from '$assets/icons/Checks.vue'
-import Message from './Message.vue'
+import { TransitionChild, TransitionRoot } from '@headlessui/vue'
 
 interface PageAction {
   variant?: 'primary' | 'error'
@@ -34,9 +34,11 @@ let isOpenSave = ref(false)
 const openModalLeft = () => {
   isOpenLeft.value = true
 }
+
 const openModalRight = () => {
   isOpenRight.value = true
 }
+
 const closeModalLeft = () => {
   isOpenLeft.value = false
 }
@@ -45,18 +47,18 @@ const closeModalRight = () => {
   isOpenRight.value = false
 }
 
-const openModalSave = () => {
+const openToast = () => {
   isOpenSave.value = true
 }
 
-const closeModalSave = () => {
+const closeToast = () => {
   isOpenSave.value = false
 }
 </script>
 
 <template>
   <!-- PageAction -->
-  <TransitionRoot appear :show="isEnabled" as="template">
+  <TransitionRoot appear :show="isEnabled" as="div">
     <TransitionChild
       as="div"
       enter="duration-300 ease-in-out"
@@ -73,7 +75,11 @@ const closeModalSave = () => {
         <div class="flex items-center gap-2">
           <ChecksIcon />
           <span class="flex items-center gap-1 font-semibold text-netral-50">
-            2 products selected
+            {{
+              labelPrimary === 'Delete'
+                ? '2 products selected'
+                : 'Last Saved Nov 9, 2022-17.09'
+            }}
           </span>
         </div>
 
@@ -96,11 +102,12 @@ const closeModalSave = () => {
 
           <!-- Saved Sweet Alert -->
           <Message
+            v-if="isOpenSave"
             variant="success"
             title="Saved successfully"
             description="You can now continue to do anything you want"
             :toast="isOpenSave"
-            :close-toast="closeModalSave"
+            :closeToast="closeToast"
           />
 
           <Button
@@ -158,7 +165,7 @@ const closeModalSave = () => {
 
           <Button
             v-if="variant === 'primary' && labelPrimary === 'Save'"
-            :on-click="openModalSave"
+            :on-click="openToast"
             type="background"
             btnType="button"
             variant="primary"

@@ -23,6 +23,8 @@ const isOpen = ref(false)
 const closeModal = () => {
   isOpen.value = false
 }
+
+const isEnabled = ref(true)
 </script>
 
 <template>
@@ -114,12 +116,19 @@ const closeModal = () => {
 
     <template #extend>
       <!-- Action -->
-      <PageAction
+      <!-- <PageAction
         variant="primary"
         :is-enabled="true"
         hide-secondary
         label-primary="Save"
         label-secondary="Cancel"
+      /> -->
+      <PageAction
+        :is-enabled="isEnabled"
+        variant="primary"
+        label-primary="Save"
+        label-secondary="Discard"
+        :hide-secondary="false"
       />
     </template>
   </BaseLayout>

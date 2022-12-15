@@ -21,6 +21,7 @@ import Select from '$components/moleculs/Select.vue'
 import Product1 from '$assets/images/product-1.png'
 import Checkbox from '$components/atoms/Checkbox.vue'
 import Check from '$assets/icons/Check.vue'
+import Alert from '$components/organisms/Alert.vue'
 
 const colors = [
   { id: 1, name: 'Select', color: 'bg-[#A0A8B0]', unavailable: true },
@@ -41,6 +42,7 @@ const sizes = [
 
 const isOpenUploadOne = ref(false)
 const isOpenUploadTwo = ref(false)
+const isOpenAlertDelete = ref(false)
 const enabled = ref(false)
 let toast = ref(false)
 
@@ -69,6 +71,14 @@ const openModalUploadSecond = () => {
   closeModalUpload()
   isOpenUploadTwo.value = true
 }
+
+const openAlertDelete = () => {
+  isOpenAlertDelete.value = true
+}
+
+const closeAlertDelete = () => {
+  isOpenAlertDelete.value = false
+}
 </script>
 
 <template>
@@ -79,7 +89,6 @@ const openModalUploadSecond = () => {
       :close-modal="closeModalUpload"
       :next-modal="openModalUploadSecond"
     />
-
     <UploadList
       title="Upload variant image"
       :is-open="isOpenUploadTwo"
@@ -101,7 +110,14 @@ const openModalUploadSecond = () => {
       <Title variant="base"> Variant </Title>
 
       <div class="flex items-center gap-3">
-        <Button v-if="enabled" variant="error" size="md" type="outline">
+        <Button
+          btn-type="button"
+          :on-click="openAlertDelete"
+          v-if="enabled"
+          variant="error"
+          size="md"
+          type="outline"
+        >
           Delete Variant
         </Button>
 
@@ -250,6 +266,16 @@ const openModalUploadSecond = () => {
         hide-secondary
         label-primary="Save"
         label-secondary="Discard"
+      />
+
+      <!-- Alert for Delete -->
+
+      <Alert
+        variant="error"
+        :isOpen="isOpenAlertDelete"
+        :closeModal="closeAlertDelete"
+        title="Delete Product"
+        description="Are you sure to delete your product? You won't get your data back once it deleted"
       />
     </template>
   </BaseLayout>
